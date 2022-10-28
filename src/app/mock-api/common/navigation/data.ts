@@ -41,7 +41,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
     },
     */
 
-    /*
+    
     {
         id      : 'apps',
         title   : 'Applications',
@@ -69,7 +69,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 type : 'basic',
                 icon : 'heroicons_outline:user-group',
                 link : '/apps/contacts'
-            },
+            }, 
             {
                 id      : 'apps.ecommerce',
                 title   : 'ECommerce',
@@ -84,6 +84,41 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     }
                 ]
             },
+            {
+                id   : 'apps.professional',
+                title: 'Professional',
+                type : 'basic',
+                icon : 'heroicons_outline:menu-alt-2',
+                link : '/pages/activities'
+            },
+            {
+                id   : 'apps.publicite',
+                title: 'Publicite',
+                type : 'basic',
+                icon : 'heroicons_outline:menu-alt-2',
+                link : '/pages/activities'
+            },
+            {
+                id   : 'pages.sports',
+                title: 'Sports',
+                type : 'basic',
+                icon : 'heroicons_outline:menu-alt-2',
+                link : '/pages/activities'
+            },
+            {
+                id   : 'pages.activities',
+                title: 'Activities',
+                type : 'basic',
+                icon : 'heroicons_outline:menu-alt-2',
+                link : '/pages/activities'
+            },
+            {
+                id   : 'pages.reseau',
+                title: 'Reseau',
+                type : 'basic',
+                icon : 'heroicons_outline:cube-transparent',
+                link : '/pages/activities'
+            },/*
             {
                 id   : 'apps.file-manager',
                 title: 'File Manager',
@@ -125,6 +160,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     }
                 ]
             },
+            */
             {
                 id   : 'apps.mailbox',
                 title: 'Mailbox',
@@ -137,12 +173,28 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 }
             },
             {
+                id   : 'pages.profile',
+                title: 'Profile',
+                type : 'basic',
+                icon : 'heroicons_outline:user-circle',
+                link : '/pages/profile'
+            },
+            {
+                id   : 'pages.settings',
+                title: 'Settings',
+                type : 'basic',
+                icon : 'heroicons_outline:cog',
+                link : '/pages/settings'
+            },
+            /*
+            {
                 id   : 'apps.notes',
                 title: 'Notes',
                 type : 'basic',
                 icon : 'heroicons_outline:pencil-alt',
                 link : '/apps/notes'
             },
+            */
             {
                 id   : 'apps.scrumboard',
                 title: 'Scrumboard',
@@ -159,8 +211,6 @@ export const defaultNavigation: FuseNavigationItem[] = [
             }
         ]
     },
-
-    */
     {
         id      : 'pages',
         title   : 'Pages',
@@ -325,7 +375,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     {
                         id      : 'pages.authentication.sign-out',
                         title   : 'Sign out',
-                        type    : 'collapsable',
+                        type    : 'basic',
                         link    : '/pages/authentication/sign-out',
                         children: [
                             // {
