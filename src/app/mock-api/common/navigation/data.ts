@@ -154,6 +154,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:cube-transparent',
                 link : '/pages/activities'
             },
+            {
+                id   : 'pages.evenement',
+                title: 'Evenement',
+                type : 'basic',
+                icon : 'heroicons_outline:cube-transparent',
+                link : '/pages/activities'
+            },
             /*
             {
                 id   : 'apps.file-manager',
