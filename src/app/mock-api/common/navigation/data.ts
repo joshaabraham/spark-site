@@ -89,14 +89,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Professional',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',
-                link : '/pages/activities'
+                link : '/ui/page-layouts/carded/right-sidebar-2'
             },
             {
                 id   : 'apps.publicite',
                 title: 'Publicite',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',
-                link : '/pages/activities'
+                link : '/ui/page-layouts/carded/right-sidebar-2'
             },
             {
                 id   : 'pages.sports',
@@ -131,14 +131,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Association',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
-                link : '/pages/activities'
+                link : '/ui/page-layouts/carded/right-sidebar-2'
             },
             {
                 id   : 'pages.equipe',
                 title: 'Equipe',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
-                link : '/pages/activities'
+                link : '/ui/page-layouts/carded/right-sidebar-2'
             },
             {
                 id   : 'pages.invitation',
@@ -159,7 +159,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Evenement',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
-                link : '/pages/activities'
+                link : '/ui/page-layouts/carded/right-sidebar-2'
             },
             /*
             {
