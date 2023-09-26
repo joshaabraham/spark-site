@@ -81,6 +81,18 @@ export const defaultNavigation: FuseNavigationItem[] = [
                         title: 'Inventory',
                         type : 'basic',
                         link : '/apps/ecommerce/inventory'
+                    },
+                         {
+                        id   : 'apps.ecommerce.inventory',
+                        title: 'Vendre',
+                        type : 'basic',
+                        link : '/apps/ecommerce/inventory'
+                    },
+                         {
+                        id   : 'apps.ecommerce.inventory',
+                        title: 'Acheter',
+                        type : 'basic',
+                        link : '/apps/ecommerce/inventory'
                     }
                 ]
             },
@@ -89,14 +101,28 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Professional',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',
-                link : '/ui/page-layouts/carded/right-sidebar-2'
+                link : 'ui/page-layouts/carded/right-sidebar-2/content-scroll',
+                  children: [
+                        {
+                            id   : 'apps.ecommerce.inventory',
+                            title: 'je veux un job',
+                            type : 'basic',
+                            link : '/apps/ecommerce/inventory'
+                        },
+                        {
+                            id   : 'apps.ecommerce.inventory',
+                            title: 'je cherche un job',
+                            type : 'basic',
+                            link : '/apps/ecommerce/inventory'
+                        }
+                    ]
             },
             {
                 id   : 'apps.publicite',
                 title: 'Publicite',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',
-                link : '/ui/page-layouts/carded/right-sidebar-2'
+                link : 'ui/page-layouts/carded/right-sidebar-2/content-scroll'
             },
             {
                 id   : 'pages.sports',
