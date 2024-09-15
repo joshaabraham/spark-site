@@ -60,5 +60,21 @@ export class SignUpFullscreenComponent implements OnInit
      */
     signUp(): void
     {
+        const username = this.signUpForm.get('name')?.value
+        const email = this.signUpForm.get('email')?.value
+        const company = this.signUpForm.get('company')?.value
+        const password = this.signUpForm.get('password')?.value 
+        const agreements = this.signUpForm.get('agreements')?.value
+
+        const user =  {
+            username: username,
+            email: email,
+            password: password,
+            company: company,
+            agreements: agreements
+        }
+
+        this._authService.signUp(user);
+    
     }
 }

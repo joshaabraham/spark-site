@@ -123,7 +123,7 @@ export class AuthService
                 // in using the token, you should generate a new one on the server
                 // side and attach it to the response object. Then the following
                 // piece of code can replace the token with the refreshed one.
-                if ( response.accessToken )
+                if ( response.jwt )
                 {
                     this.accessToken = response.jwt;
                 }
@@ -160,9 +160,10 @@ export class AuthService
      *
      * @param user
      */
-    signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
+    signUp(user: { username: string; email: string; password: string; company: string }): Observable<any>
     {
-        return this._httpClient.post('user_app/register', user);
+        console.log(user);
+        return this._httpClient.post(`${this.apiUrl}${'user_app/register'}`, user);
     }
 
     /**

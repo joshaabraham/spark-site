@@ -44,7 +44,7 @@ export class AuthSignUpComponent implements OnInit
     {
         // Create the form
         this.signUpForm = this._formBuilder.group({
-                name      : ['', Validators.required],
+                username  : ['', Validators.required],
                 email     : ['', [Validators.required, Validators.email]],
                 password  : ['', Validators.required],
                 company   : [''],
@@ -75,6 +75,7 @@ export class AuthSignUpComponent implements OnInit
         this.showAlert = false;
 
         // Sign up
+        console.log(this.signUpForm.value)
         this._authService.signUp(this.signUpForm.value)
             .subscribe(
                 (response) => {
