@@ -55,5 +55,13 @@ export class SignInSplitScreenComponent implements OnInit
      */
     signIn(): void
     {
+        const email = this.signInForm.get('name')?.value
+        const password = this.signInForm.get('password')?.value
+            const credentials = {
+                email: email,
+                password: password
+            }
+
+        this._authService.signIn(credentials)
     }
 }

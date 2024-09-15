@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class AuthService
 {
     private _authenticated: boolean = false;
+    private apiUrl = `${environment.apiURL}`; // URL de base pour l'API Django
 
     /**
      * Constructor
@@ -73,22 +75,28 @@ export class AuthService
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
-            switchMap((response: any) => {
+        const body = { username: credentials.email, password: credentials.password };
 
-                // Store the access token in the local storage
-                this.accessToken = response.accessToken;
+    // Optionnel: définir les headers si nécessaire
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-                // Set the authenticated flag to true
-                this._authenticated = true;
-
-                // Store the user on the user service
-                this._userService.user = response.user;
-
-                // Return a new observable with the response
-                return of(response);
-            })
-        );
+    // Envoyer la requête POST
+        return this._httpClient.post(`${this.apiUrl}${'user_app/auth/'}`, body, { headers: headers }).pipe(
+                            switchMap((response: any) => {
+    
+                                // Store the access token in the local storage
+                                this.accessToken = response.token;
+    
+                                // Set the authenticated flag to true
+                                this._authenticated = true;
+    
+                                // Store the user on the user service
+                                this._userService.user = response.user;
+    
+                                // Return a new observable with the response
+                                return of(response);
+                            })
+                        );
     }
 
     /**
