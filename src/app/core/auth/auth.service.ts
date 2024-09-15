@@ -75,17 +75,18 @@ export class AuthService
             return throwError('User is already logged in.');
         }
 
-        const body = { username: credentials.email, password: credentials.password };
+        const body = { email: credentials.email, password: credentials.password };
 
     // Optionnel: définir les headers si nécessaire
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     // Envoyer la requête POST
-        return this._httpClient.post(`${this.apiUrl}${'user_app/auth/'}`, body, { headers: headers }).pipe(
+        return this._httpClient.post(`${this.apiUrl}${'user_app/login'}`, body, { headers: headers }).pipe(
                             switchMap((response: any) => {
     
                                 // Store the access token in the local storage
-                                this.accessToken = response.token;
+                                this.accessToken = response.jwt;
+                                console.log(`Access token: ${this.accessToken}`);
     
                                 // Set the authenticated flag to true
                                 this._authenticated = true;
@@ -124,7 +125,7 @@ export class AuthService
                 // piece of code can replace the token with the refreshed one.
                 if ( response.accessToken )
                 {
-                    this.accessToken = response.accessToken;
+                    this.accessToken = response.jwt;
                 }
 
                 // Set the authenticated flag to true
@@ -161,7 +162,7 @@ export class AuthService
      */
     signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
     {
-        return this._httpClient.post('api/auth/sign-up', user);
+        return this._httpClient.post('user_app/register', user);
     }
 
     /**
