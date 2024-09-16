@@ -45,9 +45,8 @@ export class UserService
     /**
      * Get the current logged in user data
      */
-    get(): Observable<User>
-    {
-        return this._httpClient.get<User>(`${environment.apiURL}${'user_app/user'}`).pipe(
+    get(): Observable<User> {
+        return this._httpClient.get<User>(`${environment.apiURL}user_app/user`).pipe(
             tap((user) => {
                 this._user.next(user);
             })

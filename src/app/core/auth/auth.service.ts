@@ -67,37 +67,26 @@ export class AuthService
      *
      * @param credentials
      */
-    signIn(credentials: { email: string; password: string }): Observable<any>
-    {
-        // Throw error, if the user is already logged in
-        if ( this._authenticated )
-        {
-            return throwError('User is already logged in.');
-        }
-
+    signIn(credentials: { email: string; password: string }): Observable<any> {
         const body = { email: credentials.email, password: credentials.password };
-
-    // Optionnel: définir les headers si nécessaire
+    
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    // Envoyer la requête POST
+    
         return this._httpClient.post(`${this.apiUrl}${'user_app/login'}`, body, { headers: headers }).pipe(
-                            switchMap((response: any) => {
+            switchMap((response: any) => {
+                // Store the access token in the local storage
+                this.accessToken = response.access;  // Le token d'accès
+                console.log(`Access token: ${this.accessToken}`);
+        
+                // Set the authenticated flag to true
+                this._authenticated = true;
     
-                                // Store the access token in the local storage
-                                this.accessToken = response.jwt;
-                                console.log(`Access token: ${this.accessToken}`);
+                // Store the user on the user service, if needed
+                // this._userService.user = response.user;
     
-                                // Set the authenticated flag to true
-                                this._authenticated = true;
-    
-                                // Store the user on the user service
-                                this._userService.user = response.user;
-    
-                                // Return a new observable with the response
-                                return of(response);
-                            })
-                        );
+                return of(response);
+            })
+        );
     }
 
     /**
