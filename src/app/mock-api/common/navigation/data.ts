@@ -129,7 +129,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Sports',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',
-                link : '/pages/activities'
+                link : '/apps/sports'
             },
             {
                 id   : 'pages.activities',

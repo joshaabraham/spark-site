@@ -1,0 +1,8 @@
+<h1>Discussion</h1>
+<div class="h-64 overflow-y-auto">
+  <!-- Affichage des messages -->
+  <div *ngFor="let message of messages">
+    <p>{{ message }}</p>
+  </div>
+</div>
+<input type="text" placeholder="Tapez votre message..." [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
