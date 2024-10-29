@@ -181,11 +181,11 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 link : '/pages/activities'
             },
             {
-                id   : 'pages.evenement',
+                id   : 'pages.events',
                 title: 'Evenement',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
-                link : '/ui/page-layouts/carded/right-sidebar-2'
+                link : '/apps/events'
             },
             /*
             {

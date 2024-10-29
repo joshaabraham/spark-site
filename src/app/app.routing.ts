@@ -96,6 +96,7 @@ export const appRoutes: Route[] = [
                 {path: 'scrumboard', loadChildren: () => import('app/modules/admin/apps/scrumboard/scrumboard.module').then(m => m.ScrumboardModule)},
                 {path: 'tasks', loadChildren: () => import('app/modules/admin/apps/tasks/tasks.module').then(m => m.TasksModule)},
                 {path: 'sports', loadChildren: () => import('app/modules/admin/apps/sports/sports.module').then(m => m.SportsModule)},
+                {path: 'events', loadChildren: () => import('app/modules/admin/apps/events/events.module').then(m => m.EventsModule)},
             ]},
 
             // Pages
