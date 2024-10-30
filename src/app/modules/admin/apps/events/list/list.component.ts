@@ -1,43 +1,38 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, Renderer2, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject, combineLatest, Subject, takeUntil } from 'rxjs';
 import { EventsService } from 'app/modules/admin/apps/events/events.service';
 import { Category, Course } from 'app/modules/admin/apps/events/events.types';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { FuseCardComponent } from '@fuse/components/card';
 
 @Component({
     selector       : 'events-list',
     templateUrl    : './list.component.html',
+    styles         : [
+        `
+            cards fuse-card {
+                margin: 16px;
+            }
+        `
+    ],
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EventsListComponent implements OnInit, OnDestroy
+export class EventsListComponent implements AfterViewInit
 {
-    categories: Category[];
-    courses: Course[];
-    filteredCourses: Course[];
-    filters: {
-        categorySlug$: BehaviorSubject<string>;
-        query$: BehaviorSubject<string>;
-        hideCompleted$: BehaviorSubject<boolean>;
-    } = {
-        categorySlug$ : new BehaviorSubject('all'),
-        query$        : new BehaviorSubject(''),
-        hideCompleted$: new BehaviorSubject(false)
-    };
+    @ViewChildren(FuseCardComponent, {read: ElementRef}) private _fuseCards: QueryList<ElementRef>;
 
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
+    filters: string[] = ['all', 'article', 'listing', 'list', 'info', 'shopping', 'pricing', 'testimonial', 'post', 'interactive'];
+    numberOfCards: any = {};
+    selectedFilter: string = 'all';
 
     /**
      * Constructor
      */
-    constructor(
-        private _activatedRoute: ActivatedRoute,
-        private _changeDetectorRef: ChangeDetectorRef,
-        private _router: Router,
-        private _eventsService: EventsService
-    )
+    constructor(private _renderer2: Renderer2)
     {
     }
 
@@ -46,67 +41,15 @@ export class EventsListComponent implements OnInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * On init
+     * After view init
      */
-    ngOnInit(): void
+    ngAfterViewInit(): void
     {
-        // Get the categories
-        this._eventsService.categories$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((categories: Category[]) => {
-                this.categories = categories;
+        // Calculate the number of cards
+        this._calcNumberOfCards();
 
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
-
-        // Get the courses
-        this._eventsService.courses$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((courses: Course[]) => {
-                this.courses = this.filteredCourses = courses;
-
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
-
-        // Filter the courses
-        combineLatest([this.filters.categorySlug$, this.filters.query$, this.filters.hideCompleted$])
-            .subscribe(([categorySlug, query, hideCompleted]) => {
-
-                // Reset the filtered courses
-                this.filteredCourses = this.courses;
-
-                // Filter by category
-                if ( categorySlug !== 'all' )
-                {
-                    this.filteredCourses = this.filteredCourses.filter(course => course.category === categorySlug);
-                }
-
-                // Filter by search query
-                if ( query !== '' )
-                {
-                    this.filteredCourses = this.filteredCourses.filter(course => course.title.toLowerCase().includes(query.toLowerCase())
-                        || course.description.toLowerCase().includes(query.toLowerCase())
-                        || course.category.toLowerCase().includes(query.toLowerCase()));
-                }
-
-                // Filter by completed
-                if ( hideCompleted )
-                {
-                    this.filteredCourses = this.filteredCourses.filter(course => course.progress.completed === 0);
-                }
-            });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void
-    {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
+        // Filter the cards for the first time
+        this._filterCards();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -114,43 +57,81 @@ export class EventsListComponent implements OnInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * Filter by search query
-     *
-     * @param query
-     */
-    filterByQuery(query: string): void
-    {
-        this.filters.query$.next(query);
-    }
-
-    /**
-     * Filter by category
+     * On filter change
      *
      * @param change
      */
-    filterByCategory(change: MatSelectChange): void
+    onFilterChange(change: MatButtonToggleChange): void
     {
-        this.filters.categorySlug$.next(change.value);
+        // Set the filter
+        this.selectedFilter = change.value;
+
+        // Filter the cards
+        this._filterCards();
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Private methods
+    // -----------------------------------------------------------------------------------------------------
+
+    private _calcNumberOfCards(): void
+    {
+        // Prepare the numberOfCards object
+        this.numberOfCards = {};
+
+        // Prepare the count
+        let count = 0;
+
+        // Go through the filters
+        this.filters.forEach((filter) => {
+
+            // For each filter, calculate the card count
+            if ( filter === 'all' )
+            {
+                count = this._fuseCards.length;
+            }
+            else
+            {
+                count = this.numberOfCards[filter] = this._fuseCards.filter(fuseCard => fuseCard.nativeElement.classList.contains('filter-' + filter)).length;
+            }
+
+            // Fill the numberOfCards object with the counts
+            this.numberOfCards[filter] = count;
+        });
     }
 
     /**
-     * Show/hide completed courses
+     * Filter the cards based on the selected filter
      *
-     * @param change
+     * @private
      */
-    toggleCompleted(change: MatSlideToggleChange): void
+    private _filterCards(): void
     {
-        this.filters.hideCompleted$.next(change.checked);
-    }
+        // Go through all fuse-cards
+        this._fuseCards.forEach((fuseCard) => {
 
-    /**
-     * Track by function for ngFor loops
-     *
-     * @param index
-     * @param item
-     */
-    trackByFn(index: number, item: any): any
-    {
-        return item.id || index;
+            // If the 'all' filter is selected...
+            if ( this.selectedFilter === 'all' )
+            {
+                // Remove hidden class from all cards
+                fuseCard.nativeElement.classList.remove('hidden');
+            }
+            // Otherwise...
+            else
+            {
+                // If the card has the class name that matches the selected filter...
+                if ( fuseCard.nativeElement.classList.contains('filter-' + this.selectedFilter) )
+                {
+                    // Remove the hidden class
+                    fuseCard.nativeElement.classList.remove('hidden');
+                }
+                // Otherwise
+                else
+                {
+                    // Add the hidden class
+                    fuseCard.nativeElement.classList.add('hidden');
+                }
+            }
+        });
     }
 }
