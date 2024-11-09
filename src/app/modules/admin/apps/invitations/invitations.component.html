@@ -1,1 +1,37 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+
+<div
+    class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto"
+    cdkScrollable>
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+
+        <!-- CONTENT GOES HERE -->
+        <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+
+
+
+
+            <div class="container">
+                <!-- Section gauche : Liste des invitations -->
+                <div class="left-section">
+                  <mat-list>
+                    <mat-list-item *ngFor="let invitation of invitations">
+                      <app-invitation-card></app-invitation-card>
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+              
+                <!-- Section droite : Contenu vide pour l'instant -->
+                <div class="right-section">
+                  <!-- Contenu de la partie droite -->
+                  <p>Contenu ici (pour l'instant vide)</p>
+                </div>
+              </div>
+        </div>
+
+    </div>
+
+</div>
+

@@ -145,13 +145,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:cube-transparent',
                 link : '/pages/activities'
             },
-            {
-                id   : 'pages.abonnement',
-                title: 'Abonnement',
-                type : 'basic',
-                icon : 'heroicons_outline:cube-transparent',
-                link : '/pages/activities'
-            },
+            // {
+            //     id   : 'pages.abonnement',
+            //     title: 'Abonnement',
+            //     type : 'basic',
+            //     icon : 'heroicons_outline:cube-transparent',
+            //     link : '/pages/activities'
+            // },
             {
                 id   : 'pages.association',
                 title: 'Association',
@@ -168,10 +168,10 @@ export const defaultNavigation: FuseNavigationItem[] = [
             },
             {
                 id   : 'pages.invitation',
-                title: 'Invitation',
+                title: 'Invitations',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
-                link : '/pages/activities'
+                link : '/apps/invitations'
             },
             {
                 id   : 'pages.post_comment',
@@ -182,10 +182,17 @@ export const defaultNavigation: FuseNavigationItem[] = [
             },
             {
                 id   : 'pages.events',
-                title: 'Evenement',
+                title: 'Evenements',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
                 link : '/apps/events'
+            },
+            {
+                id   : 'pages.pricing.modern',
+                title: 'Pricing',
+                icon : 'heroicons_outline:cube-transparent',
+                type : 'basic',
+                link : '/pages/pricing/modern'
             },
             /*
             {

@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import { InvitationsComponent } from 'app/modules/admin/apps/invitations/invitations.component';
 import { InvitationsListComponent } from 'app/modules/admin/apps/invitations/list/list.component';
 import { InvitationsDetailsComponent } from 'app/modules/admin/apps/invitations/details/details.component';
-import { InvitationsCategoriesResolver, InvitationsCourseResolver, InvitationsCoursesResolver } from 'app/modules/admin/apps/invitations/invitations.resolvers';
+import { InvitationsCategoriesResolver, InvitationsCourseResolver, InvitationsCoursesResolver } from 'app/modules/admin/apps/invitations/Invitations.resolvers';
 
 export const invitationsRoutes: Route[] = [
     {

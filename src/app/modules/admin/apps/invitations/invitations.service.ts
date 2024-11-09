@@ -57,7 +57,7 @@ export class InvitationsService
      */
     getCategories(): Observable<Category[]>
     {
-        return this._httpClient.get<Category[]>('api/apps/invitations/categories').pipe(
+        return this._httpClient.get<Category[]>('api/apps/invitations/invitations').pipe(
             tap((response: any) => {
                 this._categories.next(response);
             })

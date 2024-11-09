@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -16,6 +17,7 @@ import { InvitationsComponent } from 'app/modules/admin/apps/invitations/invitat
 import { InvitationsDetailsComponent } from 'app/modules/admin/apps/invitations/details/details.component';
 import { InvitationsListComponent } from 'app/modules/admin/apps/invitations/list/list.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/demo-sidebar.module';
 
 @NgModule({
     declarations: [
@@ -36,7 +38,9 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatTooltipModule,
         FuseFindByKeyPipeModule,
         SharedModule,
-        MatTabsModule
+        MatTabsModule,
+        DemoSidebarModule,
+        MatListModule,
     ]
 })
 export class InvitationsModule
