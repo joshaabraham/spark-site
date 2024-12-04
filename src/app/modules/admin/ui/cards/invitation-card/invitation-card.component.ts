@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './invitation-card.component.html',
   styleUrls: ['./invitation-card.component.scss']
 })
-export class SportCardComponent {
+export class InvitationCardComponent {
 
   constructor(private dialog: MatDialog) {}
 

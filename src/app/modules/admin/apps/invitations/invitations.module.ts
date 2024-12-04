@@ -18,12 +18,13 @@ import { InvitationsDetailsComponent } from 'app/modules/admin/apps/invitations/
 import { InvitationsListComponent } from 'app/modules/admin/apps/invitations/list/list.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/demo-sidebar.module';
+import { CardsModule } from '../../ui/cards/cards.module';
 
 @NgModule({
     declarations: [
         InvitationsComponent,
         InvitationsDetailsComponent,
-        InvitationsListComponent
+        InvitationsListComponent,
     ],
     imports     : [
         RouterModule.forChild(invitationsRoutes),
@@ -41,6 +42,7 @@ import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/dem
         MatTabsModule,
         DemoSidebarModule,
         MatListModule,
+        CardsModule,
     ]
 })
 export class InvitationsModule

@@ -10,17 +10,15 @@
         <!-- CONTENT GOES HERE -->
         <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
 
-
-
+            <mat-list>
+              <mat-list-item *ngFor="let invitation of invitations">
+                <app-invitation-card></app-invitation-card>
+              </mat-list-item>
+            </mat-list>
 
             <div class="container">
                 <!-- Section gauche : Liste des invitations -->
                 <div class="left-section">
-                  <mat-list>
-                    <mat-list-item *ngFor="let invitation of invitations">
-                      <app-invitation-card></app-invitation-card>
-                    </mat-list-item>
-                  </mat-list>
                 </div>
               
                 <!-- Section droite : Contenu vide pour l'instant -->
@@ -29,6 +27,8 @@
                   <p>Contenu ici (pour l'instant vide)</p>
                 </div>
               </div>
+
+
         </div>
 
     </div>

@@ -17,10 +17,10 @@
         <div class="z-10 relative flex flex-col items-center">
             <h2 class="text-xl font-semibold">FUSE ACADEMY</h2>
             <div class="mt-1 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight text-center">
-                What do you want to learn today?
+                What do you want to pratice today?
             </div>
             <div class="max-w-2xl mt-6 sm:text-2xl text-center tracking-tight text-secondary">
-                Our courses will step you through the process of a building small applications, or adding new features to existing applications.
+                Select, in the list bellow, the sports you want to pratice and be informed of every EVENTS, TEAMS, PRODUCTS, JOBS, ASSOCIATIONS, CLUBS related.
             </div>
         </div>
     </div>
@@ -61,6 +61,8 @@
                     Hide completed
                 </mat-slide-toggle>
             </div>
+
+            
             <!-- Courses -->
             <ng-container *ngIf="this.filteredCourses.length; else noCourses">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">

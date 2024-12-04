@@ -128,4 +128,28 @@ export class CardsComponent implements AfterViewInit
             }
         });
     }
+
+
+
+
+
+     openProfile(side: string) {
+    // this.dialog.open(ProfileModalComponent, {
+    //   data: { side }
+    // });
+  }
+
+  openModify() {
+  //  this.dialog.open(ModifyModalComponent);
+  }
+
+  openAccept() {
+  //  this.dialog.open(AcceptModalComponent);
+  }
+
+  openModal(dot: string) {
+    // this.dialog.open(DotModalComponent, {
+    //   data: { dot }
+    // });
+  }
 }
