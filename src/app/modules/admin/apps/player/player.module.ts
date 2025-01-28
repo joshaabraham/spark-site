@@ -16,12 +16,16 @@ import { PlayerListComponent } from './list/list.component';
 import { PlayerComponent } from './player.component';
 import { playerRoutes } from './player.routing';
 import { FuseCardModule } from '@fuse/components/card';
+import { PlayerFormComponent } from './forms/playerform.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
     declarations: [
         PlayerDetailsComponent,
         PlayerListComponent,
-        PlayerComponent
+        PlayerComponent,
+        PlayerFormComponent
     ],
     imports: [
         CommonModule,
@@ -36,7 +40,10 @@ import { FuseCardModule } from '@fuse/components/card';
         MatInputModule,
         MatAutocompleteModule,
         MatDividerModule,
-        FuseCardModule
+        FuseCardModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+
     ]
 })
 export class PlayerModule { }
