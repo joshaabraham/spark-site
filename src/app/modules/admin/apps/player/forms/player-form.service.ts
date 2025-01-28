@@ -11,36 +11,36 @@ export class PlayerFormService {
     createPlayerForm(): UntypedFormGroup {
         return this._formBuilder.group({
             user          : ['', Validators.required],
-            phone_number  : ['', Validators.pattern('^\\+?[1-9]\\d{1,14}$')],
-            date_of_birth : ['', Validators.required],
+            phoneNumber  : ['', Validators.pattern('^\\+?[1-9]\\d{1,14}$')],
+            dateOfBirth : ['', Validators.required],
             gender        : ['', Validators.required],
             height        : ['', Validators.pattern('^\\d+(\\.\\d+)?$')],
             weight        : ['', Validators.pattern('^\\d+(\\.\\d+)?$')],
             bio           : [''],
-            profile_picture: [''],
+            profilePicture: [''],
             sports        : ['', Validators.required],
             team          : [''],
             position      : [''],
             achievements  : [''],
-            is_active     : [true, Validators.required]
+            isActive     : [true, Validators.required]
         });
     }
 
     resetForm(form: UntypedFormGroup): void {
         form.reset({
             user          : '',
-            phone_number  : '',
-            date_of_birth : '',
+            phoneNumber  : '',
+            dateOfBirth : '',
             gender        : '',
             height        : '',
             weight        : '',
             bio           : '',
-            profile_picture: '',
+            profilePicture: '',
             sports        : '',
             team          : '',
             position      : '',
             achievements  : '',
-            is_active     : true
+            isActive     : true
         });
     }
 }

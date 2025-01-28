@@ -20,12 +20,14 @@
         </mat-form-field>
         <mat-form-field class="flex-auto gt-xs:pl-3">
             <mat-label>Date of Birth</mat-label>
-            <input matInput formControlName="date_of_birth" [matDatepicker]="picker">
+            <input matInput formControlName="date_of_birth" [matDatepicker]="picker" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     </div>
     <!-- Ajoutez d'autres champs ici -->
     <div class="flex justify-end">
-        <button mat-flat-button color="primary" (click)="resetForm()">Reset</button>
+        <button mat-flat-button color="primary" type="button" (click)="resetForm()">Reset</button>
+        <button mat-flat-button color="primary" type="submit">Submit</button>
     </div>
+</form>
