@@ -102,9 +102,9 @@ export const apiRoutes = {
       qrCodeImage: (pk: number): string => `/codes_app/qr_codes/${pk}/image/`,
     },
     sportApp: {
-      sportCreate: '/sport_app/sportCreate/',
-      sportDetail: (pk: number): string => `/sport_app/sport/${pk}/`,
-      sportList: '/sport_app/sport/list/',
+      sportCreate: 'sport_app/sportCreate/',
+      sportDetail: (pk: number): string => `sport_app/sport/${pk}/`,
+      sportList: 'sport_app/sport/list/',
     },
     userApp: {
       register: '/user_app/register',

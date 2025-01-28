@@ -2,14 +2,14 @@ import { Route } from '@angular/router';
 import { SportsComponent } from 'app/modules/admin/apps/sports/sports.component';
 import { SportsListComponent } from 'app/modules/admin/apps/sports/list/list.component';
 import { SportsDetailsComponent } from 'app/modules/admin/apps/sports/details/details.component';
-import { SportByCodeResolver, SportResolver } from 'app/modules/admin/apps/sports/sports.resolvers';
+import { SportByCodeResolver, SportResolver, SportsResolver } from 'app/modules/admin/apps/sports/sports.resolvers';
 
 export const sportsRoutes: Route[] = [
     {
         path     : '',
         component: SportsComponent,
         resolve  : {
-            categories: SportResolver
+            categories: SportsResolver
         },
         children : [
             {
@@ -17,7 +17,7 @@ export const sportsRoutes: Route[] = [
                 pathMatch: 'full',
                 component: SportsListComponent,
                 resolve  : {
-                    courses: SportResolver
+                    courses: SportsResolver
                 }
             },
             {
