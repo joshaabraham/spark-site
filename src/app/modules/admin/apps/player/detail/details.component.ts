@@ -19,7 +19,7 @@ export class PlayerDetailsComponent implements OnInit
     {
     }
     ngOnInit(): void {
-      //this.profile = 
+
       this._profileService.getUserProfiles().subscribe((users: any) => console.log(users));
     }
 }

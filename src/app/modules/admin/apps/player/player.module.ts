@@ -19,6 +19,7 @@ import { FuseCardModule } from '@fuse/components/card';
 import { PlayerFormComponent } from './forms/playerform.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         FuseCardModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatTooltipModule,
+
 
     ]
 })
