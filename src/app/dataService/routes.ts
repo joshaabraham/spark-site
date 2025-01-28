@@ -60,8 +60,13 @@ export const apiRoutes = {
       jobSearchDetail: (pk: number): string => `/employment_app/job_search/${pk}/`,
     },
     equipeApp: {
-      teamsCreateList: '/team_app/teamsCreateList/',
-      teamDetail: (pk: number): string => `/team_app/team/${pk}/`,
+        teamsCreateList: '/team_app/teamsCreateList/',
+        teamDetail: (id: string): string => `/team_app/team/${id}/`,
+        teamsBySport: (sportId: string): string => `/team_app/teamsBySport/${sportId}/`,
+        teamsBySponsorship: (sponsorshipId: string): string => `/team_app/teamsBySponsorship/${sponsorshipId}/`,
+        teamsByFinancialRecord: (financialRecordId: string): string => `/team_app/teamsByFinancialRecord/${financialRecordId}/`,
+        teamsByTeamHistory: (teamHistoryId: string): string => `/team_app/teamsByTeamHistory/${teamHistoryId}/`,
+        teamsByMatch: (matchId: string): string => `/team_app/teamsByMatch/${matchId}/`
     },
     localisationApp: {
       addressesCreateList: '/localisation_app/addresses/',

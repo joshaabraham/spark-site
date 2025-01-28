@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { apiRoutes } from 'src/app/dataService/routes';
+import { environment } from '../../../../../environments/environment';
+import { apiRoutes } from '../../../../dataService/routes';
 import { Team } from './equipe.types';
 
 @Injectable({
@@ -47,4 +47,50 @@ export class EquipeService {
     deleteTeam(id: string): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}${apiRoutes.equipeApp.teamDetail(id)}`);
     }
+
+    /**
+     * Get teams by sport ID
+     *
+     * @param sportId
+     */
+ getTeamsBySport(sportId: string): Observable<Team[]> {
+    return this.http.get<Team[]>(`${this.apiUrl}${apiRoutes.equipeApp.teamsBySport(sportId)}`);
+}
+
+/**
+ * Get teams by sponsorship ID
+ *
+ * @param sponsorshipId
+ */
+getTeamsBySponsorship(sponsorshipId: string): Observable<Team[]> {
+    return this.http.get<Team[]>(`${this.apiUrl}${apiRoutes.equipeApp.teamsBySponsorship(sponsorshipId)}`);
+}
+
+/**
+ * Get teams by financial record ID
+ *
+ * @param financialRecordId
+ */
+getTeamsByFinancialRecord(financialRecordId: string): Observable<Team[]> {
+    return this.http.get<Team[]>(`${this.apiUrl}${apiRoutes.equipeApp.teamsByFinancialRecord(financialRecordId)}`);
+}
+
+/**
+ * Get teams by team history ID
+ *
+ * @param teamHistoryId
+ */
+getTeamsByTeamHistory(teamHistoryId: string): Observable<Team[]> {
+    return this.http.get<Team[]>(`${this.apiUrl}${apiRoutes.equipeApp.teamsByTeamHistory(teamHistoryId)}`);
+}
+
+/**
+ * Get teams by match ID
+ *
+ * @param matchId
+ */
+getTeamsByMatch(matchId: string): Observable<Team[]> {
+    return this.http.get<Team[]>(`${this.apiUrl}${apiRoutes.equipeApp.teamsByMatch(matchId)}`);
+}
+
 }

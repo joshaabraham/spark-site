@@ -19,8 +19,8 @@ import { PlayerListComponent } from './list/list.component';
 @NgModule({
   declarations: [PlayerFormComponent, PlayerDetailsComponent, PlayerListComponent],
   imports: [
-    RouterModule.forChild(playerRoutes),
     CommonModule,
+    RouterModule.forChild(playerRoutes),
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
