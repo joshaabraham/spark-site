@@ -1,0 +1,91 @@
+export interface BudgetCampagne {
+    typeBudget: 'quotidien' | 'global';
+    montant: number;
+}
+
+export interface PageFacebook {
+    nom: string;
+    lien: string;
+    logo: string;
+}
+
+export interface BudgetEtCalendrier {
+    dateDebut: Date;
+    heureDebut: string; // Time in HH:mm:ss format
+    dateFin: Date;
+    heureFin: string; // Time in HH:mm:ss format
+}
+
+export interface ControleAudience {
+    lieu: string;
+    ageMinimum: number;
+    langues: string[]; // List of languages
+    centreInteret?: string[]; // List of interests
+    genre?: 'homme' | 'femme' | 'tous';
+}
+
+export interface CampagnePublicitaire {
+    nomCampagne: string;
+    typeAchat: string; // Enchères, Achat Direct, etc.
+    objectif: string; // Notoriété, Conversion, etc.
+    categoriesSpecialesAEcarter: string[]; // List of excluded categories
+    limiteDepense: number;
+    budgetCampagne: BudgetCampagne;
+    pageFacebook: PageFacebook;
+    budgetEtCalendrier: BudgetEtCalendrier;
+    controleAudience: ControleAudience;
+    placement: string;
+    listePublicite: string[]; // List of associated ads
+    statutCampagne?: string; // En cours, Terminée, etc.
+    tauxClics?: number;
+    nombreImpressions?: number;
+    dateCreation: Date;
+    utilisateurResponsable?: string;
+    owner: string; // User ID
+}
+
+export interface Media {
+    url: string;
+    typeMedia: 'image' | 'video' | 'gif';
+    duree?: number; // Duration in seconds for videos
+    dimensions?: string; // Dimensions in pixels
+}
+
+export interface CtaButton {
+    texte: string;
+    lien: string;
+    couleur: string; // Hexadecimal color code
+}
+
+export interface PubliciteBase {
+    typePublicite: 'video' | 'banniere' | 'carrousel' | 'native';
+    nomPublicite: string;
+    textePrincipal: string;
+    media: Media;
+    urlDestination?: string;
+    ctaButton?: CtaButton;
+    dateCreation: Date;
+    statut?: string; // Actif, Inactif, En attente
+    impressions?: number;
+    clics?: number;
+    tauxConversion?: number;
+    campagnePublicitaire: string; // Campaign ID
+}
+
+export interface PubliciteVideo extends PubliciteBase {
+    videoAutoplay: boolean;
+    videoMuted: boolean;
+}
+
+export interface PubliciteBanniere extends PubliciteBase {
+    emplacementBanniere: string; // Header, Sidebar, etc.
+    dimensions: string; // Specific dimensions
+}
+
+export interface PubliciteCarrousel extends PubliciteBase {
+    listeImages: Media[]; // List of images/videos in the carousel
+}
+
+export interface PubliciteNative extends PubliciteBase {
+    source: string; // Recommended by, sponsored by, etc.
+}
