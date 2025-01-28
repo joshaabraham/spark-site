@@ -1,25 +1,84 @@
-export interface InventoryProduct
-{
+// export interface InventoryProduct
+// {
+//     id: string;
+//     category?: string;
+//     name: string;
+//     description?: string;
+//     tags?: string[];
+//     sku?: string | null;
+//     barcode?: string | null;
+//     brand?: string | null;
+//     vendor: string | null;
+//     stock: number;
+//     reserved: number;
+//     cost: number;
+//     basePrice: number;
+//     taxPercent: number;
+//     price: number;
+//     weight: number;
+//     thumbnail: string;
+//     images: string[];
+//     active: boolean;
+// }
+
+
+export interface InventoryProduct {
     id: string;
-    category?: string;
-    name: string;
-    description?: string;
-    tags?: string[];
-    sku?: string | null;
-    barcode?: string | null;
-    brand?: string | null;
-    vendor: string | null;
-    stock: number;
-    reserved: number;
-    cost: number;
-    basePrice: number;
-    taxPercent: number;
-    price: number;
-    weight: number;
-    thumbnail: string;
+    nom: string;
+    description: string;
+    descriptionCourte?: string;
+    prix: number;
+    estNeuf: boolean;
+    categorie: string;
+    sousCategorie?: string;
+    marque?: string;
+    modele?: string;
+    dateMiseEnLigne: Date;
+    derniereModification: Date;
+    etat: 'neuf' | 'comme_neuf' | 'bon_etat' | 'acceptable' | 'occasion';
+    vendeur: User;
+    nomVendeur: string;
     images: string[];
-    active: boolean;
+    localisation?: string;
+    paysOrigine?: string;
+    stock: number;
+    nombreDeVues: number;
+    livraisonDisponible: boolean;
+    fraisDeLivraison?: number;
+    methodeLivraison?: string;
+    tvaIncluse: boolean;
+    tauxTva?: number;
+    noteMoyenne: number;
+    nombreAvis: number;
+    motsCles: string[];
+    metaTitre?: string;
+    metaDescription?: string;
+    metaMotsCles: string[];
+    estEnPromotion: boolean;
+    prixAvantPromotion?: number;
+    dateDebutPromotion?: Date;
+    dateFinPromotion?: Date;
+    estEnEnchere: boolean;
+    prixDepartEnchere?: number;
+    dateDebutEnchere?: Date;
+    dateFinEnchere?: Date;
+    meilleurEncherisseur?: User;
+    prixActuelEnchere?: number;
+    statut: string;
+    nombreVendus: number;
+    estMisEnAvant: boolean;
+    dureeRetour?: number;
+    politiqueRetour?: string;
+    tags?: string[];
 }
+
+export interface User {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+}
+
 
 export interface InventoryPagination
 {

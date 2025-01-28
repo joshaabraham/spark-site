@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
-import { Category, Course } from 'app/modules/admin/apps/sports/sports.types';
+// import { Category, Course } from 'app/modules/admin/apps/sports/sports.types';
+import { environment } from '../../../../../environments/environment';
+import { apiRoutes } from '../../../../dataService/routes';
+import { Sport } from './sports.types';
 
 @Injectable({
     providedIn: 'root'
@@ -9,96 +12,48 @@ import { Category, Course } from 'app/modules/admin/apps/sports/sports.types';
 export class SportsService
 {
     // Private
-    private _categories: BehaviorSubject<Category[] | null> = new BehaviorSubject(null);
-    private _course: BehaviorSubject<Course | null> = new BehaviorSubject(null);
-    private _courses: BehaviorSubject<Course[] | null> = new BehaviorSubject(null);
+    private apiUrl = environment.apiURL;
 
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient)
+    constructor(private _httpClient: HttpClient, private http: HttpClient)
     {
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Getter for categories
-     */
-    get categories$(): Observable<Category[]>
-    {
-        return this._categories.asObservable();
     }
 
     /**
-     * Getter for courses
+     * Get the list of sports
      */
-    get courses$(): Observable<Course[]>
-    {
-        return this._courses.asObservable();
+    getSports(): Observable<Sport[]> {
+        return this.http.get<Sport[]>(`${this.apiUrl}${apiRoutes.sportApp.sportList}`);
     }
 
     /**
-     * Getter for course
+     * Get the details of a sport by ID
+     *
+     * @param id
      */
-    get course$(): Observable<Course>
-    {
-        return this._course.asObservable();
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Get categories
-     */
-    getCategories(): Observable<Category[]>
-    {
-        return this._httpClient.get<Category[]>('api/apps/academy/categories').pipe(
-            tap((response: any) => {
-                this._categories.next(response);
-            })
-        );
+    getSportById(id: number): Observable<Sport> {
+        return this.http.get<Sport>(`${this.apiUrl}${apiRoutes.sportApp.sportDetail(id)}`);
     }
 
     /**
-     * Get courses
+     * Get sports by category
+     *
+     * @param category
      */
-    getCourses(): Observable<Course[]>
-    {
-        return this._httpClient.get<Course[]>('api/apps/academy/courses').pipe(
-            tap((response: any) => {
-                this._courses.next(response);
-            })
-        );
+    getSportsByCategory(category: string): Observable<Sport[]> {
+        return this.http.get<Sport[]>(`${this.apiUrl}${apiRoutes.sportApp.sportList}`, {
+            params: { category }
+        });
     }
 
     /**
-     * Get course by id
+     * Get sport by code
+     *
+     * @param code
      */
-    getCourseById(id: string): Observable<Course>
-    {
-        return this._httpClient.get<Course>('api/apps/academy/courses/course', {params: {id}}).pipe(
-            map((course) => {
-
-                // Update the course
-                this._course.next(course);
-
-                // Return the course
-                return course;
-            }),
-            switchMap((course) => {
-
-                if ( !course )
-                {
-                    return throwError('Could not found course with id of ' + id + '!');
-                }
-
-                return of(course);
-            })
-        );
-    }
+        getSportByCode(code: string): Observable<Sport> {
+            return this.http.get<Sport>(`${this.apiUrl}/sports/code/${code}`);
+        }
 }

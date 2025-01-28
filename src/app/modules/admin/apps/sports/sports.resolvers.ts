@@ -1,24 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { catchError, Observable, throwError } from 'rxjs';
-import { Category, Course } from 'app/modules/admin/apps/sports/sports.types';
-import { SportsService } from 'app/modules/admin/apps/sports/sports.service';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SportsService } from './sports.service';
+import { Sport } from './sports.types';
 
 @Injectable({
     providedIn: 'root'
 })
-export class SportsCategoriesResolver implements Resolve<any>
+export class SportsResolver implements Resolve<Sport[]>
 {
     /**
      * Constructor
      */
-    constructor(private _sportService: SportsService)
-    {
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
+    constructor(private _sportsService: SportsService) {}
 
     /**
      * Resolver
@@ -26,27 +20,21 @@ export class SportsCategoriesResolver implements Resolve<any>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Category[]>
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Sport[]>
     {
-        return this._sportService.getCategories();
+        return this._sportsService.getSports();
     }
 }
 
 @Injectable({
     providedIn: 'root'
 })
-export class SportsCoursesResolver implements Resolve<any>
+export class SportResolver implements Resolve<Sport>
 {
     /**
      * Constructor
      */
-    constructor(private _sportService: SportsService)
-    {
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
+    constructor(private _sportsService: SportsService) {}
 
     /**
      * Resolver
@@ -54,30 +42,22 @@ export class SportsCoursesResolver implements Resolve<any>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Course[]>
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Sport>
     {
-        return this._sportService.getCourses();
+        const sportId = Number(route.paramMap.get('id'));
+        return this._sportsService.getSportById(sportId);
     }
 }
 
 @Injectable({
     providedIn: 'root'
 })
-export class SportsCourseResolver implements Resolve<any>
+export class SportsByCategoryResolver implements Resolve<Sport[]>
 {
     /**
      * Constructor
      */
-    constructor(
-        private _router: Router,
-        private _sportService: SportsService
-    )
-    {
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
+    constructor(private _sportsService: SportsService) {}
 
     /**
      * Resolver
@@ -85,25 +65,32 @@ export class SportsCourseResolver implements Resolve<any>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Course>
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Sport[]>
     {
-        return this._sportService.getCourseById(route.paramMap.get('id'))
-                   .pipe(
-                       // Error here means the requested task is not available
-                       catchError((error) => {
+        const category = route.paramMap.get('category');
+        return this._sportsService.getSportsByCategory(category);
+    }
+}
 
-                           // Log the error
-                           console.error(error);
+@Injectable({
+    providedIn: 'root'
+})
+export class SportByCodeResolver implements Resolve<Sport>
+{
+    /**
+     * Constructor
+     */
+    constructor(private _sportsService: SportsService) {}
 
-                           // Get the parent url
-                           const parentUrl = state.url.split('/').slice(0, -1).join('/');
-
-                           // Navigate to there
-                           this._router.navigateByUrl(parentUrl);
-
-                           // Throw an error
-                           return throwError(error);
-                       })
-                   );
+    /**
+     * Resolver
+     *
+     * @param route
+     * @param state
+     */
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Sport>
+    {
+        const code = route.paramMap.get('code');
+        return this._sportsService.getSportByCode(code);
     }
 }

@@ -5,12 +5,17 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject, combineLatest, Subject, takeUntil } from 'rxjs';
 import { SportsService } from 'app/modules/admin/apps/sports/sports.service';
 import { Category, Course } from 'app/modules/admin/apps/academy/academy.types';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import { Sport } from '../sports.types';
 
 @Component({
     selector       : 'sports-list',
     templateUrl    : './list.component.html',
     encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SportsListComponent implements OnInit, OnDestroy
 {
@@ -26,6 +31,10 @@ export class SportsListComponent implements OnInit, OnDestroy
         query$        : new BehaviorSubject(''),
         hideCompleted$: new BehaviorSubject(false)
     };
+
+    sports$: Observable<Sport[]>;
+    filteredSports$: Observable<Sport[]>;
+    filterControl: FormControl = new FormControl();
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -50,25 +59,6 @@ export class SportsListComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        // Get the categories
-        this._sportsService.categories$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((categories: Category[]) => {
-                this.categories = categories;
-
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
-
-        // Get the courses
-        this._sportsService.courses$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((courses: Course[]) => {
-                this.courses = this.filteredCourses = courses;
-
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
 
         // Filter the courses
         combineLatest([this.filters.categorySlug$, this.filters.query$, this.filters.hideCompleted$])
@@ -97,6 +87,17 @@ export class SportsListComponent implements OnInit, OnDestroy
                     this.filteredCourses = this.filteredCourses.filter(course => course.progress.completed === 0);
                 }
             });
+
+        // Get the sports
+        this.sports$ = this._sportsService.getSports();
+
+        // Filter the sports
+        this.filteredSports$ = combineLatest([
+            this.sports$,
+            this.filterControl.valueChanges.pipe(startWith(''))
+        ]).pipe(
+            map(([sports, filterValue]) => this._filterSports(sports, filterValue))
+        );
     }
 
     /**
@@ -152,5 +153,26 @@ export class SportsListComponent implements OnInit, OnDestroy
     trackByFn(index: number, item: any): any
     {
         return item.id || index;
+    }
+
+    /**
+     * Filter sports
+     *
+     * @param sports
+     * @param filterValue
+     * @private
+     */
+    private _filterSports(sports: Sport[], filterValue: string): Sport[] {
+        if (!filterValue) {
+            return sports;
+        }
+
+        const lowerCaseFilter = filterValue.toLowerCase();
+
+        return sports.filter(sport =>
+            Object.values(sport).some(value =>
+                value.toString().toLowerCase().includes(lowerCaseFilter)
+            )
+        );
     }
 }
