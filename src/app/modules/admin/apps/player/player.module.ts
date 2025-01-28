@@ -1,38 +1,42 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { PlayerFormComponent } from './forms/playerform.component';
 import { RouterModule } from '@angular/router';
-import { playerRoutes } from './player.routing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { FuseCardModule } from '@fuse/components/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
 import { PlayerDetailsComponent } from './detail/details.component';
 import { PlayerListComponent } from './list/list.component';
+import { PlayerComponent } from './player.component';
+import { playerRoutes } from './player.routing';
+import { FuseCardModule } from '@fuse/components/card';
 
 @NgModule({
-  declarations: [PlayerFormComponent, PlayerDetailsComponent, PlayerListComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(playerRoutes),
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatButtonModule,
-    MatNativeDateModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    FuseCardModule,
-  ]
+    declarations: [
+        PlayerDetailsComponent,
+        PlayerListComponent,
+        PlayerComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(playerRoutes),
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatDividerModule,
+        FuseCardModule
+    ]
 })
 export class PlayerModule { }
-

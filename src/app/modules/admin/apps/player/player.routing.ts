@@ -1,15 +1,15 @@
 import { Route } from '@angular/router';
-import { PlayerComponent } from 'app/modules/admin/apps/player/player.component';
-import { PlayerListComponent } from 'app/modules/admin/apps/player/list/list.component';
-import { PlayerDetailsComponent } from 'app/modules/admin/apps/player/details/details.component';
-import { PlayerCategoriesResolver, PlayerResolver, PlayersResolver } from 'app/modules/admin/apps/player/player.resolvers';
+import { PlayerComponent } from './player.component';
+import { PlayerListComponent } from './list/list.component';
+import { PlayerDetailsComponent } from './detail/details.component';
+import { PlayerResolver, PlayersResolver } from 'app/modules/admin/apps/player/player.resolvers';
 
 export const playerRoutes: Route[] = [
     {
         path     : '',
         component: PlayerComponent,
         resolve  : {
-            categories: PlayerCategoriesResolver
+            categories: PlayersResolver
         },
         children : [
             {

@@ -25,7 +25,7 @@ export class PlayerService {
      *
      * @param id
      */
-    getPlayerById(id: number): Observable<Player> {
+    getPlayerById(id: string): Observable<Player> {
         return this.http.get<Player>(`${this.apiUrl}${apiRoutes.equipeApp.teamDetail(id)}`);
     }
 
@@ -44,7 +44,7 @@ export class PlayerService {
      * @param id
      * @param player
      */
-    updatePlayer(id: number, player: Player): Observable<Player> {
+    updatePlayer(id: string, player: Player): Observable<Player> {
         return this.http.put<Player>(`${this.apiUrl}${apiRoutes.equipeApp.teamDetail(id)}`, player);
     }
 
@@ -53,7 +53,16 @@ export class PlayerService {
      *
      * @param id
      */
-    deletePlayer(id: number): Observable<void> {
+    deletePlayer(id: string): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}${apiRoutes.equipeApp.teamDetail(id)}`);
+    }
+
+    /**
+     * Get the details of a player by ID
+     *
+     * @param id
+     */
+     getPlayer(id: string): Observable<Player> {
+        return this.http.get<Player>(`${this.apiUrl}${apiRoutes.equipeApp.teamDetail(id)}`);
     }
 }
