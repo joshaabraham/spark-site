@@ -164,7 +164,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Equipe',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
-                link : '/ui/page-layouts/carded/right-sidebar-2'
+                link : '/apps/equipes'
             },
             {
                 id   : 'pages.invitation',

@@ -60,13 +60,13 @@ export const apiRoutes = {
       jobSearchDetail: (pk: number): string => `/employment_app/job_search/${pk}/`,
     },
     equipeApp: {
-        teamsCreateList: '/team_app/teamsCreateList/',
-        teamDetail: (id: string): string => `/team_app/team/${id}/`,
-        teamsBySport: (sportId: string): string => `/team_app/teamsBySport/${sportId}/`,
-        teamsBySponsorship: (sponsorshipId: string): string => `/team_app/teamsBySponsorship/${sponsorshipId}/`,
-        teamsByFinancialRecord: (financialRecordId: string): string => `/team_app/teamsByFinancialRecord/${financialRecordId}/`,
-        teamsByTeamHistory: (teamHistoryId: string): string => `/team_app/teamsByTeamHistory/${teamHistoryId}/`,
-        teamsByMatch: (matchId: string): string => `/team_app/teamsByMatch/${matchId}/`
+        teamsCreateList: 'team_app/teamsCreateList/',
+        teamDetail: (id: string): string => `team_app/team/${id}/`,
+        teamsBySport: (sportId: string): string => `team_app/teamsBySport/${sportId}/`,
+        teamsBySponsorship: (sponsorshipId: string): string => `team_app/teamsBySponsorship/${sponsorshipId}/`,
+        teamsByFinancialRecord: (financialRecordId: string): string => `team_app/teamsByFinancialRecord/${financialRecordId}/`,
+        teamsByTeamHistory: (teamHistoryId: string): string => `team_app/teamsByTeamHistory/${teamHistoryId}/`,
+        teamsByMatch: (matchId: string): string => `team_app/teamsByMatch/${matchId}/`
     },
     localisationApp: {
       addressesCreateList: '/localisation_app/addresses/',
@@ -79,8 +79,8 @@ export const apiRoutes = {
       commentDetail: (pk: number): string => `/blog_app/comments/${pk}/`,
     },
     profileApp: {
-      profilesCreateList: '/profile_app/profiles/',
-      profileDetail: '/profile_app/profile/',
+      profilesCreateList: 'profile_app/profiles/',
+      profileDetail: 'profile_app/profile/',
     },
     publiciteApp: {
       campagnesCreateList: '/advert_app/campagnes/',

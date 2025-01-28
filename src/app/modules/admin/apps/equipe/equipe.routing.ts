@@ -9,7 +9,7 @@ export const equipeRoutes: Route[] = [
         path     : '',
         component: EquipeComponent,
         resolve  : {
-            categories: EquipesResolver
+            teams: EquipesResolver
         },
         children : [
             {
