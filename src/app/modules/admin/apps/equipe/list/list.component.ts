@@ -33,8 +33,8 @@ export class EquipeListComponent implements OnInit {
      */
     ngOnInit(): void {
         this.teams$ = this._equipeService.getTeams();
-        this.sports$ = this._equipeService.getSports();
-        this.sponsorships$ = this._equipeService.getSponsorships();
+       // this.sports$ = this._equipeService.getTeamsBySport();
+       // this.sponsorships$ = this._equipeService.getSponsorships();
     }
 
     /**
