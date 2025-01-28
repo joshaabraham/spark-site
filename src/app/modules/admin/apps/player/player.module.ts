@@ -13,9 +13,11 @@ import { playerRoutes } from './player.routing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FuseCardModule } from '@fuse/components/card';
+import { PlayerDetailsComponent } from './detail/details.component';
+import { PlayerListComponent } from './list/list.component';
 
 @NgModule({
-  declarations: [PlayerFormComponent],
+  declarations: [PlayerFormComponent, PlayerDetailsComponent, PlayerListComponent],
   imports: [
     RouterModule.forChild(playerRoutes),
     CommonModule,
