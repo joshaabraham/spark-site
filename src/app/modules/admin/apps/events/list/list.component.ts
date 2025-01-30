@@ -4,7 +4,6 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject, combineLatest, Subject, takeUntil } from 'rxjs';
 import { EventsService } from 'app/modules/admin/apps/events/events.service';
-import { Category, Course } from 'app/modules/admin/apps/events/events.types';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { FuseCardComponent } from '@fuse/components/card';
 

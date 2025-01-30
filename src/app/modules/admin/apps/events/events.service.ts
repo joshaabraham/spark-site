@@ -1,104 +1,60 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
-import { Category, Course } from 'app/modules/admin/apps/events/events.types';
+import { Observable } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
+import { apiRoutes } from '../../../../dataService/routes';
+import { SportEvent } from './events.types';
+
 
 @Injectable({
     providedIn: 'root'
 })
-export class EventsService
-{
-    // Private
-    private _categories: BehaviorSubject<Category[] | null> = new BehaviorSubject(null);
-    private _course: BehaviorSubject<Course | null> = new BehaviorSubject(null);
-    private _courses: BehaviorSubject<Course[] | null> = new BehaviorSubject(null);
+export class EventsService {
+    private apiUrl = environment.apiURL;
+
+    constructor(private http: HttpClient) {}
 
     /**
-     * Constructor
+     * Get the list of sports events
      */
-    constructor(private _httpClient: HttpClient)
-    {
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Getter for categories
-     */
-    get categories$(): Observable<Category[]>
-    {
-        return this._categories.asObservable();
+    getEvents(): Observable<SportEvent[]> {
+        return this.http.get<SportEvent[]>(`${this.apiUrl}${apiRoutes.associationApp.sportEventsCreateList}`);
     }
 
     /**
-     * Getter for courses
+     * Get the details of a sports event by ID
+     *
+     * @param id
      */
-    get courses$(): Observable<Course[]>
-    {
-        return this._courses.asObservable();
+    getEvent(id: number): Observable<SportEvent> {
+        return this.http.get<SportEvent>(`${this.apiUrl}${apiRoutes.associationApp.sportEventDetail(id)}`);
     }
 
     /**
-     * Getter for course
+     * Create a new sports event
+     *
+     * @param event
      */
-    get course$(): Observable<Course>
-    {
-        return this._course.asObservable();
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Get categories
-     */
-    getCategories(): Observable<Category[]>
-    {
-        return this._httpClient.get<Category[]>('api/apps/academy/categories').pipe(
-            tap((response: any) => {
-                this._categories.next(response);
-            })
-        );
+    createEvent(event: Event): Observable<SportEvent> {
+        return this.http.post<SportEvent>(`${this.apiUrl}${apiRoutes.associationApp.sportEventsCreateList}`, event);
     }
 
     /**
-     * Get courses
+     * Update a sports event by ID
+     *
+     * @param id
+     * @param event
      */
-    getCourses(): Observable<Course[]>
-    {
-        return this._httpClient.get<Course[]>('api/apps/academy/courses').pipe(
-            tap((response: any) => {
-                this._courses.next(response);
-            })
-        );
+    updateEvent(id: number, event: Event): Observable<SportEvent> {
+        return this.http.put<SportEvent>(`${this.apiUrl}${apiRoutes.associationApp.sportEventDetail(id)}`, event);
     }
 
     /**
-     * Get course by id
+     * Delete a sports event by ID
+     *
+     * @param id
      */
-    getCourseById(id: string): Observable<Course>
-    {
-        return this._httpClient.get<Course>('api/apps/academy/courses/course', {params: {id}}).pipe(
-            map((course) => {
-
-                // Update the course
-                this._course.next(course);
-
-                // Return the course
-                return course;
-            }),
-            switchMap((course) => {
-
-                if ( !course )
-                {
-                    return throwError('Could not found course with id of ' + id + '!');
-                }
-
-                return of(course);
-            })
-        );
+    deleteEvent(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}${apiRoutes.associationApp.sportEventDetail(id)}`);
     }
 }
