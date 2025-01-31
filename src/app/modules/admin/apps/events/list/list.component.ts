@@ -4,7 +4,9 @@ import { EventsService } from 'app/modules/admin/apps/events/events.service';
 import { FuseCardComponent } from '@fuse/components/card';
 import { SportEvent } from '../events.types';
 import { SportsStateManager } from 'app/dataService/stateManager/sports.state.manager';
+import { EquipesStateManager } from 'app/dataService/stateManager/equipes.state.manager';
 import { Sport } from 'app/modules/admin/apps/sports/sports.types';
+import { Team } from '../../equipe/equipe.types';
 
 @Component({
     selector: 'events-list',
@@ -25,11 +27,12 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
     events$: BehaviorSubject<SportEvent[]> = new BehaviorSubject<SportEvent[]>([]);
     filteredEvents$: BehaviorSubject<SportEvent[]> = new BehaviorSubject<SportEvent[]>([]);
     sports$: BehaviorSubject<Sport[]> = new BehaviorSubject<Sport[]>([]);
+    teams$: BehaviorSubject<Team[]> = new BehaviorSubject<Team[]>([]);
     filters = {
         date: new BehaviorSubject<Date>(new Date()),
         endDate: new BehaviorSubject<Date | null>(null),
         sports: new BehaviorSubject<string[]>([]),
-        teams: new BehaviorSubject<string[]>([]),
+        teams: new BehaviorSubject<Team[]>([]),
         name: new BehaviorSubject<string>('')
     };
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -40,7 +43,8 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
     constructor(
         private _eventsService: EventsService,
         private _changeDetectorRef: ChangeDetectorRef,
-        private _sportsStateManager: SportsStateManager
+        private _sportsStateManager: SportsStateManager,
+        private _equipesStateManager: EquipesStateManager
     ) {}
 
     /**
@@ -61,6 +65,15 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
             .subscribe((sports: Sport[]) => {
                 this.sports$.next(sports);
                 this.filters.sports.next(sports.map(sport => sport.code));
+                this._filterEvents();
+            });
+
+        // Get the selected teams from the state manager
+        this._equipesStateManager.selectedTeams$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((teams: Team[]) => {
+                this.teams$.next(teams);
+                this.filters.teams.next(teams.map(team => team));
                 this._filterEvents();
             });
 
@@ -126,7 +139,7 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
      *
      * @param teams
      */
-    onTeamsChange(teams: string[]): void {
+    onTeamsChange(teams: Team[]): void {
         this.filters.teams.next(teams);
     }
 
