@@ -28,14 +28,24 @@
 
 <div class="team-list">
     <div *ngFor="let team of teams$ | async; trackBy: trackByFn" class="team-item">
-        <fuse-card>
-            <div class="team-info">
-                <h3>{{ team.name }}</h3>
-                <p>{{ team.city }}</p>
-                <p>Sport: {{ team.sport.name }}</p>
-                <p>Championships Won: {{ team.championshipsWon }}</p>
-                <p *ngIf="team.website">Website: <a [href]="team.website" target="_blank">{{ team.website }}</a></p>
+        <fuse-card class="flex flex-col items-center max-w-80 w-full p-8 filter-info">
+            <mat-icon
+                class="icon-size-16 text-red-500"
+                [svgIcon]="'heroicons_solid:light-bulb'"></mat-icon>
+            <div class="text-2xl font-semibold leading-tight text-center mt-6">{{ team.name }}</div>
+            <div class="text-center text-secondary mt-1 mb-8">{{ team.city }}</div>
+            <div class="text-center text-secondary mt-1 mb-8">{{ team.sport.name }}</div>
+            <div class="text-center text-secondary mt-1 mb-8">Championships Won: {{ team.championshipsWon }}</div>
+            <div class="text-center text-secondary mt-1 mb-8">
+                <a [href]="team.website" target="_blank">{{ team.website }}</a>
             </div>
+            <a
+                class="px-6 mt-8"
+                mat-flat-button
+                [color]="'primary'"
+                [routerLink]="['./']">
+                View Project
+            </a>
         </fuse-card>
     </div>
 </div>

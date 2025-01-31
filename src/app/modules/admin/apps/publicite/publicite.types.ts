@@ -57,35 +57,57 @@ export interface CtaButton {
     couleur: string; // Hexadecimal color code
 }
 
-export interface PubliciteBase {
-    typePublicite: 'video' | 'banniere' | 'carrousel' | 'native';
-    nomPublicite: string;
-    textePrincipal: string;
-    media: Media;
-    urlDestination?: string;
-    ctaButton?: CtaButton;
-    dateCreation: Date;
-    statut?: string; // Actif, Inactif, En attente
-    impressions?: number;
-    clics?: number;
-    tauxConversion?: number;
-    campagnePublicitaire: string; // Campaign ID
-}
+export interface Publicite {
+    id?: number;
+    campagneId: number;
+    titre: string;
+    description?: string;
+    format: 'image' | 'video' | 'texte' | 'carrousel';
+    urlCible: string;
+    image?: string;
+    video?: string;
+    texteAffiche?: string;
+    ordreAffichage: number;
+    plateforme: 'mobile' | 'web' | 'both';
+    dateCreation?: string;
+    dateModification?: string;
+    active: boolean;
+    dureeAffichage: number;
+    clics: number;
+    impressions: number;
+    tauxConversion: number;
+    localisationCible?: string;
+    ageCibleMin?: number;
+    ageCibleMax?: number;
+    genreCible?: 'homme' | 'femme' | 'tous';
+    langueCible?: string;
+    budgetAlloue?: number;
+    frequenceAffichage: number;
+    typeFacturation: 'CPC' | 'CPM';
+    scorePertinence?: number;
+    formatDimension?: string;
+    animation: boolean;
+    callToAction?: string;
+    categorie?: string;
+    scoreQualite?: number;
+    engagementUtilisateur: number;
+  }
 
-export interface PubliciteVideo extends PubliciteBase {
-    videoAutoplay: boolean;
-    videoMuted: boolean;
-}
 
-export interface PubliciteBanniere extends PubliciteBase {
-    emplacementBanniere: string; // Header, Sidebar, etc.
-    dimensions: string; // Specific dimensions
-}
+// export interface PubliciteVideo extends PubliciteBase {
+//     videoAutoplay: boolean;
+//     videoMuted: boolean;
+// }
 
-export interface PubliciteCarrousel extends PubliciteBase {
-    listeImages: Media[]; // List of images/videos in the carousel
-}
+// export interface PubliciteBanniere extends PubliciteBase {
+//     emplacementBanniere: string; // Header, Sidebar, etc.
+//     dimensions: string; // Specific dimensions
+// }
 
-export interface PubliciteNative extends PubliciteBase {
-    source: string; // Recommended by, sponsored by, etc.
-}
+// export interface PubliciteCarrousel extends PubliciteBase {
+//     listeImages: Media[]; // List of images/videos in the carousel
+// }
+
+// export interface PubliciteNative extends PubliciteBase {
+//     source: string; // Recommended by, sponsored by, etc.
+// }

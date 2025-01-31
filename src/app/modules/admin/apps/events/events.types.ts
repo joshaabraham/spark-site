@@ -3,6 +3,7 @@
 // import { Team } from './team.model';
 // import { Player } from './player.model';
 
+import { Address } from 'app/core/models/address.model';
 import { Team } from '../equipe/equipe.types';
 import { Player } from '../player/player.types';
 import { Sport } from '../sports/sports.types';

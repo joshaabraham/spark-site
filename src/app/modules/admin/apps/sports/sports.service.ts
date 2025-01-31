@@ -17,7 +17,7 @@ export class SportsService
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient, private http: HttpClient)
+    constructor(private http: HttpClient)
     {
     }
 

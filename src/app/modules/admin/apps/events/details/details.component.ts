@@ -3,7 +3,6 @@ import { DOCUMENT } from '@angular/common';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { Category, Course } from 'app/modules/admin/apps/events/events.types';
 import { EventsService } from 'app/modules/admin/apps/events/events.service';
 
 @Component({
@@ -15,8 +14,6 @@ import { EventsService } from 'app/modules/admin/apps/events/events.service';
 export class EventsDetailsComponent implements OnInit, OnDestroy
 {
     @ViewChild('courseSteps', {static: true}) courseSteps: MatTabGroup;
-    categories: Category[];
-    course: Course;
     currentStep: number = 0;
     drawerMode: 'over' | 'side' = 'side';
     drawerOpened: boolean = true;

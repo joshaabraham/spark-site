@@ -1,136 +1,169 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, Renderer2, ViewChildren, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatSelectChange } from '@angular/material/select';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject, combineLatest, Subject, takeUntil } from 'rxjs';
 import { EventsService } from 'app/modules/admin/apps/events/events.service';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { FuseCardComponent } from '@fuse/components/card';
+import { SportEvent } from '../events.types';
 
 @Component({
-    selector       : 'events-list',
-    templateUrl    : './list.component.html',
-    styles         : [
+    selector: 'events-list',
+    templateUrl: './list.component.html',
+    styles: [
         `
             cards fuse-card {
                 margin: 16px;
             }
         `
     ],
-    encapsulation  : ViewEncapsulation.None,
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EventsListComponent implements AfterViewInit
-{
-    @ViewChildren(FuseCardComponent, {read: ElementRef}) private _fuseCards: QueryList<ElementRef>;
+export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
+    @ViewChildren(FuseCardComponent, { read: ElementRef }) private _fuseCards: QueryList<ElementRef>;
 
-    filters: string[] = ['all', 'article', 'listing', 'list', 'info', 'shopping', 'pricing', 'testimonial', 'post', 'interactive'];
-    numberOfCards: any = {};
-    selectedFilter: string = 'all';
+    events$: BehaviorSubject<SportEvent[]> = new BehaviorSubject<SportEvent[]>([]);
+    filteredEvents$: BehaviorSubject<SportEvent[]> = new BehaviorSubject<SportEvent[]>([]);
+    filters = {
+        date: new BehaviorSubject<Date>(new Date()),
+        endDate: new BehaviorSubject<Date | null>(null),
+        sports: new BehaviorSubject<string[]>([]),
+        teams: new BehaviorSubject<string[]>([]),
+        name: new BehaviorSubject<string>('')
+    };
+    private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
      * Constructor
      */
-    constructor(private _renderer2: Renderer2)
-    {
+    constructor(
+        private _eventsService: EventsService,
+        private _changeDetectorRef: ChangeDetectorRef) {}
+
+    /**
+     * On init
+     */
+    ngOnInit(): void {
+        // Get the events
+        this._eventsService.getEvents()
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((events: SportEvent[]) => {
+                this.events$.next(events);
+                this._filterEvents();
+            });
+
+        // Combine filters and apply them
+        combineLatest([
+            this.filters.date,
+            this.filters.endDate,
+            this.filters.sports,
+            this.filters.teams,
+            this.filters.name
+        ])
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe(() => {
+            this._filterEvents();
+        });
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    /**
+     * On destroy
+     */
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next(null);
+        this._unsubscribeAll.complete();
+    }
 
     /**
      * After view init
      */
-    ngAfterViewInit(): void
-    {
-        // Calculate the number of cards
-        this._calcNumberOfCards();
-
-        // Filter the cards for the first time
-        this._filterCards();
+    ngAfterViewInit(): void {
+        // Do something after view init
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
+
 
     /**
-     * On filter change
+     * On date change
      *
-     * @param change
+     * @param date
      */
-    onFilterChange(change: MatButtonToggleChange): void
-    {
-        // Set the filter
-        this.selectedFilter = change.value;
-
-        // Filter the cards
-        this._filterCards();
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Private methods
-    // -----------------------------------------------------------------------------------------------------
-
-    private _calcNumberOfCards(): void
-    {
-        // Prepare the numberOfCards object
-        this.numberOfCards = {};
-
-        // Prepare the count
-        let count = 0;
-
-        // Go through the filters
-        this.filters.forEach((filter) => {
-
-            // For each filter, calculate the card count
-            if ( filter === 'all' )
-            {
-                count = this._fuseCards.length;
-            }
-            else
-            {
-                count = this.numberOfCards[filter] = this._fuseCards.filter(fuseCard => fuseCard.nativeElement.classList.contains('filter-' + filter)).length;
-            }
-
-            // Fill the numberOfCards object with the counts
-            this.numberOfCards[filter] = count;
-        });
+      onDateChange(date: Date): void {
+        this.filters.date.next(date);
     }
 
     /**
-     * Filter the cards based on the selected filter
+     * On end date change
      *
-     * @private
+     * @param endDate
      */
-    private _filterCards(): void
-    {
-        // Go through all fuse-cards
-        this._fuseCards.forEach((fuseCard) => {
+    onEndDateChange(endDate: Date): void {
+        this.filters.endDate.next(endDate);
+    }
 
-            // If the 'all' filter is selected...
-            if ( this.selectedFilter === 'all' )
-            {
-                // Remove hidden class from all cards
-                fuseCard.nativeElement.classList.remove('hidden');
-            }
-            // Otherwise...
-            else
-            {
-                // If the card has the class name that matches the selected filter...
-                if ( fuseCard.nativeElement.classList.contains('filter-' + this.selectedFilter) )
-                {
-                    // Remove the hidden class
-                    fuseCard.nativeElement.classList.remove('hidden');
-                }
-                // Otherwise
-                else
-                {
-                    // Add the hidden class
-                    fuseCard.nativeElement.classList.add('hidden');
-                }
-            }
-        });
+    /**
+     * On sports change
+     *
+     * @param sports
+     */
+    onSportsChange(sports: string[]): void {
+        this.filters.sports.next(sports);
+    }
+
+    /**
+     * On teams change
+     *
+     * @param teams
+     */
+    onTeamsChange(teams: string[]): void {
+        this.filters.teams.next(teams);
+    }
+
+    /**
+     * On name change
+     *
+     * @param name
+     */
+    onNameChange(name: string): void {
+        this.filters.name.next(name);
+    }
+
+
+    /**
+     * Filter events
+     */
+    private _filterEvents(): void {
+        let filteredEvents = this.events$.value;
+
+        // Filter by date
+        const date = this.filters.date.value;
+        filteredEvents = filteredEvents.filter((event: SportEvent) => new Date(event.startDate).toDateString() === date.toDateString());
+
+        // Filter by end date
+        const endDate = this.filters.endDate.value;
+        if (endDate) {
+            filteredEvents = filteredEvents.filter((event: SportEvent)  => new Date(event.endDate) <= endDate);
+        }
+
+        // Filter by sports
+        // const sports = this.filters.sports.value;
+        // if (sports.length > 0) {
+        //     filteredEvents = filteredEvents.filter((event: SportEvent)  => sports.includes(event.sports));
+        // }
+
+        // Filter by teams
+        // const teams = this.filters.teams.value;
+        // if (teams.length > 0) {
+        //     filteredEvents = filteredEvents.filter((event: SportEvent)  => teams.some(team => event.participatingTeams.includes(team)));
+        // }
+
+        // Filter by name
+        const name = this.filters.name.value.toLowerCase();
+        if (name) {
+            filteredEvents = filteredEvents.filter((event: SportEvent)  => event.name.toLowerCase().includes(name));
+        }
+
+        // Update the filtered events
+        this.filteredEvents$.next(filteredEvents);
+        this._changeDetectorRef.markForCheck();
     }
 }

@@ -1,45 +1,48 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FuseFindByKeyPipeModule } from '@fuse/pipes/find-by-key';
-import { SharedModule } from 'app/shared/shared.module';
-import { MatTabsModule } from '@angular/material/tabs';
-import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/demo-sidebar.module';
-import { CardsModule } from '../../ui/cards/cards.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FuseCardModule } from '@fuse/components/card';
+import { PlayerListComponent } from './list/list.component';
+import { PlayerComponent } from './player.component';
 import { playersRoutes } from './player.routing';
+import { PlayerDetailsComponent } from './detail/details.component';
 
 @NgModule({
     declarations: [
-       
+        PlayerDetailsComponent,
+        PlayerListComponent,
+        PlayerComponent
     ],
-    imports     : [
+    imports: [
+        CommonModule,
         RouterModule.forChild(playersRoutes),
+        ReactiveFormsModule,
         MatButtonModule,
-        MatFormFieldModule,
         MatIconModule,
-        MatInputModule,
-        MatProgressBarModule,
+        MatMenuModule,
         MatSelectModule,
-        MatSidenavModule,
         MatSlideToggleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatDividerModule,
         MatTooltipModule,
-        FuseFindByKeyPipeModule,
-        SharedModule,
-        MatTabsModule,
-        DemoSidebarModule,
-        MatListModule,
-        CardsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        FuseCardModule
     ]
 })
-export class InvitationsModule
-{
-}
+export class PlayerModule { }

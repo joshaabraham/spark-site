@@ -23,6 +23,20 @@
                     <p>Updated: {{ sport.dateMiseAJour | date }}</p>
                 </div>
             </div>
+            <a
+            class="px-6 mt-8"
+            mat-flat-button
+            [color]="'primary'"
+            (click)="addSportToSelection(sport)">
+            Add to Selection
+        </a>
+        <a
+            class="px-6 mt-8"
+            mat-flat-button
+            [color]="'warn'"
+            (click)="removeSportFromSelection(sport)">
+            Remove from Selection
+        </a>
         </fuse-card>
     </div>
 </div>

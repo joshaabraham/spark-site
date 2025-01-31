@@ -10,6 +10,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { Sport } from '../sports.types';
+import { SportsStateManager } from 'app/dataService/stateManager/sports.state.manager';
 
 @Component({
     selector       : 'sports-list',
@@ -45,7 +46,8 @@ export class SportsListComponent implements OnInit, OnDestroy
         private _activatedRoute: ActivatedRoute,
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
-        private _sportsService: SportsService
+        private _sportsService: SportsService,
+        private _sportsStateManager: SportsStateManager
     )
     {
     }
@@ -156,6 +158,25 @@ export class SportsListComponent implements OnInit, OnDestroy
     }
 
     /**
+     * Add sport to selected sports
+     *
+     * @param sport
+     */
+    addSportToSelection(sport: Sport): void {
+        this._sportsStateManager.addSport(sport);
+    }
+
+    /**
+     * Remove sport from selected sports
+     *
+     * @param sport
+     */
+    removeSportFromSelection(sport: Sport): void {
+        this._sportsStateManager.removeSport(sport);
+    }
+
+
+    /**
      * Filter sports
      *
      * @param sports
@@ -175,4 +196,5 @@ export class SportsListComponent implements OnInit, OnDestroy
             )
         );
     }
+
 }
