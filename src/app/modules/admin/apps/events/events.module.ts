@@ -17,10 +17,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
 import { EventsListComponent } from './list/list.component';
 import { eventsRoutes } from './events.routing';
+import { EventsDetailsComponent } from './details/details.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { EventsComponent } from './events.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 @NgModule({
     declarations: [
-        EventsListComponent
+        EventsListComponent, EventsDetailsComponent, EventsComponent
     ],
     imports: [
         CommonModule,
@@ -38,7 +43,9 @@ import { eventsRoutes } from './events.routing';
         MatTooltipModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        FuseCardModule
+        FuseCardModule,
+        MatProgressBarModule,
+        MatSidenavModule
     ]
 })
 export class EventsModule { }

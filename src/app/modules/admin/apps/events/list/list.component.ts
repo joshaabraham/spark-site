@@ -3,6 +3,8 @@ import { BehaviorSubject, combineLatest, Subject, takeUntil } from 'rxjs';
 import { EventsService } from 'app/modules/admin/apps/events/events.service';
 import { FuseCardComponent } from '@fuse/components/card';
 import { SportEvent } from '../events.types';
+import { SportsStateManager } from 'app/dataService/stateManager/sports.state.manager';
+import { Sport } from 'app/modules/admin/apps/sports/sports.types';
 
 @Component({
     selector: 'events-list',
@@ -22,6 +24,7 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     events$: BehaviorSubject<SportEvent[]> = new BehaviorSubject<SportEvent[]>([]);
     filteredEvents$: BehaviorSubject<SportEvent[]> = new BehaviorSubject<SportEvent[]>([]);
+    sports$: BehaviorSubject<Sport[]> = new BehaviorSubject<Sport[]>([]);
     filters = {
         date: new BehaviorSubject<Date>(new Date()),
         endDate: new BehaviorSubject<Date | null>(null),
@@ -36,7 +39,9 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
      */
     constructor(
         private _eventsService: EventsService,
-        private _changeDetectorRef: ChangeDetectorRef) {}
+        private _changeDetectorRef: ChangeDetectorRef,
+        private _sportsStateManager: SportsStateManager
+    ) {}
 
     /**
      * On init
@@ -47,6 +52,15 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((events: SportEvent[]) => {
                 this.events$.next(events);
+                this._filterEvents();
+            });
+
+        // Get the selected sports from the state manager
+        this._sportsStateManager.selectedSports$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((sports: Sport[]) => {
+                this.sports$.next(sports);
+                this.filters.sports.next(sports.map(sport => sport.code));
                 this._filterEvents();
             });
 
@@ -80,14 +94,12 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
         // Do something after view init
     }
 
-
-
     /**
      * On date change
      *
      * @param date
      */
-      onDateChange(date: Date): void {
+    onDateChange(date: Date): void {
         this.filters.date.next(date);
     }
 
@@ -127,7 +139,6 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
         this.filters.name.next(name);
     }
 
-
     /**
      * Filter events
      */
@@ -141,25 +152,25 @@ export class EventsListComponent implements OnInit, OnDestroy, AfterViewInit {
         // Filter by end date
         const endDate = this.filters.endDate.value;
         if (endDate) {
-            filteredEvents = filteredEvents.filter((event: SportEvent)  => new Date(event.endDate) <= endDate);
+            filteredEvents = filteredEvents.filter((event: SportEvent) => new Date(event.endDate) <= endDate);
         }
 
         // Filter by sports
-        // const sports = this.filters.sports.value;
-        // if (sports.length > 0) {
-        //     filteredEvents = filteredEvents.filter((event: SportEvent)  => sports.includes(event.sports));
-        // }
+        const sports = this.filters.sports.value;
+        if (sports.length > 0) {
+            filteredEvents = filteredEvents.filter((event: SportEvent) => sports.includes(event.sport.code));
+        }
 
         // Filter by teams
-        // const teams = this.filters.teams.value;
-        // if (teams.length > 0) {
-        //     filteredEvents = filteredEvents.filter((event: SportEvent)  => teams.some(team => event.participatingTeams.includes(team)));
-        // }
+        const teams = this.filters.teams.value;
+        if (teams.length > 0) {
+            filteredEvents = filteredEvents.filter((event: SportEvent) => teams.some(team => event.participatingTeams.includes(team)));
+        }
 
         // Filter by name
         const name = this.filters.name.value.toLowerCase();
         if (name) {
-            filteredEvents = filteredEvents.filter((event: SportEvent)  => event.name.toLowerCase().includes(name));
+            filteredEvents = filteredEvents.filter((event: SportEvent) => event.name.toLowerCase().includes(name));
         }
 
         // Update the filtered events

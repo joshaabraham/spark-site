@@ -9,8 +9,10 @@
             [mode]="drawerMode"
             [opened]="drawerOpened"
             #matDrawer>
-            <div class="flex flex-col items-start p-8 border-b">
-                <!-- Back to courses -->
+        
+        
+      <!--        <div class="flex flex-col items-start p-8 border-b">
+    
                 <a
                     class="inline-flex items-center leading-6 text-primary hover:underline"
                     [routerLink]="['..']">
@@ -21,7 +23,7 @@
                         <span class="ml-1.5 font-medium leading-5">Back to courses</span>
                     </span>
                 </a>
-                <!-- Course category -->
+
                 <ng-container *ngIf="(course.category | fuseFindByKey:'slug':categories) as category">
                     <div
                         class="mt-7 py-0.5 px-3 rounded-full text-sm font-semibold"
@@ -32,10 +34,10 @@
                         {{category.title}}
                     </div>
                 </ng-container>
-                <!-- Course title & description -->
+     
                 <div class="mt-3 text-2xl font-semibold">{{course.title}}</div>
                 <div class="text-secondary">{{course.description}}</div>
-                <!-- Course time -->
+
                 <div class="mt-6 flex items-center leading-5 text-md text-secondary">
                     <mat-icon
                         class="icon-size-5 text-hint"
@@ -44,7 +46,7 @@
                 </div>
             </div>
 
-            <!-- Steps -->
+
             <div class="py-2 px-8">
                 <ol>
                     <ng-container *ngFor="let step of course.steps; let last = last; trackBy: trackByFn">
@@ -65,17 +67,17 @@
                                     [ngClass]="{'bg-primary dark:bg-primary text-on-primary group-hover:bg-primary-800 ring-transparent': step.order < currentStep,
                                                 'ring-primary': step.order === currentStep,
                                                 'ring-gray-300 dark:ring-gray-600 group-hover:ring-gray-400': step.order > currentStep}">
-                                    <!-- Check icon, show if the step is completed -->
+                            
                                     <ng-container *ngIf="step.order < currentStep">
                                         <mat-icon
                                             class="icon-size-5 text-current"
                                             [svgIcon]="'heroicons_solid:check'"></mat-icon>
                                     </ng-container>
-                                    <!-- Step order, show if the step is the current step -->
+                               
                                     <ng-container *ngIf="step.order === currentStep">
                                         <div class="text-md font-semibold text-primary dark:text-primary-500">{{step.order + 1}}</div>
                                     </ng-container>
-                                    <!-- Step order, show if the step is not completed -->
+                                  
                                     <ng-container *ngIf="step.order > currentStep">
                                         <div class="text-md font-semibold text-hint group-hover:text-secondary">{{step.order + 1}}</div>
                                     </ng-container>
@@ -88,16 +90,15 @@
                         </li>
                     </ng-container>
                 </ol>
-            </div>
+            </div>  -->
 
         </mat-drawer>
 
-        <!-- Drawer content -->
+    
         <mat-drawer-content class="flex flex-col overflow-hidden">
 
-            <!-- Header -->
-            <div class="lg:hidden flex flex-0 items-center py-2 pl-4 pr-6 sm:py-4 md:pl-6 md:pr-8 border-b lg:border-b-0 bg-card dark:bg-transparent">
-                <!-- Title & Actions -->
+            <!-- <div class="lg:hidden flex flex-0 items-center py-2 pl-4 pr-6 sm:py-4 md:pl-6 md:pr-8 border-b lg:border-b-0 bg-card dark:bg-transparent">
+  
                 <a
                     mat-icon-button
                     [routerLink]="['..']">
@@ -111,12 +112,12 @@
                 class="hidden lg:block flex-0 h-0.5 w-full"
                 [value]="100 * (currentStep + 1) / course.totalSteps"></mat-progress-bar>
 
-            <!-- Main -->
+    
             <div
                 class="flex-auto overflow-y-auto"
                 cdkScrollable>
 
-                <!-- Steps -->
+    
                 <mat-tab-group
                     class="fuse-mat-no-header"
                     [animationDuration]="'200'"
@@ -132,7 +133,7 @@
                     </ng-container>
                 </mat-tab-group>
 
-                <!-- Navigation - Desktop -->
+       
                 <div class="z-10 sticky hidden lg:flex bottom-4 p-4">
                     <div class="flex items-center justify-center mx-auto p-2 rounded-full shadow-lg bg-primary">
                         <button
@@ -165,7 +166,7 @@
 
             </div>
 
-            <!-- Progress & Navigation - Mobile -->
+
             <div class="lg:hidden flex items-center p-4 border-t bg-card">
                 <button
                     mat-icon-button
@@ -192,7 +193,7 @@
                     (click)="goToNextStep()">
                     <mat-icon [svgIcon]="'heroicons_outline:arrow-narrow-right'"></mat-icon>
                 </button>
-            </div>
+            </div> -->
 
         </mat-drawer-content>
 
