@@ -99,6 +99,8 @@ export const appRoutes: Route[] = [
                 {path: 'events', loadChildren: () => import('app/modules/admin/apps/events/events.module').then(m => m.EventsModule)},
                 {path: 'invitations', loadChildren: () => import('app/modules/admin/apps/invitations/invitations.module').then(m => m.InvitationsModule)},
                 {path: 'equipes', loadChildren: () => import('app/modules/admin/apps/equipe/equipe.module').then(m => m.EquipeModule)},
+                {path: 'players', loadChildren: () => import('app/modules/admin/apps/player/player.module').then(m => m.PlayersModule)},
+                {path: 'publicites', loadChildren: () => import('app/modules/admin/apps/player/player.module').then(m => m.PlayersModule)},
             ]},
 
             // Pages

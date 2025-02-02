@@ -40,6 +40,6 @@ import { playersRoutes } from './player.routing';
         CardsModule,
     ]
 })
-export class InvitationsModule
+export class PlayersModule
 {
 }
