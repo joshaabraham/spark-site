@@ -17,11 +17,17 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
 import { PubliciteComponent } from './publicite.component';
 import { publiciteRoutes } from './publicite.routing';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { PubliciteListComponent } from './listes/publicite/list.component';
 
 @NgModule({
     declarations: [
 
-        PubliciteComponent
+        PubliciteComponent, PubliciteListComponent, PubliciteComponent //, PubliciteFormComponent
     ],
     imports: [
         CommonModule,
@@ -39,6 +45,11 @@ import { publiciteRoutes } from './publicite.routing';
         MatTooltipModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatProgressBarModule,
+        MatSidenavModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
         FuseCardModule
     ]
 })
