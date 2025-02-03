@@ -9,7 +9,7 @@ export interface PageFacebook {
     logo: string;
 }
 
-export interface BudgetEtCalendrier {
+export interface Calendrier {
     dateDebut: Date;
     heureDebut: string; // Time in HH:mm:ss format
     dateFin: Date;
@@ -32,7 +32,7 @@ export interface CampagnePublicitaire {
     limiteDepense: number;
     budgetCampagne: BudgetCampagne;
     pageFacebook: PageFacebook;
-    budgetEtCalendrier: BudgetEtCalendrier;
+    calendrier: Calendrier;
     controleAudience: ControleAudience;
     placement: string;
     listePublicite: string[]; // List of associated ads
