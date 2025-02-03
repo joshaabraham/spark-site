@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
 import { PubliciteComponent } from './publicite.component';
-import { PubliciteListComponent } from './list/list.component';
-import { PubliciteDetailsComponent } from './details/details.component';
-import { PubliciteFormComponent } from './form/form.component';
-import { CampagneResolver, PublicitesResolver, PubliciteResolver } from './publicite.resolvers';
+import { PubliciteListComponent } from './listes/publicite-list.component';
+// import { PubliciteDetailsComponent } from './details/details.component';
+// import { PubliciteFormComponent } from './forms/publicite-form.component';
+import { CampagneResolver, PublicitesResolver, PubliciteResolver, CampagnesResolver } from './publicite.resolvers';
 
 export const publiciteRoutes: Route[] = [
     {
@@ -11,7 +11,14 @@ export const publiciteRoutes: Route[] = [
         component: PubliciteComponent,
         children: [
             {
-                path: '',
+                path: 'campagnes',
+                component: CampagneListComponent,
+                resolve: {
+                    publicites: CampagnesResolver
+                }
+            },
+            {
+                path: 'publicites',
                 component: PubliciteListComponent,
                 resolve: {
                     publicites: PublicitesResolver
@@ -19,7 +26,7 @@ export const publiciteRoutes: Route[] = [
             },
             {
                 path: 'campagne/:id',
-                component: PubliciteDetailsComponent,
+                component: CampagneDetailsComponent,
                 resolve: {
                     campagne: CampagneResolver
                 }
@@ -31,14 +38,14 @@ export const publiciteRoutes: Route[] = [
                     publicite: PubliciteResolver
                 }
             },
-            {
-                path: 'campagne/form',
-                component: PubliciteFormComponent
-            },
-            {
-                path: 'publicite/form',
-                component: PubliciteFormComponent
-            }
+            // {
+            //     path: 'campagne/form',
+            //     component: PubliciteFormComponent
+            // },
+            // {
+            //     path: 'publicite/form',
+            //     component: PubliciteFormComponent
+            // }
         ]
     }
 ];
