@@ -1,109 +1,153 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Category, Course } from 'app/modules/admin/apps/academy/academy.types';
+import { School, Teacher, Student, Course, Section, Chapter } from 'app/modules/admin/apps/academy/academy.types';
 import { AcademyService } from 'app/modules/admin/apps/academy/academy.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class AcademyCategoriesResolver implements Resolve<any>
+export class AcademySchoolsResolver implements Resolve<School[]>
 {
-    /**
-     * Constructor
-     */
-    constructor(private _academyService: AcademyService)
-    {
-    }
+    constructor(private _academyService: AcademyService) {}
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Resolver
-     *
-     * @param route
-     * @param state
-     */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Category[]>
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<School[]>
     {
-        return this._academyService.getCategories();
+        return this._academyService.getSchools().pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
     }
 }
 
 @Injectable({
     providedIn: 'root'
 })
-export class AcademyCoursesResolver implements Resolve<any>
+export class AcademyTeachersResolver implements Resolve<Teacher[]>
 {
-    /**
-     * Constructor
-     */
-    constructor(private _academyService: AcademyService)
+    constructor(private _academyService: AcademyService) {}
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Teacher[]>
     {
+        return this._academyService.getTeachers().pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
     }
+}
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
+@Injectable({
+    providedIn: 'root'
+})
+export class AcademyStudentsResolver implements Resolve<Student[]>
+{
+    constructor(private _academyService: AcademyService) {}
 
-    /**
-     * Resolver
-     *
-     * @param route
-     * @param state
-     */
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Student[]>
+    {
+        return this._academyService.getStudents().pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
+    }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class AcademyCoursesResolver implements Resolve<Course[]>
+{
+    constructor(private _academyService: AcademyService) {}
+
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Course[]>
     {
-        return this._academyService.getCourses();
+        return this._academyService.getCourses().pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
     }
 }
 
 @Injectable({
     providedIn: 'root'
 })
-export class AcademyCourseResolver implements Resolve<any>
+export class AcademyCourseResolver implements Resolve<Course>
 {
-    /**
-     * Constructor
-     */
-    constructor(
-        private _router: Router,
-        private _academyService: AcademyService
-    )
-    {
-    }
+    constructor(private _academyService: AcademyService) {}
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Resolver
-     *
-     * @param route
-     * @param state
-     */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Course>
     {
-        return this._academyService.getCourseById(route.paramMap.get('id'))
-                   .pipe(
-                       // Error here means the requested task is not available
-                       catchError((error) => {
+        const courseId = route.paramMap.get('courseId');
+        return this._academyService.getCourseById(Number(courseId)).pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
+    }
+}
 
-                           // Log the error
-                           console.error(error);
+@Injectable({
+    providedIn: 'root'
+})
+export class AcademySectionsResolver implements Resolve<Section[]>
+{
+    constructor(private _academyService: AcademyService) {}
 
-                           // Get the parent url
-                           const parentUrl = state.url.split('/').slice(0, -1).join('/');
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Section[]>
+    {
+        const courseId = route.paramMap.get('courseId');
+        return this._academyService.getSectionsByCourseId(Number(courseId)).pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
+    }
+}
 
-                           // Navigate to there
-                           this._router.navigateByUrl(parentUrl);
+@Injectable({
+    providedIn: 'root'
+})
+export class AcademySectionResolver implements Resolve<Section>
+{
+    constructor(private _academyService: AcademyService) {}
 
-                           // Throw an error
-                           return throwError(error);
-                       })
-                   );
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Section>
+    {
+        const sectionId = route.paramMap.get('sectionId');
+        return this._academyService.getSectionById(Number(sectionId)).pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
+    }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class AcademyChaptersResolver implements Resolve<Chapter[]>
+{
+    constructor(private _academyService: AcademyService) {}
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Chapter[]>
+    {
+        const sectionId = route.paramMap.get('sectionId');
+        return this._academyService.getChaptersBySectionId(Number(sectionId)).pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
     }
 }

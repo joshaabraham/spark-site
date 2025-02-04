@@ -1,0 +1,29 @@
+.filters-container {
+    margin: 0 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.filter-full-width {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.sports-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 16px;
+}
+
+.sport-item {
+    flex: 1 1 calc(33.333% - 32px);
+    margin: 16px;
+}
+
+.sport-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}

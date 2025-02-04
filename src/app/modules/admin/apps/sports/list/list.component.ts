@@ -17,6 +17,7 @@ import { SportsStateManager } from 'app/dataService/stateManager/sports.state.ma
     templateUrl    : './list.component.html',
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls      : ['./list.component.scss']
 })
 export class SportsListComponent implements OnInit, OnDestroy
 {

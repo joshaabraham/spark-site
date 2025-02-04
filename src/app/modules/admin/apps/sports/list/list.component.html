@@ -1,5 +1,5 @@
-<div class="filters">
-    <mat-form-field appearance="fill">
+<div class="filters-container">
+    <mat-form-field appearance="fill" class="filter-full-width">
         <mat-label>Filter Sports</mat-label>
         <input type="text" matInput [formControl]="filterControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
@@ -13,7 +13,7 @@
 <!-- Sports List -->
 <div class="sports-list mt-8">
     <div *ngFor="let sport of filteredSports$ | async" class="sport-item mb-4">
-        <fuse-card>
+        <fuse-card class="sport-card">
             <div class="sport-info p-4 flex items-center">
                 <img [src]="sport.iconPetit" alt="{{ sport.spTitreFr }} icon" class="w-10 h-10 mr-4">
                 <div>
@@ -24,19 +24,19 @@
                 </div>
             </div>
             <a
-            class="px-6 mt-8"
-            mat-flat-button
-            [color]="'primary'"
-            (click)="addSportToSelection(sport)">
-            Add to Selection
-        </a>
-        <a
-            class="px-6 mt-8"
-            mat-flat-button
-            [color]="'warn'"
-            (click)="removeSportFromSelection(sport)">
-            Remove from Selection
-        </a>
+                class="px-6 mt-8"
+                mat-flat-button
+                [color]="'primary'"
+                (click)="addSportToSelection(sport)">
+                Add to Selection
+            </a>
+            <a
+                class="px-6 mt-8"
+                mat-flat-button
+                [color]="'warn'"
+                (click)="removeSportFromSelection(sport)">
+                Remove from Selection
+            </a>
         </fuse-card>
     </div>
 </div>

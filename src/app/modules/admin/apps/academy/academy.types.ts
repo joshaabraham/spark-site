@@ -1,29 +1,65 @@
-export interface Category
-{
-    id?: string;
-    title?: string;
-    slug?: string;
+
+
+export interface User {
+    id: number;
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    // Add other fields as necessary
 }
 
-export interface Course
-{
-    id?: string;
-    title?: string;
+export interface Sport {
+    id: number;
+    name: string;
+    // Add other fields as necessary
+}
+
+export interface School {
+    id: number;
+    user: User;
+    sportFK: Sport;
+    name: string;
+}
+
+export interface Teacher {
+    id: number;
+    user: User;
+    school: School;
+}
+
+export interface Student {
+    id: number;
+    user: User;
+    school: School;
+}
+
+export interface Course {
+    id: number;
+    title: string;
+    school: School;
+    teacher: Teacher;
     slug?: string;
-    description?: string;
-    category?: string;
-    duration?: number;
-    steps?: {
-        order?: number;
-        title?: string;
-        subtitle?: string;
-        content?: string;
-    }[];
-    totalSteps?: number;
-    updatedAt?: number;
-    featured?: boolean;
-    progress?: {
-        currentStep?: number;
-        completed?: number;
-    };
+    description: string;
+    isFree: boolean;
+    needToBeRegistered: boolean;
+    // Add other fields as necessary
+}
+
+export interface Section {
+    id: number;
+    title: string;
+    course: Course;
+    order: number;
+    subtitle: string;
+    content: string;
+}
+
+export interface Chapter {
+    id: number;
+    title: string;
+    section: Section;
+    order: number;
+    subtitle: string;
+    content: string;
 }
