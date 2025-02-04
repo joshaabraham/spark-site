@@ -1,0 +1,8 @@
+<div class="publicite-details">
+    <h1>{{ publicite?.titre }}</h1>
+    <p>{{ publicite?.description }}</p>
+    <p><strong>Format:</strong> {{ publicite?.format }}</p>
+    <p><strong>URL Cible:</strong> <a [href]="publicite?.urlCible" target="_blank">{{ publicite?.urlCible }}</a></p>
+    <p><strong>Plateforme:</strong> {{ publicite?.plateforme }}</p>
+    <p><strong>Date de Création:</strong> {{ publicite?.dateCreation | date:'shortDate' }}</p>
+</div>

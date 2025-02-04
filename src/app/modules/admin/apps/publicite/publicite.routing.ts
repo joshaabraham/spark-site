@@ -1,9 +1,12 @@
 import { Route } from '@angular/router';
 import { PubliciteComponent } from './publicite.component';
-import { PubliciteListComponent } from './listes/publicite-list.component';
+import { PubliciteListComponent } from './listes/publicite/list.component';
 // import { PubliciteDetailsComponent } from './details/details.component';
 // import { PubliciteFormComponent } from './forms/publicite-form.component';
 import { CampagneResolver, PublicitesResolver, PubliciteResolver, CampagnesResolver } from './publicite.resolvers';
+import { PubliciteDetailsComponent } from './details/publicite/details.component';
+import { CampagneDetailsComponent } from './details/campagne/details.component';
+import { CampagneListComponent } from './listes/campagne/list.component';
 
 export const publiciteRoutes: Route[] = [
     {

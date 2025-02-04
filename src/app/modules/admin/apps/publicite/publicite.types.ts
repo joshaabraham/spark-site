@@ -94,20 +94,20 @@ export interface Publicite {
   }
 
 
-// export interface PubliciteVideo extends PubliciteBase {
-//     videoAutoplay: boolean;
-//     videoMuted: boolean;
-// }
+export interface PubliciteVideo extends Publicite {
+    videoAutoplay: boolean;
+    videoMuted: boolean;
+}
 
-// export interface PubliciteBanniere extends PubliciteBase {
-//     emplacementBanniere: string; // Header, Sidebar, etc.
-//     dimensions: string; // Specific dimensions
-// }
+export interface PubliciteBanniere extends Publicite {
+    emplacementBanniere: string; // Header, Sidebar, etc.
+    dimensions: string; // Specific dimensions
+}
 
-// export interface PubliciteCarrousel extends PubliciteBase {
-//     listeImages: Media[]; // List of images/videos in the carousel
-// }
+export interface PubliciteCarrousel extends Publicite {
+    listeImages: Media[]; // List of images/videos in the carousel
+}
 
-// export interface PubliciteNative extends PubliciteBase {
-//     source: string; // Recommended by, sponsored by, etc.
-// }
+export interface PubliciteNative extends Publicite {
+    source: string; // Recommended by, sponsored by, etc.
+}

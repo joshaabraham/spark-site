@@ -1,0 +1,54 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-table" matSort>
+
+        <!-- Nom Campagne Column -->
+        <ng-container matColumnDef="nomCampagne">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom Campagne </th>
+            <td mat-cell *matCellDef="let campagne"> {{campagne.nomCampagne}} </td>
+        </ng-container>
+
+        <!-- Type Achat Column -->
+        <ng-container matColumnDef="typeAchat">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'Achat </th>
+            <td mat-cell *matCellDef="let campagne"> {{campagne.typeAchat}} </td>
+        </ng-container>
+
+        <!-- Objectif Column -->
+        <ng-container matColumnDef="objectif">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Objectif </th>
+            <td mat-cell *matCellDef="let campagne"> {{campagne.objectif}} </td>
+        </ng-container>
+
+        <!-- Budget Column -->
+        <ng-container matColumnDef="budget">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Budget </th>
+            <td mat-cell *matCellDef="let campagne"> {{campagne.budgetCampagne.montant | currency}} ({{campagne.budgetCampagne.typeBudget}}) </td>
+        </ng-container>
+
+        <!-- Date Debut Column -->
+        <ng-container matColumnDef="dateDebut">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Début </th>
+            <td mat-cell *matCellDef="let campagne"> {{campagne.calendrier.dateDebut | date}} </td>
+        </ng-container>
+
+        <!-- Date Fin Column -->
+        <ng-container matColumnDef="dateFin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Fin </th>
+            <td mat-cell *matCellDef="let campagne"> {{campagne.calendrier.dateFin | date}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let campagne">
+                <button mat-button (click)="editCampagne(campagne)">Edit</button>
+                <button mat-button (click)="deleteCampagne(campagne)">Delete</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

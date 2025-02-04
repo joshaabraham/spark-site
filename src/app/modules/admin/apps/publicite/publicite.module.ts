@@ -23,11 +23,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { PubliciteListComponent } from './listes/publicite/list.component';
+import { PubliciteDetailsComponent } from './details/publicite/details.component';
+import { CampagneDetailsComponent } from './details/campagne/details.component';
+import { CampagneListComponent } from './listes/campagne/list.component';
 
 @NgModule({
     declarations: [
 
-        PubliciteComponent, PubliciteListComponent, PubliciteComponent //, PubliciteFormComponent
+        PubliciteComponent, PubliciteListComponent, PubliciteComponent , PubliciteDetailsComponent, PubliciteListComponent,
+        CampagneDetailsComponent, CampagneListComponent
     ],
     imports: [
         CommonModule,

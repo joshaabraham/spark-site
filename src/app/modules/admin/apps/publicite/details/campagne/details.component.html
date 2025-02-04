@@ -1,0 +1,27 @@
+<div class="campagne-details">
+    <h1>{{ campagne?.nomCampagne }}</h1>
+    <p><strong>Type d'Achat:</strong> {{ campagne?.typeAchat }}</p>
+    <p><strong>Objectif:</strong> {{ campagne?.objectif }}</p>
+    <p><strong>Catégories Spéciales à Écarter:</strong> {{ campagne?.categoriesSpecialesAEcarter.join(', ') }}</p>
+    <p><strong>Limite de Dépense:</strong> {{ campagne?.limiteDepense | currency }}</p>
+    <p><strong>Budget:</strong> {{ campagne?.budgetCampagne.montant | currency }} ({{ campagne?.budgetCampagne.typeBudget }})</p>
+    <p><strong>Page Facebook:</strong> <a [href]="campagne?.pageFacebook.lien" target="_blank">{{ campagne?.pageFacebook.nom }}</a></p>
+    <img [src]="campagne?.pageFacebook.logo" alt="Logo de la page Facebook">
+    <p><strong>Calendrier:</strong> Du {{ campagne?.calendrier.dateDebut | date }} à {{ campagne?.calendrier.heureDebut }} au {{ campagne?.calendrier.dateFin | date }} à {{ campagne?.calendrier.heureFin }}</p>
+    <p><strong>Contrôle d'Audience:</strong></p>
+    <ul>
+        <li><strong>Lieu:</strong> {{ campagne?.controleAudience.lieu }}</li>
+        <li><strong>Âge Minimum:</strong> {{ campagne?.controleAudience.ageMinimum }}</li>
+        <li><strong>Langues:</strong> {{ campagne?.controleAudience.langues.join(', ') }}</li>
+        <li><strong>Centres d'Intérêt:</strong> {{ campagne?.controleAudience.centreInteret?.join(', ') }}</li>
+        <li><strong>Genre:</strong> {{ campagne?.controleAudience.genre }}</li>
+    </ul>
+    <p><strong>Placement:</strong> {{ campagne?.placement }}</p>
+    <p><strong>Liste des Publicités:</strong> {{ campagne?.listePublicite.join(', ') }}</p>
+    <p><strong>Statut de la Campagne:</strong> {{ campagne?.statutCampagne }}</p>
+    <p><strong>Taux de Clics:</strong> {{ campagne?.tauxClics }}%</p>
+    <p><strong>Nombre d'Impressions:</strong> {{ campagne?.nombreImpressions }}</p>
+    <p><strong>Date de Création:</strong> {{ campagne?.dateCreation | date }}</p>
+    <p><strong>Utilisateur Responsable:</strong> {{ campagne?.utilisateurResponsable }}</p>
+    <p><strong>Propriétaire:</strong> {{ campagne?.owner }}</p>
+</div>

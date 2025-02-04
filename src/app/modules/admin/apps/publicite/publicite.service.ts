@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { apiRoutes } from '../../../../dataService/routes';
-import { CampagnePublicitaire, PubliciteBase } from './publicite.types';
+import { CampagnePublicitaire, Publicite } from './publicite.types';
 
 @Injectable({
     providedIn: 'root'
@@ -35,20 +35,20 @@ export class PubliciteService {
     }
 
     // Publicités
-    getPublicites(): Observable<PubliciteBase[]> {
-        return this.http.get<PubliciteBase[]>(`${this.apiUrl}${apiRoutes.publiciteApp.publicitesCreateList}`);
+    getPublicites(): Observable<Publicite[]> {
+        return this.http.get<Publicite[]>(`${this.apiUrl}${apiRoutes.publiciteApp.publicitesCreateList}`);
     }
 
-    getPublicite(id: number): Observable<PubliciteBase> {
-        return this.http.get<PubliciteBase>(`${this.apiUrl}${apiRoutes.publiciteApp.publiciteDetail(id)}`);
+    getPublicite(id: number): Observable<Publicite> {
+        return this.http.get<Publicite>(`${this.apiUrl}${apiRoutes.publiciteApp.publiciteDetail(id)}`);
     }
 
-    createPublicite(data: PubliciteBase): Observable<PubliciteBase> {
-        return this.http.post<PubliciteBase>(`${this.apiUrl}${apiRoutes.publiciteApp.publicitesCreateList}`, data);
+    createPublicite(data: Publicite): Observable<Publicite> {
+        return this.http.post<Publicite>(`${this.apiUrl}${apiRoutes.publiciteApp.publicitesCreateList}`, data);
     }
 
-    updatePublicite(id: number, data: PubliciteBase): Observable<PubliciteBase> {
-        return this.http.put<PubliciteBase>(`${this.apiUrl}${apiRoutes.publiciteApp.publiciteDetail(id)}`, data);
+    updatePublicite(id: number, data: Publicite): Observable<Publicite> {
+        return this.http.put<Publicite>(`${this.apiUrl}${apiRoutes.publiciteApp.publiciteDetail(id)}`, data);
     }
 
     deletePublicite(id: number): Observable<void> {
