@@ -13,9 +13,10 @@ export class InvitationsComponent
 {
     drawerMode: 'over' | 'side' = 'side';
     drawerOpened: boolean = true;
+    invitations = Array.from({ length: 20 }, (_, i) => `Invitation ${i + 1}`);
+
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-    invitations = Array.from({ length: 20 }, (_, i) => `Invitation ${i + 1}`);
 
     /**
      * Constructor
@@ -31,7 +32,7 @@ export class InvitationsComponent
     /**
      * On init
      */
-    ngOnInit(): void
+    onInit(): void
     {
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
@@ -55,7 +56,7 @@ export class InvitationsComponent
     /**
      * On destroy
      */
-    ngOnDestroy(): void
+    onDestroy(): void
     {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next(null);
