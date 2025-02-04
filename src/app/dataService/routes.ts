@@ -42,6 +42,10 @@ export const apiRoutes = {
       userActionCreate: '/useractions/useractionCreate/',
       userActionDetail: (pk: number): string => `/useractions/useraction/${pk}/`,
     },
+    contactApp: {
+      contactCreateList: '/contact_app/contactCreateList/',
+      contactDetail: (pk: number): string => `/contact_app/contact/${pk}/`,
+    },
     ecommerce: {
       categoriesCreateList: '/market/categoriesCreateList/',
       categoryDetail: (pk: number): string => `/market/categorie/${pk}/`,

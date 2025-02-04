@@ -1,44 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, filter, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, switchMap, take, tap, filter } from 'rxjs/operators';
 import { Contact, Country, Tag } from 'app/modules/admin/apps/contacts/contacts.types';
+import { apiRoutes } from 'app/dataService/routes';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ContactsService
-{
-    // Private
-    private _contact: BehaviorSubject<Contact | null> = new BehaviorSubject(null);
-    private _contacts: BehaviorSubject<Contact[] | null> = new BehaviorSubject(null);
+export class ContactsService {
+    private _contacts: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>([]);
+    private _contact: BehaviorSubject<Contact | null> = new BehaviorSubject<Contact | null>(null);
     private _countries: BehaviorSubject<Country[] | null> = new BehaviorSubject(null);
     private _tags: BehaviorSubject<Tag[] | null> = new BehaviorSubject(null);
 
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient)
-    {
-    }
+    constructor(private _httpClient: HttpClient) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * Getter for contact
+     * Getter for contacts
      */
-    get contact$(): Observable<Contact>
-    {
-        return this._contact.asObservable();
+    get contacts$(): Observable<Contact[]> {
+        return this._contacts.asObservable();
     }
 
     /**
-     * Getter for contacts
+     * Getter for contact
      */
-    get contacts$(): Observable<Contact[]>
-    {
-        return this._contacts.asObservable();
+    get contact$(): Observable<Contact | null> {
+        return this._contact.asObservable();
     }
 
     /**
@@ -64,25 +60,8 @@ export class ContactsService
     /**
      * Get contacts
      */
-    getContacts(): Observable<Contact[]>
-    {
-        return this._httpClient.get<Contact[]>('api/apps/contacts/all').pipe(
-            tap((contacts) => {
-                this._contacts.next(contacts);
-            })
-        );
-    }
-
-    /**
-     * Search contacts with given query
-     *
-     * @param query
-     */
-    searchContacts(query: string): Observable<Contact[]>
-    {
-        return this._httpClient.get<Contact[]>('api/apps/contacts/search', {
-            params: {query}
-        }).pipe(
+    getContacts(): Observable<Contact[]> {
+        return this._httpClient.get<Contact[]>(apiRoutes.contactApp.contactCreateList).pipe(
             tap((contacts) => {
                 this._contacts.next(contacts);
             })
@@ -92,29 +71,10 @@ export class ContactsService
     /**
      * Get contact by id
      */
-    getContactById(id: string): Observable<Contact>
-    {
-        return this._contacts.pipe(
-            take(1),
-            map((contacts) => {
-
-                // Find the contact
-                const contact = contacts.find(item => item.id === id) || null;
-
-                // Update the contact
+    getContactById(id: number): Observable<Contact> {
+        return this._httpClient.get<Contact>(apiRoutes.contactApp.contactDetail(id)).pipe(
+            tap((contact) => {
                 this._contact.next(contact);
-
-                // Return the contact
-                return contact;
-            }),
-            switchMap((contact) => {
-
-                if ( !contact )
-                {
-                    return throwError('Could not found contact with id of ' + id + '!');
-                }
-
-                return of(contact);
             })
         );
     }
@@ -122,92 +82,83 @@ export class ContactsService
     /**
      * Create contact
      */
+    addContact(contact: Contact): Observable<Contact> {
+        return this._httpClient.post<Contact>(apiRoutes.contactApp.contactCreateList, contact).pipe(
+            tap((newContact) => {
+                this._contacts.next([...this._contacts.value, newContact]);
+            })
+        );
+    }
+
     createContact(): Observable<Contact>
     {
-        return this.contacts$.pipe(
-            take(1),
-            switchMap(contacts => this._httpClient.post<Contact>('api/apps/contacts/contact', {}).pipe(
-                map((newContact) => {
-
-                    // Update the contacts with the new contact
-                    this._contacts.next([newContact, ...contacts]);
-
-                    // Return the new contact
-                    return newContact;
-                })
-            ))
-        );
+        // Implementation for creating a new contact
+        const newContact: Contact = {
+            id: 0,
+            name: 'New Contact',
+            emails: [{ email: 'new.contact@example.com', label: 'work' }],
+            phoneNumbers: [{ country: 'US', phoneNumber: '1234567890', label: 'work' }],
+            job: 'New Job',
+            tags: []
+        };
+        // Return the new contact as an observable
+        return of(newContact);
     }
 
     /**
      * Update contact
-     *
-     * @param id
-     * @param contact
      */
-    updateContact(id: string, contact: Contact): Observable<Contact>
-    {
-        return this.contacts$.pipe(
-            take(1),
-            switchMap(contacts => this._httpClient.patch<Contact>('api/apps/contacts/contact', {
-                id,
-                contact
-            }).pipe(
-                map((updatedContact) => {
+    updateContact(id: number, contact: Contact): Observable<Contact> {
+        return this._httpClient.put<Contact>(apiRoutes.contactApp.contactDetail(id), contact).pipe(
+            map((updatedContact) => {
+                const contacts = this._contacts.value;
 
-                    // Find the index of the updated contact
-                    const index = contacts.findIndex(item => item.id === id);
+                // Find the index of the updated contact
+                const index = contacts.findIndex((item: Contact) => item.id === Number(id));
 
-                    // Update the contact
-                    contacts[index] = updatedContact;
+                // Update the contact
+                contacts[index] = updatedContact;
 
-                    // Update the contacts
-                    this._contacts.next(contacts);
+                // Update the contacts
+                this._contacts.next(contacts);
+
+                // Return the updated contact
+                return updatedContact;
+            }),
+            switchMap(updatedContact => this.contact$.pipe(
+                take(1),
+                filter(item => item && item.id === id),
+                tap(() => {
+                    // Update the contact if it's selected
+                    this._contact.next(updatedContact);
 
                     // Return the updated contact
                     return updatedContact;
-                }),
-                switchMap(updatedContact => this.contact$.pipe(
-                    take(1),
-                    filter(item => item && item.id === id),
-                    tap(() => {
-
-                        // Update the contact if it's selected
-                        this._contact.next(updatedContact);
-
-                        // Return the updated contact
-                        return updatedContact;
-                    })
-                ))
+                })
             ))
         );
     }
 
     /**
-     * Delete the contact
-     *
-     * @param id
+     * Delete contact
      */
-    deleteContact(id: string): Observable<boolean>
-    {
-        return this.contacts$.pipe(
-            take(1),
-            switchMap(contacts => this._httpClient.delete('api/apps/contacts/contact', {params: {id}}).pipe(
-                map((isDeleted: boolean) => {
+    deleteContact(id: number): Observable<boolean> {
+        return this._httpClient.delete<boolean>(apiRoutes.contactApp.contactDetail(id)).pipe(
+            map((isDeleted) => {
+                const contacts = this._contacts.value;
 
-                    // Find the index of the deleted contact
-                    const index = contacts.findIndex(item => item.id === id);
+                // Find the index of the deleted contact
+                const index = contacts.findIndex(item => item.id === id);
 
-                    // Delete the contact
-                    contacts.splice(index, 1);
+                // Remove the contact
+                contacts.splice(index, 1);
 
-                    // Update the contacts
-                    this._contacts.next(contacts);
+                // Update the contacts
+                this._contacts.next(contacts);
 
-                    // Return the deleted status
-                    return isDeleted;
-                })
-            ))
+                // Return the result
+                return isDeleted;
+            })
         );
     }
 
@@ -344,7 +295,7 @@ export class ContactsService
      * @param id
      * @param avatar
      */
-    uploadAvatar(id: string, avatar: File): Observable<Contact>
+    uploadAvatar(id: number, avatar: File): Observable<Contact>
     {
         return this.contacts$.pipe(
             take(1),
@@ -360,7 +311,7 @@ export class ContactsService
                 map((updatedContact) => {
 
                     // Find the index of the updated contact
-                    const index = contacts.findIndex(item => item.id === id);
+                    const index = contacts.findIndex((item: Contact) => item.id === id);
 
                     // Update the contact
                     contacts[index] = updatedContact;

@@ -89,16 +89,16 @@ export class ContactsListComponent implements OnInit, OnDestroy
             });
 
         // Subscribe to search input field value changes
-        this.searchInputControl.valueChanges
-            .pipe(
-                takeUntil(this._unsubscribeAll),
-                switchMap(query =>
+        // this.searchInputControl.valueChanges
+        //     .pipe(
+        //         takeUntil(this._unsubscribeAll),
+        //         switchMap(query =>
 
-                    // Search
-                    this._contactsService.searchContacts(query)
-                )
-            )
-            .subscribe();
+        //             // Search
+        //             this._contactsService.searchContacts(query)
+        //         )
+        //     )
+        //     .subscribe();
 
         // Subscribe to MatDrawer opened change
         this.matDrawer.openedChange.subscribe((opened) => {
@@ -132,17 +132,17 @@ export class ContactsListComponent implements OnInit, OnDestroy
             });
 
         // Listen for shortcuts
-        fromEvent(this._document, 'keydown')
-            .pipe(
-                takeUntil(this._unsubscribeAll),
-                filter<KeyboardEvent>(event =>
-                    (event.ctrlKey === true || event.metaKey) // Ctrl or Cmd
-                    && (event.key === '/') // '/'
-                )
-            )
-            .subscribe(() => {
-                this.createContact();
-            });
+        // fromEvent(this._document, 'keydown')
+        //     .pipe(
+        //         takeUntil(this._unsubscribeAll),
+        //         filter<KeyboardEvent>(event =>
+        //             (event.ctrlKey === true || event.metaKey) // Ctrl or Cmd
+        //             && (event.key === '/') // '/'
+        //         )
+        //     )
+        //     .subscribe(() => {
+        //         this.createContact();
+        //     });
     }
 
     /**

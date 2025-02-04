@@ -1,6 +1,6 @@
 export interface Contact
 {
-    id: string;
+    id: number;
     avatar?: string | null;
     background?: string | null;
     name: string;
@@ -14,6 +14,7 @@ export interface Contact
         label: string;
     }[];
     title?: string;
+    job?: string;
     company?: string;
     birthday?: string | null;
     address?: string | null;
