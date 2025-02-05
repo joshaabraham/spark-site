@@ -13,15 +13,21 @@ import { FuseFindByKeyPipeModule } from '@fuse/pipes/find-by-key';
 import { SharedModule } from 'app/shared/shared.module';
 import { academyRoutes } from 'app/modules/admin/apps/academy/academy.routing';
 import { AcademyComponent } from 'app/modules/admin/apps/academy/academy.component';
-import { AcademyDetailsComponent } from 'app/modules/admin/apps/academy/details/details.component';
 import { AcademyListComponent } from 'app/modules/admin/apps/academy/list/list.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { TeacherListComponent } from './list/teacher/list.component';
+import { SectionListComponent } from './list/section/list.component';
+import { CourseListComponent } from './list/course/list.component';
+import { ChapterListComponent } from './list/chapter/list.component';
 
 @NgModule({
     declarations: [
         AcademyComponent,
-        AcademyDetailsComponent,
-        AcademyListComponent
+        AcademyListComponent,
+        TeacherListComponent,
+        SectionListComponent,
+        CourseListComponent,
+        ChapterListComponent
     ],
     imports     : [
         RouterModule.forChild(academyRoutes),

@@ -39,10 +39,15 @@ export interface Course {
     title: string;
     school: School;
     teacher: Teacher;
+    category: string;
+    progress: {
+        completed: number;
+    };
     slug?: string;
     description: string;
     isFree: boolean;
     needToBeRegistered: boolean;
+    totalSteps: number;
     // Add other fields as necessary
 }
 

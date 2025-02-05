@@ -1,0 +1,9 @@
+<div class="chapter-list">
+    <h1>List of Chapters</h1>
+    <div *ngFor="let chapter of chapters" class="chapter-item">
+        <h2>{{ chapter.title }}</h2>
+        <p><strong>Order:</strong> {{ chapter.order }}</p>
+        <p><strong>Subtitle:</strong> {{ chapter.subtitle }}</p>
+        <p><strong>Content:</strong> {{ chapter.content }}</p>
+    </div>
+</div>

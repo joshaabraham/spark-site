@@ -1,0 +1,8 @@
+<div class="course-details">
+    <h1>{{ course?.title }}</h1>
+    <p><strong>Description:</strong> {{ course?.description }}</p>
+    <p><strong>Teacher:</strong> {{ course?.teacher.user.firstName }} {{ course?.teacher.user.lastName }}</p>
+    <p><strong>School:</strong> {{ course?.school.name }}</p>
+    <p><strong>Is Free:</strong> {{ course?.isFree ? 'Yes' : 'No' }}</p>
+    <p><strong>Need to be Registered:</strong> {{ course?.needToBeRegistered ? 'Yes' : 'No' }}</p>
+</div>

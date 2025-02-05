@@ -4,7 +4,6 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject, combineLatest, Subject, takeUntil } from 'rxjs';
 import { SportsService } from 'app/modules/admin/apps/sports/sports.service';
-import { Category, Course } from 'app/modules/admin/apps/academy/academy.types';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
@@ -21,9 +20,9 @@ import { SportsStateManager } from 'app/dataService/stateManager/sports.state.ma
 })
 export class SportsListComponent implements OnInit, OnDestroy
 {
-    categories: Category[];
-    courses: Course[];
-    filteredCourses: Course[];
+    // categories: Category[];
+    // courses: Course[];
+    // filteredCourses: Course[];
     filters: {
         categorySlug$: BehaviorSubject<string>;
         query$: BehaviorSubject<string>;
@@ -62,35 +61,6 @@ export class SportsListComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-
-        // Filter the courses
-        combineLatest([this.filters.categorySlug$, this.filters.query$, this.filters.hideCompleted$])
-            .subscribe(([categorySlug, query, hideCompleted]) => {
-
-                // Reset the filtered courses
-                this.filteredCourses = this.courses;
-
-                // Filter by category
-                if ( categorySlug !== 'all' )
-                {
-                    this.filteredCourses = this.filteredCourses.filter(course => course.category === categorySlug);
-                }
-
-                // Filter by search query
-                if ( query !== '' )
-                {
-                    this.filteredCourses = this.filteredCourses.filter(course => course.title.toLowerCase().includes(query.toLowerCase())
-                        || course.description.toLowerCase().includes(query.toLowerCase())
-                        || course.category.toLowerCase().includes(query.toLowerCase()));
-                }
-
-                // Filter by completed
-                if ( hideCompleted )
-                {
-                    this.filteredCourses = this.filteredCourses.filter(course => course.progress.completed === 0);
-                }
-            });
-
         // Get the sports
         this.sports$ = this._sportsService.getSports();
 

@@ -1,0 +1,9 @@
+<div class="section-list">
+    <h1>List of Sections</h1>
+    <div *ngFor="let section of sections" class="section-item">
+        <h2>{{ section.title }}</h2>
+        <p><strong>Order:</strong> {{ section.order }}</p>
+        <p><strong>Subtitle:</strong> {{ section.subtitle }}</p>
+        <p><strong>Content:</strong> {{ section.content }}</p>
+    </div>
+</div>

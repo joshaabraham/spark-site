@@ -1,0 +1,8 @@
+<div class="academy-list">
+    <h1>List of Academies</h1>
+    <div *ngFor="let school of schools" class="academy-item">
+        <h2>{{ school.name }}</h2>
+        <p><strong>User:</strong> {{ school.user.firstName }} {{ school.user.lastName }}</p>
+        <p><strong>Sport:</strong> {{ school.sportFK.name }}</p>
+    </div>
+</div>

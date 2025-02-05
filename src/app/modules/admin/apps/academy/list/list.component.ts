@@ -4,7 +4,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject, combineLatest, Subject, takeUntil } from 'rxjs';
 import { AcademyService } from 'app/modules/admin/apps/academy/academy.service';
-import { Category, Course } from 'app/modules/admin/apps/academy/academy.types';
+import { Course } from 'app/modules/admin/apps/academy/academy.types';
 
 @Component({
     selector       : 'academy-list',
@@ -14,7 +14,7 @@ import { Category, Course } from 'app/modules/admin/apps/academy/academy.types';
 })
 export class AcademyListComponent implements OnInit, OnDestroy
 {
-    categories: Category[];
+    //categories: Category[];
     courses: Course[];
     filteredCourses: Course[];
     filters: {
@@ -51,14 +51,14 @@ export class AcademyListComponent implements OnInit, OnDestroy
     ngOnInit(): void
     {
         // Get the categories
-        this._academyService.categories$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((categories: Category[]) => {
-                this.categories = categories;
+        // this._academyService.categories$
+        //     .pipe(takeUntil(this._unsubscribeAll))
+        //     .subscribe((categories: Category[]) => {
+        //         this.categories = categories;
 
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
+        //         // Mark for check
+        //         this._changeDetectorRef.markForCheck();
+        //     });
 
         // Get the courses
         this._academyService.courses$
