@@ -20,12 +20,14 @@ import { PlayersListComponent } from './list/list.component';
 import { playersRoutes } from './player.routing';
 import { PlayerDetailsComponent } from './detail/details.component';
 import { PlayersComponent } from './player.component';
+import { PlayerFormComponent } from './forms/playerform.component';
 
 @NgModule({
     declarations: [
         PlayerDetailsComponent,
         PlayersListComponent,
-        PlayersComponent
+        PlayersComponent,
+        PlayerFormComponent
     ],
     imports: [
         CommonModule,

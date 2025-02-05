@@ -15,6 +15,7 @@ export interface Player {
     isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
+    niveau: string;
 }
 
 export interface User {
