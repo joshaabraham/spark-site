@@ -1,104 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
-import { Category, Course } from 'app/modules/admin/apps/invitations/invitations.types';
+import { Observable } from 'rxjs';
+import { apiRoutes } from 'app/dataService/routes';
+import { Invitation } from './invitations.types';
 
 @Injectable({
     providedIn: 'root'
 })
-export class InvitationsService
-{
-    // Private
-    private _categories: BehaviorSubject<Category[] | null> = new BehaviorSubject(null);
-    private _course: BehaviorSubject<Course | null> = new BehaviorSubject(null);
-    private _courses: BehaviorSubject<Course[] | null> = new BehaviorSubject(null);
+export class InvitationsService {
+    constructor(private _httpClient: HttpClient) {}
 
-    /**
-     * Constructor
-     */
-    constructor(private _httpClient: HttpClient)
-    {
+    // Invitations CRUD operations
+    getInvitations(): Observable<Invitation[]> {
+        return this._httpClient.get<Invitation[]>(apiRoutes.invitationApp.invitationCreateList);
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Getter for categories
-     */
-    get categories$(): Observable<Category[]>
-    {
-        return this._categories.asObservable();
+    getInvitationById(id: number): Observable<Invitation> {
+        return this._httpClient.get<Invitation>(apiRoutes.invitationApp.invitationDetail(id));
     }
 
-    /**
-     * Getter for courses
-     */
-    get courses$(): Observable<Course[]>
-    {
-        return this._courses.asObservable();
+    createInvitation(invitation: Invitation): Observable<Invitation> {
+        return this._httpClient.post<Invitation>(apiRoutes.invitationApp.invitationCreateList, invitation);
     }
 
-    /**
-     * Getter for course
-     */
-    get course$(): Observable<Course>
-    {
-        return this._course.asObservable();
+    updateInvitation(id: number, invitation: Invitation): Observable<Invitation> {
+        return this._httpClient.put<Invitation>(apiRoutes.invitationApp.invitationDetail(id), invitation);
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Get categories
-     */
-    getCategories(): Observable<Category[]>
-    {
-        return this._httpClient.get<Category[]>('api/apps/invitations/invitations').pipe(
-            tap((response: any) => {
-                this._categories.next(response);
-            })
-        );
-    }
-
-    /**
-     * Get courses
-     */
-    getCourses(): Observable<Course[]>
-    {
-        return this._httpClient.get<Course[]>('api/apps/invitations/courses').pipe(
-            tap((response: any) => {
-                this._courses.next(response);
-            })
-        );
-    }
-
-    /**
-     * Get course by id
-     */
-    getCourseById(id: string): Observable<Course>
-    {
-        return this._httpClient.get<Course>('api/apps/invitations/courses/course', {params: {id}}).pipe(
-            map((course) => {
-
-                // Update the course
-                this._course.next(course);
-
-                // Return the course
-                return course;
-            }),
-            switchMap((course) => {
-
-                if ( !course )
-                {
-                    return throwError('Could not found course with id of ' + id + '!');
-                }
-
-                return of(course);
-            })
-        );
+    deleteInvitation(id: number): Observable<boolean> {
+        return this._httpClient.delete<boolean>(apiRoutes.invitationApp.invitationDetail(id));
     }
 }

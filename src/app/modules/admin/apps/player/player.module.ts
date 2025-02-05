@@ -15,16 +15,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
-import { PlayerListComponent } from './list/list.component';
-import { PlayerComponent } from './player.component';
+import { PlayersListComponent } from './list/list.component';
+
 import { playersRoutes } from './player.routing';
 import { PlayerDetailsComponent } from './detail/details.component';
+import { PlayersComponent } from './player.component';
 
 @NgModule({
     declarations: [
         PlayerDetailsComponent,
-        PlayerListComponent,
-        PlayerComponent
+        PlayersListComponent,
+        PlayersComponent
     ],
     imports: [
         CommonModule,

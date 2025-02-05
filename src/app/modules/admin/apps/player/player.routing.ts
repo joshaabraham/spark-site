@@ -1,30 +1,30 @@
 import { Route } from '@angular/router';
-import { InvitationsComponent } from 'app/modules/admin/apps/invitations/invitations.component';
-import { InvitationsListComponent } from 'app/modules/admin/apps/invitations/list/list.component';
-import { InvitationsDetailsComponent } from 'app/modules/admin/apps/invitations/details/details.component';
-import { InvitationsCategoriesResolver, InvitationsCourseResolver, InvitationsCoursesResolver } from 'app/modules/admin/apps/invitations/Invitations.resolvers';
+import { PlayersComponent } from './player.component';
+import { PlayersListComponent } from './list/list.component';
+import { PlayerResolver, PlayersResolver } from './player.resolvers';
+import { PlayerDetailsComponent } from './detail/details.component';
 
 export const playersRoutes: Route[] = [
     {
         path     : '',
-        component: InvitationsComponent,
+        component: PlayersComponent,
         resolve  : {
-            categories: InvitationsCategoriesResolver
+            categories: PlayersResolver
         },
         children : [
             {
                 path     : '',
                 pathMatch: 'full',
-                component: InvitationsListComponent,
+                component: PlayersListComponent,
                 resolve  : {
-                    courses: InvitationsCoursesResolver
+                    courses: PlayersResolver
                 }
             },
             {
                 path     : ':id',
-                component: InvitationsDetailsComponent,
+                component: PlayerDetailsComponent,
                 resolve  : {
-                    course: InvitationsCourseResolver
+                    course: PlayerResolver
                 }
             }
         ]

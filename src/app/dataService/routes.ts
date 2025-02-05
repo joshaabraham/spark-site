@@ -72,6 +72,10 @@ export const apiRoutes = {
         teamsByTeamHistory: (teamHistoryId: string): string => `team_app/teamsByTeamHistory/${teamHistoryId}/`,
         teamsByMatch: (matchId: string): string => `team_app/teamsByMatch/${matchId}/`
     },
+    invitationApp: {
+        invitationCreateList: '/invitationCreate/',
+        invitationDetail: (pk: number): string => `/invitation/${pk}/`,
+    },
     localisationApp: {
       addressesCreateList: '/localisation_app/addresses/',
       addressDetail: (pk: number): string => `/localisation_app/addresses/${pk}/`,

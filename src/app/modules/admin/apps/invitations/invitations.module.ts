@@ -14,7 +14,7 @@ import { FuseFindByKeyPipeModule } from '@fuse/pipes/find-by-key';
 import { SharedModule } from 'app/shared/shared.module';
 import { invitationsRoutes } from 'app/modules/admin/apps/invitations/invitations.routing';
 import { InvitationsComponent } from 'app/modules/admin/apps/invitations/invitations.component';
-import { InvitationsDetailsComponent } from 'app/modules/admin/apps/invitations/details/details.component';
+import { InvitationDetailsComponent} from 'app/modules/admin/apps/invitations/details/details.component';
 import { InvitationsListComponent } from 'app/modules/admin/apps/invitations/list/list.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/demo-sidebar.module';
@@ -23,7 +23,7 @@ import { CardsModule } from '../../ui/cards/cards.module';
 @NgModule({
     declarations: [
         InvitationsComponent,
-        InvitationsDetailsComponent,
+        InvitationDetailsComponent,
         InvitationsListComponent,
     ],
     imports     : [

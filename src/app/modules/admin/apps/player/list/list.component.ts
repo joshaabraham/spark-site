@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlayerListComponent {
+export class PlayersListComponent {
     filters = {
         categorySlug$: new BehaviorSubject<string | null>(null),
         hideInactive$: new BehaviorSubject<boolean>(false)
