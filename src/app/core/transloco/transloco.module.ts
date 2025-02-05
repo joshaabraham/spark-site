@@ -20,6 +20,42 @@ import { TranslocoHttpLoader } from 'app/core/transloco/transloco.http-loader';
                     {
                         id   : 'tr',
                         label: 'Turkish'
+                    },
+                    {
+                        id   : 'fr',
+                        label: 'Francais'
+                    },
+                    {
+                        id   : 'ko',
+                        label: 'Koreen'
+                    },
+                    {
+                        id   : 'por',
+                        label: 'Portugais'
+                    },
+                    {
+                        id   : 'jp',
+                        label: 'Japonais'
+                    },
+                    {
+                        id   : 'es',
+                        label: 'Espagnol'
+                    },
+                    {
+                        id   : 'ru',
+                        label: 'Russe'
+                    },
+                    {
+                        id   : 'ind',
+                        label: 'Indou'
+                    },
+                    {
+                        id   : 'pol',
+                        label: 'Polonais'
+                    },
+                    {
+                        id   : 'ita',
+                        label: 'Italien'
                     }
                 ],
                 defaultLang         : 'en',
