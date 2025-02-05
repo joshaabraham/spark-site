@@ -21,11 +21,14 @@ import { EventsDetailsComponent } from './details/details.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { EventsComponent } from './events.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { EventCreateFormComponent } from './createEventForm/event-create.form';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 @NgModule({
     declarations: [
-        EventsListComponent, EventsDetailsComponent, EventsComponent
+        EventsListComponent, EventsDetailsComponent, EventsComponent,
+        EventCreateFormComponent
     ],
     imports: [
         CommonModule,
@@ -45,7 +48,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatNativeDateModule,
         FuseCardModule,
         MatProgressBarModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatStepperModule
     ]
 })
 export class EventsModule { }
