@@ -9,9 +9,9 @@ import { ChapterDetailsComponent } from './details/chapter/details.component';
 export const academyRoutes: Route[] = [
     {
         path     : '',
-        component: AcademyComponent,
+        component: AcademyListComponent,
         resolve  : {
-            schools: AcademySchoolsResolver
+            schools: AcademyCoursesResolver
         },
         children : [
             {

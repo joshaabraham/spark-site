@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { School, Teacher, Student, Course, Section, Chapter } from 'app/modules/admin/apps/academy/academy.types';
 import { apiRoutes } from 'app/dataService/routes';
+import { environment } from 'environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -46,7 +47,7 @@ export class AcademyService {
 
     // Public methods
     getSchools(): Observable<School[]> {
-        return this._httpClient.get<School[]>(apiRoutes.academyApp.schoolCreateList).pipe(
+        return this._httpClient.get<School[]>(`${environment.apiURL}${apiRoutes.academyApp.schoolCreateList}`).pipe(
             tap((response: any) => {
                 this._schools.next(response);
             })
@@ -54,7 +55,7 @@ export class AcademyService {
     }
 
     getSchoolById(id: number): Observable<School> {
-        return this._httpClient.get<School>(apiRoutes.academyApp.schoolDetail(id)).pipe(
+        return this._httpClient.get<School>(`${environment.apiURL}${apiRoutes.academyApp.schoolDetail(id)}`).pipe(
             tap((school) => {
                 const schools = this._schools.value;
                 const index = schools.findIndex(item => item.id === id);
@@ -65,7 +66,7 @@ export class AcademyService {
     }
 
     createSchool(school: School): Observable<School> {
-        return this._httpClient.post<School>(apiRoutes.academyApp.schoolCreateList, school).pipe(
+        return this._httpClient.post<School>(`${environment.apiURL}${apiRoutes.academyApp.schoolCreateList}`, school).pipe(
             tap((newSchool) => {
                 this._schools.next([...this._schools.value, newSchool]);
             })
@@ -73,7 +74,7 @@ export class AcademyService {
     }
 
     updateSchool(id: number, school: School): Observable<School> {
-        return this._httpClient.put<School>(apiRoutes.academyApp.schoolDetail(id), school).pipe(
+        return this._httpClient.put<School>(`${environment.apiURL}${apiRoutes.academyApp.schoolDetail(id)}`, school).pipe(
             tap((updatedSchool) => {
                 const schools = this._schools.value;
                 const index = schools.findIndex(item => item.id === id);
@@ -84,7 +85,7 @@ export class AcademyService {
     }
 
     deleteSchool(id: number): Observable<boolean> {
-        return this._httpClient.delete<boolean>(apiRoutes.academyApp.schoolDetail(id)).pipe(
+        return this._httpClient.delete<boolean>(`${environment.apiURL}${apiRoutes.academyApp.schoolDetail(id)}`).pipe(
             tap(() => {
                 const schools = this._schools.value;
                 const index = schools.findIndex(item => item.id === id);
@@ -95,7 +96,7 @@ export class AcademyService {
     }
 
     getTeachers(): Observable<Teacher[]> {
-        return this._httpClient.get<Teacher[]>(apiRoutes.academyApp.teacherCreateList).pipe(
+        return this._httpClient.get<Teacher[]>(`${environment.apiURL}${apiRoutes.academyApp.teacherCreateList}`).pipe(
             tap((response: any) => {
                 this._teachers.next(response);
             })
@@ -103,7 +104,7 @@ export class AcademyService {
     }
 
     getTeacherById(id: number): Observable<Teacher> {
-        return this._httpClient.get<Teacher>(apiRoutes.academyApp.teacherDetail(id)).pipe(
+        return this._httpClient.get<Teacher>(`${environment.apiURL}${apiRoutes.academyApp.teacherDetail(id)}`).pipe(
             tap((teacher) => {
                 const teachers = this._teachers.value;
                 const index = teachers.findIndex(item => item.id === id);
@@ -114,7 +115,7 @@ export class AcademyService {
     }
 
     createTeacher(teacher: Teacher): Observable<Teacher> {
-        return this._httpClient.post<Teacher>(apiRoutes.academyApp.teacherCreateList, teacher).pipe(
+        return this._httpClient.post<Teacher>(`${environment.apiURL}${apiRoutes.academyApp.teacherCreateList}`, teacher).pipe(
             tap((newTeacher) => {
                 this._teachers.next([...this._teachers.value, newTeacher]);
             })
@@ -122,7 +123,7 @@ export class AcademyService {
     }
 
     updateTeacher(id: number, teacher: Teacher): Observable<Teacher> {
-        return this._httpClient.put<Teacher>(apiRoutes.academyApp.teacherDetail(id), teacher).pipe(
+        return this._httpClient.put<Teacher>(`${environment.apiURL}${apiRoutes.academyApp.teacherDetail(id)}`, teacher).pipe(
             tap((updatedTeacher) => {
                 const teachers = this._teachers.value;
                 const index = teachers.findIndex(item => item.id === id);
@@ -133,7 +134,7 @@ export class AcademyService {
     }
 
     deleteTeacher(id: number): Observable<boolean> {
-        return this._httpClient.delete<boolean>(apiRoutes.academyApp.teacherDetail(id)).pipe(
+        return this._httpClient.delete<boolean>(`${environment.apiURL}${apiRoutes.academyApp.teacherDetail(id)}`).pipe(
             tap(() => {
                 const teachers = this._teachers.value;
                 const index = teachers.findIndex(item => item.id === id);
@@ -144,7 +145,7 @@ export class AcademyService {
     }
 
     getStudents(): Observable<Student[]> {
-        return this._httpClient.get<Student[]>(apiRoutes.academyApp.studentCreateList).pipe(
+        return this._httpClient.get<Student[]>(`${environment.apiURL}${apiRoutes.academyApp.studentCreateList}`).pipe(
             tap((response: any) => {
                 this._students.next(response);
             })
@@ -152,7 +153,7 @@ export class AcademyService {
     }
 
     getStudentById(id: number): Observable<Student> {
-        return this._httpClient.get<Student>(apiRoutes.academyApp.studentDetail(id)).pipe(
+        return this._httpClient.get<Student>(`${environment.apiURL}${apiRoutes.academyApp.studentDetail(id)}`).pipe(
             tap((student) => {
                 const students = this._students.value;
                 const index = students.findIndex(item => item.id === id);
@@ -163,7 +164,7 @@ export class AcademyService {
     }
 
     createStudent(student: Student): Observable<Student> {
-        return this._httpClient.post<Student>(apiRoutes.academyApp.studentCreateList, student).pipe(
+        return this._httpClient.post<Student>(`${environment.apiURL}${apiRoutes.academyApp.studentCreateList}`, student).pipe(
             tap((newStudent) => {
                 this._students.next([...this._students.value, newStudent]);
             })
@@ -171,7 +172,7 @@ export class AcademyService {
     }
 
     updateStudent(id: number, student: Student): Observable<Student> {
-        return this._httpClient.put<Student>(apiRoutes.academyApp.studentDetail(id), student).pipe(
+        return this._httpClient.put<Student>(`${environment.apiURL}${apiRoutes.academyApp.studentDetail(id)}`, student).pipe(
             tap((updatedStudent) => {
                 const students = this._students.value;
                 const index = students.findIndex(item => item.id === id);
@@ -182,7 +183,7 @@ export class AcademyService {
     }
 
     deleteStudent(id: number): Observable<boolean> {
-        return this._httpClient.delete<boolean>(apiRoutes.academyApp.studentDetail(id)).pipe(
+        return this._httpClient.delete<boolean>(`${environment.apiURL}${apiRoutes.academyApp.studentDetail(id)}`).pipe(
             tap(() => {
                 const students = this._students.value;
                 const index = students.findIndex(item => item.id === id);
@@ -193,7 +194,7 @@ export class AcademyService {
     }
 
     getCourses(): Observable<Course[]> {
-        return this._httpClient.get<Course[]>(apiRoutes.academyApp.courseCreateList).pipe(
+        return this._httpClient.get<Course[]>(`${environment.apiURL}${apiRoutes.academyApp.courseCreateList}`).pipe(
             tap((response: any) => {
                 this._courses.next(response);
             })
@@ -201,7 +202,7 @@ export class AcademyService {
     }
 
     getCourseById(id: number): Observable<Course> {
-        return this._httpClient.get<Course>(apiRoutes.academyApp.courseDetail(id)).pipe(
+        return this._httpClient.get<Course>(`${environment.apiURL}${apiRoutes.academyApp.courseDetail(id)}`).pipe(
             tap((course) => {
                 const courses = this._courses.value;
                 const index = courses.findIndex(item => item.id === id);
@@ -212,7 +213,7 @@ export class AcademyService {
     }
 
     createCourse(course: Course): Observable<Course> {
-        return this._httpClient.post<Course>(apiRoutes.academyApp.courseCreateList, course).pipe(
+        return this._httpClient.post<Course>(`${environment.apiURL}${apiRoutes.academyApp.courseCreateList}`, course).pipe(
             tap((newCourse) => {
                 this._courses.next([...this._courses.value, newCourse]);
             })
@@ -220,7 +221,7 @@ export class AcademyService {
     }
 
     updateCourse(id: number, course: Course): Observable<Course> {
-        return this._httpClient.put<Course>(apiRoutes.academyApp.courseDetail(id), course).pipe(
+        return this._httpClient.put<Course>(`${environment.apiURL}${apiRoutes.academyApp.courseDetail(id)}`, course).pipe(
             tap((updatedCourse) => {
                 const courses = this._courses.value;
                 const index = courses.findIndex(item => item.id === id);
@@ -231,7 +232,7 @@ export class AcademyService {
     }
 
     deleteCourse(id: number): Observable<boolean> {
-        return this._httpClient.delete<boolean>(apiRoutes.academyApp.courseDetail(id)).pipe(
+        return this._httpClient.delete<boolean>(`${environment.apiURL}${apiRoutes.academyApp.courseDetail(id)}`).pipe(
             tap(() => {
                 const courses = this._courses.value;
                 const index = courses.findIndex(item => item.id === id);
@@ -242,7 +243,7 @@ export class AcademyService {
     }
 
     getSections(): Observable<Section[]> {
-        return this._httpClient.get<Section[]>(apiRoutes.academyApp.sectionCreateList).pipe(
+        return this._httpClient.get<Section[]>(`${environment.apiURL}${apiRoutes.academyApp.sectionCreateList}`).pipe(
             tap((response: any) => {
                 this._sections.next(response);
             })
@@ -250,7 +251,7 @@ export class AcademyService {
     }
 
     getSectionById(id: number): Observable<Section> {
-        return this._httpClient.get<Section>(apiRoutes.academyApp.sectionDetail(id)).pipe(
+        return this._httpClient.get<Section>(`${environment.apiURL}${apiRoutes.academyApp.sectionDetail(id)}`).pipe(
             tap((section) => {
                 const sections = this._sections.value;
                 const index = sections.findIndex(item => item.id === id);
@@ -269,7 +270,7 @@ export class AcademyService {
     }
 
     createSection(section: Section): Observable<Section> {
-        return this._httpClient.post<Section>(apiRoutes.academyApp.sectionCreateList, section).pipe(
+        return this._httpClient.post<Section>(`${environment.apiURL}${apiRoutes.academyApp.sectionCreateList}`, section).pipe(
             tap((newSection) => {
                 this._sections.next([...this._sections.value, newSection]);
             })
@@ -277,7 +278,7 @@ export class AcademyService {
     }
 
     updateSection(id: number, section: Section): Observable<Section> {
-        return this._httpClient.put<Section>(apiRoutes.academyApp.sectionDetail(id), section).pipe(
+        return this._httpClient.put<Section>(`${environment.apiURL}${apiRoutes.academyApp.sectionDetail(id)}`, section).pipe(
             tap((updatedSection) => {
                 const sections = this._sections.value;
                 const index = sections.findIndex(item => item.id === id);
@@ -288,7 +289,7 @@ export class AcademyService {
     }
 
     deleteSection(id: number): Observable<boolean> {
-        return this._httpClient.delete<boolean>(apiRoutes.academyApp.sectionDetail(id)).pipe(
+        return this._httpClient.delete<boolean>(`${environment.apiURL}${apiRoutes.academyApp.sectionDetail(id)}`).pipe(
             tap(() => {
                 const sections = this._sections.value;
                 const index = sections.findIndex(item => item.id === id);
@@ -299,7 +300,7 @@ export class AcademyService {
     }
 
     getChapters(): Observable<Chapter[]> {
-        return this._httpClient.get<Chapter[]>(apiRoutes.academyApp.chapterCreateList).pipe(
+        return this._httpClient.get<Chapter[]>(`${environment.apiURL}${apiRoutes.academyApp.chapterCreateList}`).pipe(
             tap((response: any) => {
                 this._chapters.next(response);
             })
@@ -307,7 +308,7 @@ export class AcademyService {
     }
 
     getChapterById(id: number): Observable<Chapter> {
-        return this._httpClient.get<Chapter>(apiRoutes.academyApp.chapterDetail(id)).pipe(
+        return this._httpClient.get<Chapter>(`${environment.apiURL}${apiRoutes.academyApp.chapterDetail(id)}`).pipe(
             tap((chapter) => {
                 const chapters = this._chapters.value;
                 const index = chapters.findIndex(item => item.id === id);
@@ -326,7 +327,7 @@ export class AcademyService {
     }
 
     createChapter(chapter: Chapter): Observable<Chapter> {
-        return this._httpClient.post<Chapter>(apiRoutes.academyApp.chapterCreateList, chapter).pipe(
+        return this._httpClient.post<Chapter>(`${environment.apiURL}${apiRoutes.academyApp.chapterCreateList}`, chapter).pipe(
             tap((newChapter) => {
                 this._chapters.next([...this._chapters.value, newChapter]);
             })
@@ -334,7 +335,7 @@ export class AcademyService {
     }
 
     updateChapter(id: number, chapter: Chapter): Observable<Chapter> {
-        return this._httpClient.put<Chapter>(apiRoutes.academyApp.chapterDetail(id), chapter).pipe(
+        return this._httpClient.put<Chapter>(`${environment.apiURL}${apiRoutes.academyApp.chapterDetail(id)}`, chapter).pipe(
             tap((updatedChapter) => {
                 const chapters = this._chapters.value;
                 const index = chapters.findIndex(item => item.id === id);
@@ -345,7 +346,7 @@ export class AcademyService {
     }
 
     deleteChapter(id: number): Observable<boolean> {
-        return this._httpClient.delete<boolean>(apiRoutes.academyApp.chapterDetail(id)).pipe(
+        return this._httpClient.delete<boolean>(`${environment.apiURL}${apiRoutes.academyApp.chapterDetail(id)}`).pipe(
             tap(() => {
                 const chapters = this._chapters.value;
                 const index = chapters.findIndex(item => item.id === id);
