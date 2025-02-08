@@ -7,19 +7,64 @@ import {Routes} from '../routes-definition/routes'
 
 export interface UserProfile {
   id?: number;
-  bio: string;
-  location: string;
-  birth_date: string;
-  profile_image?: string;
-  cover_image?: string;
+  user: string; // Assuming user ID is a string
+  emails: Emails[];
+  avatar?: string;
+  background?: string;
+  name: string;
+  title?: string;
+  job?: string;
+  company?: string;
+  birthday?: string;
+  address?: string;
+  phoneNumbers?: PhoneNumbers[];
+  notes?: string;
+  tags?: Tag[];
   website?: string;
   is_private: boolean;
-  posts_count?: number;
   followers_count?: number;
   following_count?: number;
   friends_count?: number;
-  date_joined?: string;
+  posts_count?: number;
+  albums_photo?: string[]; // Assuming album IDs are strings
+  about?: string;
+  Attachments?: Attachments;
+  created_at?: string;
+  updated_at?: string;
 }
+
+export interface  Attachments{
+          media?: any[];
+          docs?: any[];
+          links?: any[];
+      };
+
+export interface PhoneNumbers {
+    country: string;
+    phoneNumber: string;
+    label: string;
+}
+
+export interface Tag
+{
+    id?: string;
+    title?: string;
+}
+
+export interface Emails {
+          email: string;
+          label: string;
+      }[];
+
+export interface Country
+{
+    id: string;
+    iso: string;
+    name: string;
+    code: string;
+    flagImagePos: string;
+}
+
 
 @Injectable({
   providedIn: 'root'

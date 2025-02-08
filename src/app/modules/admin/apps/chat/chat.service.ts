@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, filter, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
-import { Chat, Contact, Profile } from 'app/modules/admin/apps/chat/chat.types';
+import { Chat } from 'app/modules/admin/apps/chat/chat.types';
+import { UserProfile } from 'app/mock-api/apps/profileUser/api.service.ts';
+import { Contact } from '../contacts/contacts.types';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +14,7 @@ export class ChatService
     private _chats: BehaviorSubject<Chat[]> = new BehaviorSubject(null);
     private _contact: BehaviorSubject<Contact> = new BehaviorSubject(null);
     private _contacts: BehaviorSubject<Contact[]> = new BehaviorSubject(null);
-    private _profile: BehaviorSubject<Profile> = new BehaviorSubject(null);
+    private _profile: BehaviorSubject<UserProfile> = new BehaviorSubject(null);
 
     /**
      * Constructor
@@ -60,7 +62,7 @@ export class ChatService
     /**
      * Getter for profile
      */
-    get profile$(): Observable<Profile>
+    get profile$(): Observable<UserProfile>
     {
         return this._profile.asObservable();
     }
@@ -112,8 +114,8 @@ export class ChatService
      */
     getProfile(): Observable<any>
     {
-        return this._httpClient.get<Profile>('api/apps/chat/profile').pipe(
-            tap((response: Profile) => {
+        return this._httpClient.get<UserProfile>('api/apps/chat/profile').pipe(
+            tap((response: UserProfile) => {
                 this._profile.next(response);
             })
         );

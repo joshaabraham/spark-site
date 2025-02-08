@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, switchMap, take, tap, filter } from 'rxjs/operators';
-import { Contact, Country, Tag } from 'app/modules/admin/apps/contacts/contacts.types';
+import { Contact } from 'app/modules/admin/apps/contacts/contacts.types';
 import { apiRoutes } from 'app/dataService/routes';
+import { Country, Tag } from 'app/mock-api/apps/profileUser/api.service.ts';
 
 @Injectable({
     providedIn: 'root'
@@ -94,12 +95,17 @@ export class ContactsService {
     {
         // Implementation for creating a new contact
         const newContact: Contact = {
+            created: new Date(),
+            user: {
             id: 0,
             name: 'New Contact',
             emails: [{ email: 'new.contact@example.com', label: 'work' }],
             phoneNumbers: [{ country: 'US', phoneNumber: '1234567890', label: 'work' }],
             job: 'New Job',
-            tags: []
+            tags: [],
+            user: 'new_user',
+            is_private: false
+            }
         };
         // Return the new contact as an observable
         return of(newContact);
@@ -114,7 +120,7 @@ export class ContactsService {
                 const contacts = this._contacts.value;
 
                 // Find the index of the updated contact
-                const index = contacts.findIndex((item: Contact) => item.id === Number(id));
+                const index = contacts.findIndex((item: Contact) => item.user.id === Number(id));
 
                 // Update the contact
                 contacts[index] = updatedContact;
@@ -127,7 +133,7 @@ export class ContactsService {
             }),
             switchMap(updatedContact => this.contact$.pipe(
                 take(1),
-                filter(item => item && item.id === id),
+                filter(item => item && item.user.id === id),
                 tap(() => {
                     // Update the contact if it's selected
                     this._contact.next(updatedContact);
@@ -148,7 +154,7 @@ export class ContactsService {
                 const contacts = this._contacts.value;
 
                 // Find the index of the deleted contact
-                const index = contacts.findIndex(item => item.id === id);
+                const index = contacts.findIndex(item => item.user.id === id);
 
                 // Remove the contact
                 contacts.splice(index, 1);
@@ -272,12 +278,12 @@ export class ContactsService {
                         // Iterate through the contacts
                         contacts.forEach((contact) => {
 
-                            const tagIndex = contact.tags.findIndex(tag => tag === id);
+                            const tagIndex = contact.user.tags.findIndex(tag => tag === id);
 
                             // If the contact has the tag, remove it
                             if ( tagIndex > -1 )
                             {
-                                contact.tags.splice(tagIndex, 1);
+                                contact.user.tags.splice(tagIndex, 1);
                             }
                         });
 
@@ -311,7 +317,7 @@ export class ContactsService {
                 map((updatedContact) => {
 
                     // Find the index of the updated contact
-                    const index = contacts.findIndex((item: Contact) => item.id === id);
+                    const index = contacts.findIndex((item: Contact) => item.user.id === id);
 
                     // Update the contact
                     contacts[index] = updatedContact;
@@ -324,7 +330,7 @@ export class ContactsService {
                 }),
                 switchMap(updatedContact => this.contact$.pipe(
                     take(1),
-                    filter(item => item && item.id === id),
+                    filter(item => item && item.user.id === id),
                     tap(() => {
 
                         // Update the contact if it's selected

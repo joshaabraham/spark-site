@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { Chat, Profile } from 'app/modules/admin/apps/chat/chat.types';
+import { Chat } from 'app/modules/admin/apps/chat/chat.types';
 import { ChatService } from 'app/modules/admin/apps/chat/chat.service';
+import { UserProfile } from 'app/mock-api/apps/profileUser/api.service.ts';
 
 @Component({
     selector       : 'chat-chats',
@@ -15,7 +16,7 @@ export class ChatsComponent implements OnInit, OnDestroy
     drawerComponent: 'profile' | 'new-chat';
     drawerOpened: boolean = false;
     filteredChats: Chat[];
-    profile: Profile;
+    profile: UserProfile;
     selectedChat: Chat;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -51,7 +52,7 @@ export class ChatsComponent implements OnInit, OnDestroy
         // Profile
         this._chatService.profile$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((profile: Profile) => {
+            .subscribe((profile: UserProfile) => {
                 this.profile = profile;
 
                 // Mark for check
@@ -97,7 +98,7 @@ export class ChatsComponent implements OnInit, OnDestroy
             return;
         }
 
-        this.filteredChats = this.chats.filter(chat => chat.contact.name.toLowerCase().includes(query.toLowerCase()));
+        this.filteredChats = this.chats.filter(chat => chat.contact.user.name.toLowerCase().includes(query.toLowerCase()));
     }
 
     /**

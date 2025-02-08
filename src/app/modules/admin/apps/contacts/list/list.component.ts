@@ -5,7 +5,7 @@ import { UntypedFormControl } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { filter, fromEvent, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { Contact, Country } from 'app/modules/admin/apps/contacts/contacts.types';
+import { Contact } from 'app/modules/admin/apps/contacts/contacts.types';
 import { ContactsService } from 'app/modules/admin/apps/contacts/contacts.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class ContactsListComponent implements OnInit, OnDestroy
 
     contactsCount: number = 0;
     contactsTableColumns: string[] = ['name', 'email', 'phoneNumber', 'job'];
-    countries: Country[];
+    //countries: Country[];
     drawerMode: 'side' | 'over';
     searchInputControl: UntypedFormControl = new UntypedFormControl();
     selectedContact: Contact;
@@ -77,16 +77,16 @@ export class ContactsListComponent implements OnInit, OnDestroy
             });
 
         // Get the countries
-        this._contactsService.countries$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((countries: Country[]) => {
+        // this._contactsService.countries$
+        //     .pipe(takeUntil(this._unsubscribeAll))
+        //     .subscribe((countries: Country[]) => {
 
-                // Update the countries
-                this.countries = countries;
+        //         // Update the countries
+        //         this.countries = countries;
 
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
+        //         // Mark for check
+        //         this._changeDetectorRef.markForCheck();
+        //     });
 
         // Subscribe to search input field value changes
         // this.searchInputControl.valueChanges
@@ -180,7 +180,7 @@ export class ContactsListComponent implements OnInit, OnDestroy
         this._contactsService.createContact().subscribe((newContact) => {
 
             // Go to the new contact
-            this._router.navigate(['./', newContact.id], {relativeTo: this._activatedRoute});
+            this._router.navigate(['./', newContact.user.id], {relativeTo: this._activatedRoute});
 
             // Mark for check
             this._changeDetectorRef.markForCheck();

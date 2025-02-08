@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Subject, takeUntil } from 'rxjs';
-import { Profile } from 'app/modules/admin/apps/chat/chat.types';
+
 import { ChatService } from 'app/modules/admin/apps/chat/chat.service';
+import { UserProfile } from 'app/mock-api/apps/profileUser/api.service.ts';
 
 @Component({
     selector       : 'chat-profile',
@@ -13,7 +14,7 @@ import { ChatService } from 'app/modules/admin/apps/chat/chat.service';
 export class ProfileComponent implements OnInit, OnDestroy
 {
     @Input() drawer: MatDrawer;
-    profile: Profile;
+    profile: UserProfile;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
@@ -35,7 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy
         // Profile
         this._chatService.profile$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((profile: Profile) => {
+            .subscribe((profile: UserProfile) => {
                 this.profile = profile;
             });
     }

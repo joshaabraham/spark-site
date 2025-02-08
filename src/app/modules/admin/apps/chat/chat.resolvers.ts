@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ChatService } from 'app/modules/admin/apps/chat/chat.service';
-import { Chat, Contact, Profile } from 'app/modules/admin/apps/chat/chat.types';
+import { Chat } from 'app/modules/admin/apps/chat/chat.types';
+import { Contact } from '../contacts/contacts.types';
+import { UserProfile } from 'app/mock-api/apps/profileUser/api.service.ts';
 
 @Injectable({
     providedIn: 'root'
@@ -139,7 +141,7 @@ export class ChatProfileResolver implements Resolve<any>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Profile> | any
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserProfile> | any
     {
         return this._chatService.getProfile();
     }

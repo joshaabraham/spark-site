@@ -6,9 +6,10 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { MatDrawerToggleResult } from '@angular/material/sidenav';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { Contact, Country, Tag } from 'app/modules/admin/apps/contacts/contacts.types';
+import { Contact } from 'app/modules/admin/apps/contacts/contacts.types';
 import { ContactsListComponent } from 'app/modules/admin/apps/contacts/list/list.component';
 import { ContactsService } from 'app/modules/admin/apps/contacts/contacts.service';
+import { Country, Tag } from 'app/mock-api/apps/profileUser/api.service.ts';
 
 @Component({
     selector       : 'contacts-details',
@@ -109,10 +110,10 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
                 // Setup the emails form array
                 const emailFormGroups = [];
 
-                if ( contact.emails.length > 0 )
+                if ( contact.user.emails.length > 0 )
                 {
                     // Iterate through them
-                    contact.emails.forEach((email) => {
+                    contact.user.emails.forEach((email) => {
 
                         // Create an email form group
                         emailFormGroups.push(
@@ -142,10 +143,10 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
                 // Setup the phone numbers form array
                 const phoneNumbersFormGroups = [];
 
-                if ( contact.phoneNumbers.length > 0 )
+                if ( contact.user.phoneNumbers.length > 0 )
                 {
                     // Iterate through them
-                    contact.phoneNumbers.forEach((phoneNumber) => {
+                    contact.user.phoneNumbers.forEach((phoneNumber) => {
 
                         // Create an email form group
                         phoneNumbersFormGroups.push(
@@ -295,12 +296,12 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
             if ( result === 'confirmed' )
             {
                 // Get the current contact's id
-                const id = this.contact.id;
+                const id = this.contact.user.id;
 
                 // Get the next/previous contact's id
-                const currentContactIndex = this.contacts.findIndex(item => item.id === id);
+                const currentContactIndex = this.contacts.findIndex(item => item.user.id === id);
                 const nextContactIndex = currentContactIndex + ((currentContactIndex === (this.contacts.length - 1)) ? -1 : 1);
-                const nextContactId = (this.contacts.length === 1 && this.contacts[0].id === id) ? null : this.contacts[nextContactIndex].id;
+                const nextContactId = (this.contacts.length === 1 && this.contacts[0].user.id === id) ? null : this.contacts[nextContactIndex].user.id;
 
                 // Delete the contact
                 this._contactsService.deleteContact(id)
@@ -357,7 +358,7 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
         }
 
         // Upload the avatar
-        this._contactsService.uploadAvatar(this.contact.id, file).subscribe();
+        this._contactsService.uploadAvatar(this.contact.user.id, file).subscribe();
     }
 
     /**
@@ -375,7 +376,7 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
         this._avatarFileInput.nativeElement.value = null;
 
         // Update the contact
-        this.contact.avatar = null;
+        this.contact.user.avatar = null;
     }
 
     /**
@@ -497,7 +498,7 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
 
         // If there is a tag...
         const tag = this.filteredTags[0];
-        const isTagApplied = this.contact.tags.find(id => id === tag.id);
+        const isTagApplied = this.contact.user.tags.find(id => id === tag.id);
 
         // If the found tag is already applied to the contact...
         if ( isTagApplied )
@@ -574,10 +575,10 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
     addTagToContact(tag: Tag): void
     {
         // Add the tag
-        this.contact.tags.unshift(tag.id);
+        this.contact.user.tags.unshift(tag);
 
         // Update the contact form
-        this.contactForm.get('tags').patchValue(this.contact.tags);
+        this.contactForm.get('tags').patchValue(this.contact.user.tags);
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
@@ -591,10 +592,10 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
     removeTagFromContact(tag: Tag): void
     {
         // Remove the tag
-        this.contact.tags.splice(this.contact.tags.findIndex(item => item === tag.id), 1);
+        this.contact.user.tags.splice(this.contact.user.tags.findIndex(item => item === tag.id), 1);
 
         // Update the contact form
-        this.contactForm.get('tags').patchValue(this.contact.tags);
+        this.contactForm.get('tags').patchValue(this.contact.user.tags);
 
         // Mark for check
         this._changeDetectorRef.markForCheck();
@@ -607,7 +608,7 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
      */
     toggleContactTag(tag: Tag): void
     {
-        if ( this.contact.tags.includes(tag.id) )
+        if ( this.contact.user.tags.includes(tag) )
         {
             this.removeTagFromContact(tag);
         }
@@ -703,10 +704,10 @@ export class ContactsDetailsComponent implements OnInit, OnDestroy
      *
      * @param iso
      */
-    getCountryByIso(iso: string): Country
-    {
-        return this.countries.find(country => country.iso === iso);
-    }
+    // getCountryByIso(iso: string): Country
+    // {
+    //     return this.countries.find(country => country.iso === iso);
+    // }
 
     /**
      * Track by function for ngFor loops
