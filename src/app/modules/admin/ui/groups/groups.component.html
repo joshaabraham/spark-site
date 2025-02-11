@@ -1,0 +1,72 @@
+<fuse-card class="flex flex-col max-w-80 w-full mt-8 px-8 pt-6 pb-4">
+    <div class="flex items-center justify-between">
+        <div class="text-2xl font-semibold leading-tight">Groups</div>
+        <div class="-mr-3">
+            <button
+                mat-icon-button
+                [matMenuTriggerFor]="listCard02Menu">
+                <mat-icon
+                    class="icon-size-5"
+                    [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+            </button>
+            <mat-menu #listCard02Menu="matMenu">
+                <button mat-menu-item>Search for groups</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div class="flex flex-col mt-5">
+        <div class="flex items-center">
+            <img
+                class="w-14 h-14 mr-4 rounded object-cover"
+                src="assets/images/cards/coffee-shop-01-320x200.jpg"
+                alt="Card cover image">
+            <div class="flex flex-col min-w-0">
+                <div class="font-medium leading-none">The Port Cafe</div>
+                <div class="text-md truncate leading-none mt-1">Best cafe of the downtown New York</div>
+                <div class="text-md leading-none text-secondary mt-2">1.2k followers</div>
+            </div>
+        </div>
+        <div class="flex items-center mt-6">
+            <img
+                class="w-14 h-14 mr-4 rounded object-cover"
+                src="assets/images/cards/coffee-shop-02-512x512.jpg"
+                alt="Card cover image">
+            <div class="flex flex-col min-w-0">
+                <div class="font-medium leading-none">Design House LLC.</div>
+                <div class="text-md truncate leading-none mt-1">UI/UX, brand and product design</div>
+                <div class="text-md leading-none text-secondary mt-2">957 followers</div>
+            </div>
+        </div>
+        <div class="flex items-center mt-6">
+            <img
+                class="w-14 h-14 mr-4 rounded object-cover"
+                src="assets/images/cards/coffee-shop-03-320x320.jpg"
+                alt="Card cover image">
+            <div class="flex flex-col min-w-0">
+                <div class="font-medium leading-none">Crax Laser Tag</div>
+                <div class="text-md truncate leading-none mt-1">30% off with group of 6 people</div>
+                <div class="text-md leading-none text-secondary mt-2">342 followers</div>
+            </div>
+        </div>
+        <div class="flex items-center mt-6">
+            <img
+                class="w-14 h-14 mr-4 rounded object-cover"
+                src="assets/images/cards/sneakers-01-320x200.jpg"
+                alt="Card cover image">
+            <div class="flex flex-col min-w-0">
+                <div class="font-medium leading-none">Roadster Clothing Inc.</div>
+                <div class="text-md truncate leading-none mt-1">$25 off on orders $500 and over</div>
+                <div class="text-md leading-none text-secondary mt-2">4.7k followers</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center mt-6 -mx-3">
+        <a
+            class="px-3"
+            mat-button
+            [color]="'primary'"
+            [routerLink]="['./']">
+            See all groups
+        </a>
+    </div>
+</fuse-card>
