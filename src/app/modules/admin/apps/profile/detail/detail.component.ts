@@ -2,16 +2,14 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@
 import { UserProfileService } from 'app/mock-api/apps/profileUser/api.service.ts';
 
 @Component({
-    selector       : 'profile',
-    templateUrl    : './profile.component.html',
+    selector       : 'detail',
+    templateUrl    : './detail.component.html',
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent implements OnInit
 {
 
-
-    private profile;
     /**
      * Constructor
      */

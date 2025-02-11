@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FuseCardModule } from '@fuse/components/card';
 import { SharedModule } from 'app/shared/shared.module';
-import { ProfileComponent } from './detail/profile.component';
+import { ProfileComponent } from './detail/detail.component';
 
 @NgModule({
     declarations: [
