@@ -2,68 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import {Routes} from '../routes-definition/routes'
+import {Routes} from '../routes-definition/routes';
+import { UserProfile } from 'app/core/models/userprofile.model';
 
-
-export interface UserProfile {
-  id?: number;
-  user: string; // Assuming user ID is a string
-  emails: Emails[];
-  avatar?: string;
-  background?: string;
-  name: string;
-  title?: string;
-  job?: string;
-  company?: string;
-  birthday?: string;
-  address?: string;
-  phoneNumbers?: PhoneNumbers[];
-  notes?: string;
-  tags?: Tag[];
-  website?: string;
-  is_private: boolean;
-  followers_count?: number;
-  following_count?: number;
-  friends_count?: number;
-  posts_count?: number;
-  albums_photo?: string[]; // Assuming album IDs are strings
-  about?: string;
-  Attachments?: Attachments;
-  created_at?: string;
-  updated_at?: string;
-}
-
-export interface  Attachments{
-          media?: any[];
-          docs?: any[];
-          links?: any[];
-      };
-
-export interface PhoneNumbers {
-    country: string;
-    phoneNumber: string;
-    label: string;
-}
-
-export interface Tag
-{
-    id?: string;
-    title?: string;
-}
-
-export interface Emails {
-          email: string;
-          label: string;
-      }[];
-
-export interface Country
-{
-    id: string;
-    iso: string;
-    name: string;
-    code: string;
-    flagImagePos: string;
-}
 
 
 @Injectable({
@@ -72,8 +13,8 @@ export interface Country
 export class UserProfileService {
 
   private apiUrl = `${environment.apiURL}`; // URL de base pour l'API Django
-  private profileRoutes_GET_POST = `${Routes.POST_GET_PROFILE_USER}`; 
-  private profileRoutes_UDR = `${Routes.UPDATE_DELETE_RETRIEVE_PROFILE_USER}`; 
+  private profileRoutes_GET_POST = `${Routes.POST_GET_PROFILE_USER}`;
+  private profileRoutes_UDR = `${Routes.UPDATE_DELETE_RETRIEVE_PROFILE_USER}`;
 
   constructor(private http: HttpClient) { }
 

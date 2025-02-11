@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, filter, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
 import { Chat } from 'app/modules/admin/apps/chat/chat.types';
-import { UserProfile } from 'app/mock-api/apps/profileUser/api.service.ts';
+
 import { Contact } from '../contacts/contacts.types';
+import { UserProfile } from 'app/core/models/userprofile.model';
 
 @Injectable({
     providedIn: 'root'

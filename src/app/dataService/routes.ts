@@ -88,7 +88,7 @@ export const apiRoutes = {
     },
     profileApp: {
       profilesCreateList: 'profile_app/profiles/',
-      profileDetail: 'profile_app/profile/',
+      profileDetail: (pk: number): string => `profile_app/profile/${pk}/`,
     },
     publiciteApp: {
       campagnesCreateList: 'advert_app/campagnes/',

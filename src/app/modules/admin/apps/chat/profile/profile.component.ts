@@ -3,7 +3,8 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { Subject, takeUntil } from 'rxjs';
 
 import { ChatService } from 'app/modules/admin/apps/chat/chat.service';
-import { UserProfile } from 'app/mock-api/apps/profileUser/api.service.ts';
+import { UserProfile } from 'app/core/models/userprofile.model';
+
 
 @Component({
     selector       : 'chat-profile',

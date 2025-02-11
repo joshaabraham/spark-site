@@ -4,7 +4,8 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { ChatService } from 'app/modules/admin/apps/chat/chat.service';
 import { Chat } from 'app/modules/admin/apps/chat/chat.types';
 import { Contact } from '../contacts/contacts.types';
-import { UserProfile } from 'app/mock-api/apps/profileUser/api.service.ts';
+import { UserProfile } from 'app/core/models/userprofile.model';
+
 
 @Injectable({
     providedIn: 'root'

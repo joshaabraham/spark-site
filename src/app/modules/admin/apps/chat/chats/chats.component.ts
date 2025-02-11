@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { Subject, takeUntil } from 'rxjs';
 import { Chat } from 'app/modules/admin/apps/chat/chat.types';
 import { ChatService } from 'app/modules/admin/apps/chat/chat.service';
-import { UserProfile } from 'app/mock-api/apps/profileUser/api.service.ts';
+import { UserProfile } from 'app/core/models/userprofile.model';
+
 
 @Component({
     selector       : 'chat-chats',

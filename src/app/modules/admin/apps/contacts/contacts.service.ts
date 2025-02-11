@@ -4,7 +4,8 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, switchMap, take, tap, filter } from 'rxjs/operators';
 import { Contact } from 'app/modules/admin/apps/contacts/contacts.types';
 import { apiRoutes } from 'app/dataService/routes';
-import { Country, Tag } from 'app/mock-api/apps/profileUser/api.service.ts';
+import { Country, Tag } from 'app/core/models/userprofile.model';
+
 
 @Injectable({
     providedIn: 'root'
@@ -104,7 +105,7 @@ export class ContactsService {
             job: 'New Job',
             tags: [],
             user: 'new_user',
-            is_private: false
+            isPrivate: false
             }
         };
         // Return the new contact as an observable

@@ -22,8 +22,9 @@
 //     tags: string[];
 // }
 
-import { User } from "app/core/user/user.types";
-import { UserProfile } from "app/mock-api/apps/profileUser/api.service.ts";
+import { UserProfile } from 'app/core/models/userprofile.model';
+
+
 
 // export interface Country
 // {

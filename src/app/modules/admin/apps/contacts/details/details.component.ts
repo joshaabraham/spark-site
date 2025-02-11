@@ -9,7 +9,8 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Contact } from 'app/modules/admin/apps/contacts/contacts.types';
 import { ContactsListComponent } from 'app/modules/admin/apps/contacts/list/list.component';
 import { ContactsService } from 'app/modules/admin/apps/contacts/contacts.service';
-import { Country, Tag } from 'app/mock-api/apps/profileUser/api.service.ts';
+import { Country, Tag } from 'app/core/models/userprofile.model';
+
 
 @Component({
     selector       : 'contacts-details',

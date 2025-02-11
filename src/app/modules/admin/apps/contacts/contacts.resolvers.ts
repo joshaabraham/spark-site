@@ -3,7 +3,8 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { catchError, Observable, throwError } from 'rxjs';
 import { ContactsService } from 'app/modules/admin/apps/contacts/contacts.service';
 import { Contact } from 'app/modules/admin/apps/contacts/contacts.types';
-import { Country, Tag } from 'app/mock-api/apps/profileUser/api.service.ts';
+import { Country, Tag } from 'app/core/models/userprofile.model';
+
 
 @Injectable({
     providedIn: 'root'

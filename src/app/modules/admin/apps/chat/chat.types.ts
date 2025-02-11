@@ -7,7 +7,7 @@
 //     about?: string;
 // }
 
-import { Contact } from "../contacts/contacts.types";
+import { Contact } from '../contacts/contacts.types';
 
 // export interface Contacts
 // {
@@ -15,7 +15,7 @@ import { Contact } from "../contacts/contacts.types";
 //     avatar?: string;
 //     name?: string;
 //     about?: string;
-//     details?: 
+//     details?:
 //     {
 //         emails?: {
 //             email?: string;
