@@ -1,0 +1,69 @@
+       <!-- Activity Feed -->
+       <fuse-card class="flex flex-col max-w-80 w-full mt-8 px-8 pt-6 pb-4">
+        <div class="flex items-center justify-between">
+            <div class="text-2xl font-semibold leading-tight">Activity Feed</div>
+            <div class="-mr-3">
+                <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="listCard04Menu">
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                </button>
+                <mat-menu #listCard04Menu="matMenu">
+                    <button mat-menu-item>Clear activities</button>
+                </mat-menu>
+            </div>
+        </div>
+        <div class="flex flex-col mt-5">
+            <div class="flex">
+                <img
+                    class="w-10 h-10 mr-4 rounded-full"
+                    src="assets/images/avatars/female-01.jpg"
+                    alt="Card cover image">
+                <div class="flex flex-col min-w-0">
+                    <div class="leading-tight">Amelia Edwards commented on John Silverton's photo</div>
+                    <div class="text-md leading-none text-secondary mt-2">4 minutes ago</div>
+                </div>
+            </div>
+            <div class="flex mt-8">
+                <img
+                    class="w-10 h-10 mr-4 rounded-full"
+                    src="assets/images/avatars/male-01.jpg"
+                    alt="Card cover image">
+                <div class="flex flex-col min-w-0">
+                    <div class="leading-tight">Lew Silverton changed his profile photo</div>
+                    <div class="text-md leading-none text-secondary mt-2">25 minutes ago</div>
+                </div>
+            </div>
+            <div class="flex mt-8">
+                <img
+                    class="w-10 h-10 mr-4 rounded-full"
+                    src="assets/images/avatars/male-15.jpg"
+                    alt="Card cover image">
+                <div class="flex flex-col min-w-0">
+                    <div class="leading-tight">Brian Hughes liked your photo</div>
+                    <div class="text-md leading-none text-secondary mt-2">3 hours ago</div>
+                </div>
+            </div>
+            <div class="flex mt-8">
+                <img
+                    class="w-10 h-10 mr-4 rounded-full"
+                    src="assets/images/avatars/female-15.jpg"
+                    alt="Card cover image">
+                <div class="flex flex-col min-w-0">
+                    <div class="leading-tight">Marleah Eagleston commented on John Silverton's photo</div>
+                    <div class="text-md leading-none text-secondary mt-2">Yesterday</div>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center mt-6 -mx-3">
+            <a
+                class="px-3"
+                mat-button
+                [color]="'primary'"
+                [routerLink]="['./']">
+                See entire activity feed
+            </a>
+        </div>
+    </fuse-card>

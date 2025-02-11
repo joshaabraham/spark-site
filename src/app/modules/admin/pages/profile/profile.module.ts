@@ -11,10 +11,11 @@ import { FuseCardModule } from '@fuse/components/card';
 import { SharedModule } from 'app/shared/shared.module';
 import { ProfileComponent } from 'app/modules/admin/pages/profile/profile.component';
 import { profileRoutes } from 'app/modules/admin/pages/profile/profile.routing';
+import { NewsComponent } from '../../ui/news/news.component';
 
 @NgModule({
     declarations: [
-        ProfileComponent
+        ProfileComponent, NewsComponent
     ],
     imports     : [
         RouterModule.forChild(profileRoutes),
