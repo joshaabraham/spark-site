@@ -14,6 +14,9 @@ import { FuseCardModule } from '@fuse/components/card';
 import { SharedModule } from 'app/shared/shared.module';
 import { CardsComponent } from 'app/modules/admin/ui/cards/cards.component';
 import { InvitationCardComponent } from './invitation-card/invitation-card.component';
+import { MapModalComponent } from './invitation-card/map-modal/map-modal.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { CalendarModalComponent } from './invitation-card/calendar-modal/calendar-modal.component';
 
 export const routes: Route[] = [
     {
@@ -24,7 +27,7 @@ export const routes: Route[] = [
 
 @NgModule({
     declarations: [
-        CardsComponent, InvitationCardComponent
+        CardsComponent, InvitationCardComponent, MapModalComponent, CalendarModalComponent
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -40,7 +43,12 @@ export const routes: Route[] = [
         MatTooltipModule,
         FuseCardModule,
         SharedModule,
+        GoogleMapsModule
 
+
+    ],
+    exports     : [
+        CardsComponent, InvitationCardComponent, MapModalComponent, CalendarModalComponent
     ]
 })
 export class CardsModule
