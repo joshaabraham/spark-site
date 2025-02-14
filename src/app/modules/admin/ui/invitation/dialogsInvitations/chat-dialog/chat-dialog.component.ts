@@ -9,8 +9,13 @@ import { Component, Input } from '@angular/core';
 })
 export class ChatDialogComponent {
 
-    newMessage:string = null
+  messages: string [] = [];
+  newMessage: string = null;
 
-    constructor() {}
-  
+  constructor() {}
+
+  sendMessage(): void {
+  throw new Error('Method not implemented.');
   }
+
+}

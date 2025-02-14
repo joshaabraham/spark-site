@@ -1,64 +1,49 @@
-<div class="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="flex items-center p-4">
-      <!-- Photo de l'expéditeur -->
-      <div class="w-16 h-16 rounded-full overflow-hidden cursor-pointer" (click)="openProfileDialog('sender')">
-        <img src="assets/sender.jpg" alt="Expéditeur" class="w-full h-full object-cover">
-      </div>
-  
-      <div class="flex-1 px-4">
-        <!-- Nom du sport -->
-        <h2 class="text-xl font-bold text-center">Tennis</h2>
-  
-        <!-- Niveau des deux joueurs -->
-        <div class="flex justify-between mt-2">
-          <div class="text-center">
-            <p class="text-gray-500">Expéditeur</p>
-            <p class="text-lg font-semibold">{{ senderLevel }}</p>
-          </div>
-          <div class="text-center">
-            <p class="text-gray-500">Destinataire</p>
-            <p class="text-lg font-semibold">{{ receiverLevel }}</p>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Photo du destinataire -->
-      <div class="w-16 h-16 rounded-full overflow-hidden cursor-pointer" (click)="openProfileDialog('receiver')">
-        <img src="assets/receiver.jpg" alt="Destinataire" class="w-full h-full object-cover">
-      </div>
-    </div>
-  
-    <div class="flex justify-around items-center bg-gray-100 p-4">
-      <!-- Logo du sport -->
-      <mat-icon>sports_tennis</mat-icon>
-  
-      <!-- Bouton pour calendrier de disponibilité -->
-      <button mat-icon-button (click)="openAvailabilityDialog()">
-        <mat-icon>calendar_today</mat-icon>
-      </button>
-  
-      <!-- Bouton pour carte des terrains -->
-      <button mat-icon-button (click)="openMapDialog()">
-        <mat-icon>place</mat-icon>
-      </button>
-  
-      <!-- Bouton pour la discussion -->
-      <button mat-icon-button (click)="openChatDialog()">
-        <mat-icon>chat</mat-icon>
+<div class="card-container mat-elevation-z2">
+  <div class="card-content">
+    <div class="card-side">
+
+              <button mat-button  (click)="openProfile('left')">
+                  <img src="assets/images/avatars/male-04.jpg" alt="User avatar" class="w-32 h-32 rounded-full ring-4 ring-bg-card clickable-image">
+              </button>
+              <br>
+      <p class="name">Rémi Duplan</p>
+      <br>
+      <button mat-stroked-button color="primary" (click)="openModify()">
+        Modify
       </button>
     </div>
-  
-    <!-- Boutons pour Accepter ou Retirer l'invitation -->
-    <div class="p-4 text-center">
-      <!-- Bouton Accepter l'invitation (visible uniquement pour le destinataire) -->
-      <button *ngIf="isReceiver" mat-raised-button color="primary" (click)="acceptInvitation()">
-        Accepter l'invitation
+
+    <div class="card-center">
+      <p class="sport-name">Sport's name</p>
+      <br>
+      <div class="score-container">
+        <span class="score">4.5</span>
+        <span class="score">5.0</span>
+      </div>
+      <br>
+      <div class="dot-container">
+        <button mat-fab aria-label="Example icon button with a delete icon" (click)="openModal('map')">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-fab aria-label="Example icon button with a delete icon" (click)="openModal('map')">
+          <mat-icon>map</mat-icon>
+        </button>
+        <button mat-fab aria-label="Example icon button with a delete icon" (click)="openModal('calendar')">
+          <mat-icon>calendar</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-side">
+      <button mat-button  (click)="openProfile('right')">
+        <img src="assets/images/avatars/male-04.jpg" alt="User avatar" class="w-32 h-32 rounded-full ring-4 ring-bg-card clickable-image">
       </button>
-  
-      <!-- Bouton Retirer l'invitation (visible uniquement pour l'expéditeur) -->
-      <button *ngIf="isSender" mat-raised-button color="warn" (click)="removeInvitation()">
-        Retirer l'invitation
+      <br>
+      <p class="name">Rémi Duplan</p>
+      <br>
+      <button mat-stroked-button color="primary" (click)="openAccept()">
+        Accept
       </button>
     </div>
   </div>
-  
+</div>
