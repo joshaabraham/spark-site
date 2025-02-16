@@ -23,12 +23,14 @@ import { contactsRoutes } from 'app/modules/admin/apps/contacts/contacts.routing
 import { ContactsComponent } from 'app/modules/admin/apps/contacts/contacts.component';
 import { ContactsDetailsComponent } from 'app/modules/admin/apps/contacts/details/details.component';
 import { ContactsListComponent } from 'app/modules/admin/apps/contacts/list/list.component';
+import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
     declarations: [
         ContactsComponent,
         ContactsListComponent,
-        ContactsDetailsComponent
+        ContactsDetailsComponent,
+        FormsComponent
     ],
     imports     : [
         RouterModule.forChild(contactsRoutes),

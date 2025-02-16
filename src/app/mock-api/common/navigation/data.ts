@@ -161,7 +161,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
             },
             {
                 id   : 'pages.equipe',
-                title: 'Equipe',
+                title: 'Equipes',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
                 link : '/apps/equipes'

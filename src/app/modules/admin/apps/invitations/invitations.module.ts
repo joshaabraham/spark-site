@@ -19,12 +19,16 @@ import { InvitationsListComponent } from 'app/modules/admin/apps/invitations/lis
 import { MatTabsModule } from '@angular/material/tabs';
 import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/demo-sidebar.module';
 import { CardsModule } from '../../ui/cards/cards.module';
+import { FuseCardModule } from '@fuse/components/card';
+import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
     declarations: [
         InvitationsComponent,
         InvitationDetailsComponent,
         InvitationsListComponent,
+        FormsComponent,
+        
     ],
     imports     : [
         RouterModule.forChild(invitationsRoutes),
@@ -38,6 +42,7 @@ import { CardsModule } from '../../ui/cards/cards.module';
         MatSlideToggleModule,
         MatTooltipModule,
         FuseFindByKeyPipeModule,
+        FuseCardModule,
         SharedModule,
         MatTabsModule,
         DemoSidebarModule,

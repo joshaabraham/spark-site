@@ -41,7 +41,11 @@ export const routes: Route[] = [
         FuseCardModule,
         SharedModule,
 
-    ]
+    ],
+    exports     : [
+        CardsComponent,
+        InvitationCardComponent
+    ]	
 })
 export class CardsModule
 {

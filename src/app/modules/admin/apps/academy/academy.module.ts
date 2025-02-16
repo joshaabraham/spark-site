@@ -19,6 +19,7 @@ import { TeacherListComponent } from './list/teacher/list.component';
 import { SectionListComponent } from './list/section/list.component';
 import { CourseListComponent } from './list/course/list.component';
 import { ChapterListComponent } from './list/chapter/list.component';
+import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { ChapterListComponent } from './list/chapter/list.component';
         TeacherListComponent,
         SectionListComponent,
         CourseListComponent,
-        ChapterListComponent
+        ChapterListComponent,
+        FormsComponent
     ],
     imports     : [
         RouterModule.forChild(academyRoutes),
