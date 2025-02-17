@@ -9,7 +9,7 @@ import { CdkScrollableModule } from '@angular/cdk/scrolling';
   declarations: [CouponBilletComponent],
   imports: [
     CommonModule,
-    CdkScrollableModule
+    CdkScrollableModule,
   ],exports: [
     CouponBilletComponent
   ]
