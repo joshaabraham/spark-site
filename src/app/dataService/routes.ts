@@ -81,8 +81,8 @@ export const apiRoutes = {
         teamsByMatch: (matchId: string): string => `team_app/teamsByMatch/${matchId}/`
     },
     invitationApp: {
-        invitationCreateList: 'invitationCreate/',
-        invitationDetail: (pk: number): string => `invitation/${pk}/`,
+        invitationCreateList: 'invitation_app/invitationCreate/',
+        invitationDetail: (pk: number): string => `invitation_app/invitation/${pk}/`,
     },
     localisationApp: {
       addressesCreateList: 'localisation_app/addresses/',

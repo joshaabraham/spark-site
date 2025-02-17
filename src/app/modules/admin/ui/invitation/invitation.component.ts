@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarModalComponent } from './dialogsInvitations/calendar-modal/calendar-modal.component';
+import { fuseAnimations } from '@fuse/animations';
 // import { ProfileDialogComponent } from '../profile-dialog/profile-dialog.component';
 
 
@@ -8,7 +9,8 @@ import { CalendarModalComponent } from './dialogsInvitations/calendar-modal/cale
 @Component({
   selector: 'app-invitation',
   templateUrl: './invitation.component.html',
-  styleUrls: ['./invitation.component.scss']
+    encapsulation: ViewEncapsulation.None,
+    animations   : fuseAnimations
 })
 export class SportInvitationComponent {
 
