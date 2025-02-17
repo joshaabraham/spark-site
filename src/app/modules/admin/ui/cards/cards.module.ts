@@ -13,7 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FuseCardModule } from '@fuse/components/card';
 import { SharedModule } from 'app/shared/shared.module';
 import { CardsComponent } from 'app/modules/admin/ui/cards/cards.component';
-import { InvitationCardComponent } from './invitation-card/invitation-card.component';
+import { InvitationModule } from '../invitation/invitation.module';
 
 export const routes: Route[] = [
     {
@@ -24,7 +24,7 @@ export const routes: Route[] = [
 
 @NgModule({
     declarations: [
-        CardsComponent, InvitationCardComponent
+        CardsComponent
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -41,11 +41,11 @@ export const routes: Route[] = [
         FuseCardModule,
         SharedModule,
 
+        InvitationModule
     ],
     exports     : [
-        CardsComponent,
-        InvitationCardComponent
-    ]	
+        CardsComponent
+    ]
 })
 export class CardsModule
 {

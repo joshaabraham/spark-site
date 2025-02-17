@@ -7,12 +7,14 @@ import { SportInvitationComponent } from './invitation.component';
 import { CalendarModalComponent } from './dialogsInvitations/calendar-modal/calendar-modal.component';
 import { ChatDialogComponent } from './dialogsInvitations/chat-dialog/chat-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { MapDialogComponent } from './dialogsInvitations/map-dialog/map-dialog.component';
 
 @NgModule({
     declarations: [
         SportInvitationComponent,
         CalendarModalComponent,
         ChatDialogComponent,
+        MapDialogComponent
 
     ],
     imports: [
@@ -25,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     exports: [
         SportInvitationComponent,
         CalendarModalComponent,
-        ChatDialogComponent
+        ChatDialogComponent,
+        MapDialogComponent
         ],
 })
 export class InvitationModule { }

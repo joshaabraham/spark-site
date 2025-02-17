@@ -21,6 +21,7 @@ import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/dem
 import { CardsModule } from '../../ui/cards/cards.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { FormsComponent } from './forms/forms.component';
+import { InvitationModule } from '../../ui/invitation/invitation.module';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,6 @@ import { FormsComponent } from './forms/forms.component';
         InvitationDetailsComponent,
         InvitationsListComponent,
         FormsComponent,
-        
     ],
     imports     : [
         RouterModule.forChild(invitationsRoutes),
@@ -47,7 +47,7 @@ import { FormsComponent } from './forms/forms.component';
         MatTabsModule,
         DemoSidebarModule,
         MatListModule,
-        CardsModule,
+        InvitationModule
     ]
 })
 export class InvitationsModule

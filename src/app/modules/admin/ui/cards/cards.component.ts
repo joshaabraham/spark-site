@@ -64,6 +64,26 @@ export class CardsComponent implements AfterViewInit
         this._filterCards();
     }
 
+    openProfile(side: string): void {
+        // this.dialog.open(ProfileModalComponent, {
+        //   data: { side }
+        // });
+      }
+
+      openModify(): void {
+      //  this.dialog.open(ModifyModalComponent);
+      }
+
+      openAccept(): void {
+      //  this.dialog.open(AcceptModalComponent);
+      }
+
+      openModal(dot: string): void {
+        // this.dialog.open(DotModalComponent, {
+        //   data: { dot }
+        // });
+      }
+
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods
     // -----------------------------------------------------------------------------------------------------
@@ -131,25 +151,4 @@ export class CardsComponent implements AfterViewInit
 
 
 
-
-
-     openProfile(side: string) {
-    // this.dialog.open(ProfileModalComponent, {
-    //   data: { side }
-    // });
-  }
-
-  openModify() {
-  //  this.dialog.open(ModifyModalComponent);
-  }
-
-  openAccept() {
-  //  this.dialog.open(AcceptModalComponent);
-  }
-
-  openModal(dot: string) {
-    // this.dialog.open(DotModalComponent, {
-    //   data: { dot }
-    // });
-  }
 }
