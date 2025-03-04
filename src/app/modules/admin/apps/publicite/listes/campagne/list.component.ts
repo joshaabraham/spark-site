@@ -19,14 +19,14 @@ export class CampagneListComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
 
 
-    displayedColumns: string[] = ['nomCampagne', 'typeAchat', 'objectif', 'budget', 'dateDebut', 'dateFin', 'actions'];
+    displayedColumns: string[] = ['nomCampagne', 'viewPublicites', 'typeAchat', 'objectif', 'budget', 'dateDebut', 'dateFin', 'actions'];
     dataSource: MatTableDataSource<CampagnePublicitaire>;
 
 
-    constructor(private _publiciteService: PubliciteService, private router: Router) {}
+    constructor(private publiciteService: PubliciteService, private router: Router) {}
 
     ngOnInit(): void {
-        this._publiciteService.getCampagnes().subscribe((campagnes: CampagnePublicitaire[]) => {
+        this.publiciteService.getCampagnes().subscribe((campagnes: CampagnePublicitaire[]) => {
             this.dataSource = new MatTableDataSource(campagnes);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
@@ -52,5 +52,9 @@ export class CampagneListComponent implements OnInit {
 
     deleteCampagne(campagne: CampagnePublicitaire): void {
         // Implémentez la logique de suppression ici
+    }
+
+    viewPublicites(campagne: CampagnePublicitaire): void {
+        this.router.navigate(['/publicites', { campagneId: campagne.id }]);
     }
 }
