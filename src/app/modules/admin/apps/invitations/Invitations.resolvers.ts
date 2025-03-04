@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Invitation } from './invitations.types';
+import { Invitation, ProposedDate, InvitationNote } from './invitations.types';
 import { InvitationsService } from './invitations.service';
 
 @Injectable({
@@ -33,6 +33,80 @@ export class InvitationResolver implements Resolve<Invitation>
     {
         const id = route.paramMap.get('id');
         return this._invitationsService.getInvitationById(Number(id)).pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
+    }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ProposedDatesResolver implements Resolve<ProposedDate[]>
+{
+    constructor(private _invitationsService: InvitationsService) {}
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProposedDate[]>
+    {
+        return this._invitationsService.getProposedDates().pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
+    }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ProposedDateResolver implements Resolve<ProposedDate>
+{
+    constructor(private _invitationsService: InvitationsService) {}
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProposedDate>
+    {
+        const id = route.paramMap.get('id');
+        return this._invitationsService.getProposedDateById(Number(id)).pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
+    }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class InvitationNotesResolver implements Resolve<InvitationNote[]>
+{
+    constructor(private _invitationsService: InvitationsService) {}
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<InvitationNote[]>
+    {
+        return this._invitationsService.getInvitationNotes().pipe(
+            catchError((error) => {
+                console.error(error);
+                return throwError(error);
+            })
+        );
+    }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class InvitationNoteResolver implements Resolve<InvitationNote>
+{
+    constructor(private _invitationsService: InvitationsService) {}
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<InvitationNote>
+    {
+        const id = route.paramMap.get('id');
+        return this._invitationsService.getInvitationNoteById(Number(id)).pipe(
             catchError((error) => {
                 console.error(error);
                 return throwError(error);

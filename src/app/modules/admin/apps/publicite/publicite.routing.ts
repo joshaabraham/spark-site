@@ -14,6 +14,13 @@ export const publiciteRoutes: Route[] = [
         component: PubliciteComponent,
         children: [
             {
+                path: '',
+                component: CampagneListComponent,
+                resolve: {
+                    publicites: CampagnesResolver
+                }
+            },
+            {
                 path: 'campagnes',
                 component: CampagneListComponent,
                 resolve: {

@@ -44,7 +44,7 @@ export const apiRoutes = {
     },
     contactApp: {
       contactCreateList: 'contact_app/contactCreateList/',
-      contactDetail: (id: number) => `contact_app/contact/${id}/`,
+      contactDetail: (id: number): string => `contact_app/contact/${id}/`,
     },
     ecommerce: {
       categoriesCreateList: 'market/categoriesCreateList/',
@@ -81,8 +81,12 @@ export const apiRoutes = {
         teamsByMatch: (matchId: string): string => `team_app/teamsByMatch/${matchId}/`
     },
     invitationApp: {
-        invitationCreateList: 'invitation_app/invitationCreate/',
+        proposedDatesCreateList: 'invitation_app/proposed-dates/',
+        proposedDateDetail: (pk: number): string => `invitation_app/proposed-dates/${pk}/`,
+        invitationCreateList: 'invitation_app/invitation/',
         invitationDetail: (pk: number): string => `invitation_app/invitation/${pk}/`,
+        invitationNotesCreateList: 'invitation_app/invitation-notes/',
+        invitationNoteDetail: (pk: number): string => `invitation_app/invitation-notes/${pk}/`,
     },
     localisationApp: {
       addressesCreateList: 'localisation_app/addresses/',

@@ -26,12 +26,21 @@ import { PubliciteListComponent } from './listes/publicite/list.component';
 import { PubliciteDetailsComponent } from './details/publicite/details.component';
 import { CampagneDetailsComponent } from './details/campagne/details.component';
 import { CampagneListComponent } from './listes/campagne/list.component';
+import { PubliciteFormComponent } from './forms/publicite/form.component';
+import { CampagneFormComponent } from './forms/campagne/form.component';
 
 @NgModule({
     declarations: [
 
-        PubliciteComponent, PubliciteListComponent, PubliciteComponent , PubliciteDetailsComponent, PubliciteListComponent,
-        CampagneDetailsComponent, CampagneListComponent
+        PubliciteComponent,
+        PubliciteListComponent,
+        PubliciteComponent,
+        PubliciteFormComponent,
+        PubliciteDetailsComponent,
+        PubliciteListComponent,
+        CampagneDetailsComponent,
+        CampagneListComponent,
+        CampagneFormComponent
     ],
     imports: [
         CommonModule,

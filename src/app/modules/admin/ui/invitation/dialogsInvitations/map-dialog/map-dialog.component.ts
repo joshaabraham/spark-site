@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 
 
 @Component({
   selector: 'app-chat-dialog',
   templateUrl: './map-dialog.component.html',
-  styleUrls: ['./map-dialog.component.css']
+    encapsulation  : ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapDialogComponent {
 

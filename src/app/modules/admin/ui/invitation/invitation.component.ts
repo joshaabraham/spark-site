@@ -3,16 +3,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { CalendarModalComponent } from './dialogsInvitations/calendar-modal/calendar-modal.component';
 import { fuseAnimations } from '@fuse/animations';
 // import { ProfileDialogComponent } from '../profile-dialog/profile-dialog.component';
-
-
+import { Invitation } from '../../apps/invitations/invitations.types';
 
 @Component({
   selector: 'app-invitation',
   templateUrl: './invitation.component.html',
-    encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+  encapsulation: ViewEncapsulation.None,
+  animations: fuseAnimations
 })
 export class SportInvitationComponent {
+  @Input() invitation: Invitation;
 
   constructor(private dialog: MatDialog) {}
 
@@ -23,11 +23,11 @@ export class SportInvitationComponent {
   }
 
   openModify(): void {
-  //  this.dialog.open(ModifyModalComponent);
+    //  this.dialog.open(ModifyModalComponent);
   }
 
   openAccept(): void {
-  //  this.dialog.open(AcceptModalComponent);
+    //  this.dialog.open(AcceptModalComponent);
   }
 
   openModal(dot: string): void {
@@ -38,4 +38,4 @@ export class SportInvitationComponent {
       this.dialog.open(CalendarModalComponent);
     }
   }
-  }
+}

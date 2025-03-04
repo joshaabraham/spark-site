@@ -1,10 +1,8 @@
 import { Route } from '@angular/router';
 import { InvitationsComponent } from 'app/modules/admin/apps/invitations/invitations.component';
-import { InvitationResolver, InvitationsResolver } from './Invitations.resolvers';
+import { InvitationResolver, InvitationsResolver, ProposedDatesResolver, ProposedDateResolver, InvitationNotesResolver, InvitationNoteResolver } from './Invitations.resolvers';
 import { InvitationDetailsComponent } from './details/details.component';
 import { InvitationsListComponent } from './list/list.component';
-
-
 
 export const invitationsRoutes: Route[] = [
     {
@@ -27,6 +25,34 @@ export const invitationsRoutes: Route[] = [
                 component: InvitationDetailsComponent,
                 resolve  : {
                     invitation: InvitationResolver
+                }
+            },
+            {
+                path     : 'proposed-dates',
+                component: InvitationsListComponent,
+                resolve  : {
+                    proposedDates: ProposedDatesResolver
+                }
+            },
+            {
+                path     : 'proposed-dates/:id',
+                component: InvitationDetailsComponent,
+                resolve  : {
+                    proposedDate: ProposedDateResolver
+                }
+            },
+            {
+                path     : 'invitation-notes',
+                component: InvitationsListComponent,
+                resolve  : {
+                    invitationNotes: InvitationNotesResolver
+                }
+            },
+            {
+                path     : 'invitation-notes/:id',
+                component: InvitationDetailsComponent,
+                resolve  : {
+                    invitationNote: InvitationNoteResolver
                 }
             }
         ]

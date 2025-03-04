@@ -2,14 +2,15 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulatio
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { PubliciteService } from '../../publicite.service';
 import { CampagnePublicitaire } from '../../publicite.types';
 
 @Component({
     selector: 'app-campagne-list',
     templateUrl: './list.component.html',
-        encapsulation  : ViewEncapsulation.None,
-        changeDetection: ChangeDetectionStrategy.OnPush
+    encapsulation  : ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CampagneListComponent implements OnInit {
 
@@ -22,7 +23,7 @@ export class CampagneListComponent implements OnInit {
     dataSource: MatTableDataSource<CampagnePublicitaire>;
 
 
-    constructor(private _publiciteService: PubliciteService) {}
+    constructor(private _publiciteService: PubliciteService, private router: Router) {}
 
     ngOnInit(): void {
         this._publiciteService.getCampagnes().subscribe((campagnes: CampagnePublicitaire[]) => {
@@ -41,11 +42,15 @@ export class CampagneListComponent implements OnInit {
         }
     }
 
+    createCampagne(): void {
+        this.router.navigate(['/campagnes/create']);
+    }
+
     editCampagne(campagne: CampagnePublicitaire): void {
-        // Logic to edit campagne
+        this.router.navigate(['/campagnes', campagne.id]);
     }
 
     deleteCampagne(campagne: CampagnePublicitaire): void {
-        // Logic to delete campagne
+        // Implémentez la logique de suppression ici
     }
 }

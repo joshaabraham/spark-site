@@ -1,12 +1,15 @@
-<div class="invitation-list">
+<div>
     <h1>List of Invitations</h1>
-    <div *ngFor="let invitation of invitations" class="invitation-item">
-        <h2>Invitation from {{ invitation.playerA.name }} to {{ invitation.playerB.name }}</h2>
-        <p><strong>Sport:</strong> {{ invitation.sport.name }}</p>
-        <p><strong>Status:</strong> {{ invitation.status }}</p>
-        <p><strong>Invitation Date:</strong> {{ invitation.invitationDate | date }}</p>
-        <a [routerLink]="['/invitations', invitation.id]">View Details</a>
-    </div>
-</div>
+    <ul >
+        <!-- <h2>Invitation from</h2>
+        <p><strong>Sport:</strong> </p>
+        <p><strong>Status:</strong></p>
+        <p><strong>Invitation Date:</strong> </p> -->
 
+       <li *ngFor="let invitation of invitations"> {{invitation | json}} </li>
+        <!-- <app-invitation [invitation]="invitation"></app-invitation> -->
+    </ul>
+</div>
+<!-- 
 <app-invitation></app-invitation>
+<app-invitation></app-invitation> -->

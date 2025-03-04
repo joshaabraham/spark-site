@@ -18,7 +18,6 @@ import { InvitationDetailsComponent} from 'app/modules/admin/apps/invitations/de
 import { InvitationsListComponent } from 'app/modules/admin/apps/invitations/list/list.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/demo-sidebar.module';
-import { CardsModule } from '../../ui/cards/cards.module';
 import { FuseCardModule } from '@fuse/components/card';
 import { FormsComponent } from './forms/forms.component';
 import { InvitationModule } from '../../ui/invitation/invitation.module';

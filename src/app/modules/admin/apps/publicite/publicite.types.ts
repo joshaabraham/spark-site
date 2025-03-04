@@ -25,6 +25,7 @@ export interface ControleAudience {
 }
 
 export interface CampagnePublicitaire {
+    id?: number;
     nomCampagne: string;
     typeAchat: string; // Enchères, Achat Direct, etc.
     objectif: string; // Notoriété, Conversion, etc.

@@ -1,0 +1,101 @@
+<div class="campagne-form">
+  <h2>{{ campagne ? 'Mettre à jour la Campagne' : 'Créer une Campagne' }}</h2>
+  <form [formGroup]="campagneForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nomCampagne">Nom de la Campagne</label>
+      <input id="nomCampagne" formControlName="nomCampagne" type="text" />
+    </div>
+    <div>
+      <label for="typeAchat">Type d'Achat</label>
+      <input id="typeAchat" formControlName="typeAchat" type="text" />
+    </div>
+    <div>
+      <label for="objectif">Objectif</label>
+      <input id="objectif" formControlName="objectif" type="text" />
+    </div>
+    <div>
+      <label for="categoriesSpecialesAEcarter">Catégories Spéciales à Écarter</label>
+      <input id="categoriesSpecialesAEcarter" formControlName="categoriesSpecialesAEcarter" type="text" />
+    </div>
+    <div>
+      <label for="limiteDepense">Limite de Dépense</label>
+      <input id="limiteDepense" formControlName="limiteDepense" type="number" />
+    </div>
+    <div formGroupName="budgetCampagne">
+      <label for="typeBudget">Type de Budget</label>
+      <select id="typeBudget" formControlName="typeBudget">
+        <option value="quotidien">Quotidien</option>
+        <option value="global">Global</option>
+      </select>
+      <label for="montant">Montant</label>
+      <input id="montant" formControlName="montant" type="number" />
+    </div>
+    <div formGroupName="pageFacebook">
+      <label for="nom">Nom de la Page Facebook</label>
+      <input id="nom" formControlName="nom" type="text" />
+      <label for="lien">Lien de la Page Facebook</label>
+      <input id="lien" formControlName="lien" type="text" />
+      <label for="logo">Logo de la Page Facebook</label>
+      <input id="logo" formControlName="logo" type="text" />
+    </div>
+    <div formGroupName="calendrier">
+      <label for="dateDebut">Date de Début</label>
+      <input id="dateDebut" formControlName="dateDebut" type="date" />
+      <label for="heureDebut">Heure de Début</label>
+      <input id="heureDebut" formControlName="heureDebut" type="time" />
+      <label for="dateFin">Date de Fin</label>
+      <input id="dateFin" formControlName="dateFin" type="date" />
+      <label for="heureFin">Heure de Fin</label>
+      <input id="heureFin" formControlName="heureFin" type="time" />
+    </div>
+    <div formGroupName="controleAudience">
+      <label for="lieu">Lieu</label>
+      <input id="lieu" formControlName="lieu" type="text" />
+      <label for="ageMinimum">Âge Minimum</label>
+      <input id="ageMinimum" formControlName="ageMinimum" type="number" />
+      <label for="langues">Langues</label>
+      <input id="langues" formControlName="langues" type="text" />
+      <label for="centreInteret">Centre d'Intérêt</label>
+      <input id="centreInteret" formControlName="centreInteret" type="text" />
+      <label for="genre">Genre</label>
+      <select id="genre" formControlName="genre">
+        <option value="homme">Homme</option>
+        <option value="femme">Femme</option>
+        <option value="tous">Tous</option>
+      </select>
+    </div>
+    <div>
+      <label for="placement">Placement</label>
+      <input id="placement" formControlName="placement" type="text" />
+    </div>
+    <div>
+      <label for="listePublicite">Liste des Publicités</label>
+      <input id="listePublicite" formControlName="listePublicite" type="text" />
+    </div>
+    <div>
+      <label for="statutCampagne">Statut de la Campagne</label>
+      <input id="statutCampagne" formControlName="statutCampagne" type="text" />
+    </div>
+    <div>
+      <label for="tauxClics">Taux de Clics</label>
+      <input id="tauxClics" formControlName="tauxClics" type="number" />
+    </div>
+    <div>
+      <label for="nombreImpressions">Nombre d'Impressions</label>
+      <input id="nombreImpressions" formControlName="nombreImpressions" type="number" />
+    </div>
+    <div>
+      <label for="dateCreation">Date de Création</label>
+      <input id="dateCreation" formControlName="dateCreation" type="date" />
+    </div>
+    <div>
+      <label for="utilisateurResponsable">Utilisateur Responsable</label>
+      <input id="utilisateurResponsable" formControlName="utilisateurResponsable" type="text" />
+    </div>
+    <div>
+      <label for="owner">Propriétaire</label>
+      <input id="owner" formControlName="owner" type="text" />
+    </div>
+    <button type="submit">{{ campagne ? 'Mettre à jour' : 'Créer' }}</button>
+  </form>
+</div>

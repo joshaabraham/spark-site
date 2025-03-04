@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Inject, ViewEncapsulation, ChangeDetectio
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { PubliciteService } from '../../publicite.service';
 import { Publicite } from '../../publicite.types';
 
@@ -19,7 +20,7 @@ export class PubliciteListComponent implements OnInit {
     displayedColumns: string[] = ['campagne', 'titre', 'description', 'format', 'urlCible', 'plateforme', 'dateCreation', 'actions'];
     dataSource: MatTableDataSource<Publicite>;
 
-    constructor(@Inject(PubliciteService) private _publiciteService: PubliciteService) {}
+    constructor(@Inject(PubliciteService) private _publiciteService: PubliciteService, private router: Router) {}
 
     ngOnInit(): void {
         this._publiciteService.getPublicites().subscribe((publicites: Publicite[]) => {
@@ -38,11 +39,15 @@ export class PubliciteListComponent implements OnInit {
         }
     }
 
+    createPublicite(): void {
+        this.router.navigate(['/publicites/create']);
+    }
+
     editPublicite(publicite: Publicite): void {
-        // Logic to edit publicite
+        this.router.navigate(['/publicites', publicite.id]);
     }
 
     deletePublicite(publicite: Publicite): void {
-        // Logic to delete publicite
+        // Implémentez la logique de suppression ici
     }
 }
