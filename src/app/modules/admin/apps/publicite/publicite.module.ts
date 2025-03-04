@@ -64,6 +64,19 @@ import { CampagneFormComponent } from './forms/campagne/form.component';
         MatPaginatorModule,
         MatSortModule,
         FuseCardModule
-    ]
+    ],
+    exports: [
+
+        PubliciteComponent,
+        PubliciteListComponent,
+        PubliciteComponent,
+        PubliciteFormComponent,
+        PubliciteDetailsComponent,
+        PubliciteListComponent,
+        CampagneDetailsComponent,
+        CampagneListComponent,
+        CampagneFormComponent
+    ],
+
 })
 export class PubliciteModule { }

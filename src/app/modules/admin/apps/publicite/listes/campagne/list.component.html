@@ -13,6 +13,16 @@
             <td mat-cell *matCellDef="let campagne"> {{campagne.nomCampagne}} </td>
         </ng-container>
 
+        <!-- View Publicites Column -->
+        <ng-container matColumnDef="viewPublicites">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let campagne">
+                <button mat-icon-button color="accent" (click)="viewPublicites(campagne)">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
         <!-- Type Achat Column -->
         <ng-container matColumnDef="typeAchat">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'Achat </th>

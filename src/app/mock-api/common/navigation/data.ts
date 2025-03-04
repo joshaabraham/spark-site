@@ -122,7 +122,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Publicite',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',
-                link : 'ui/page-layouts/carded/right-sidebar-2/content-scroll'
+                link : '/apps/publicites'
             },
             {
                 id   : 'pages.sports',
