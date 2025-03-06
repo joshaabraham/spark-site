@@ -1,19 +1,8 @@
+import { User } from 'app/core/user/user.types';
+import { Sport } from '../sports/sports.types';
 
 
-export interface User {
-    id: number;
-    username: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    // Add other fields as necessary
-}
 
-export interface Sport {
-    id: number;
-    name: string;
-    // Add other fields as necessary
-}
 
 export interface School {
     id: number;

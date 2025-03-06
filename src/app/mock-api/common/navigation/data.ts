@@ -118,7 +118,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     ]
             },
             {
-                id   : 'apps.publicite',
+                id   : 'apps.publicites',
                 title: 'Publicite',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',

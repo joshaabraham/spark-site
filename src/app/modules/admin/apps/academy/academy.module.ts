@@ -20,6 +20,11 @@ import { SectionListComponent } from './list/section/list.component';
 import { CourseListComponent } from './list/course/list.component';
 import { ChapterListComponent } from './list/chapter/list.component';
 import { FormsComponent } from './forms/forms.component';
+import { ChapterFormComponent } from './forms/chapter-form/chapter-form.component';
+import { SchoolFormComponent } from './forms/school-form/school-form.component';
+import { CourseFormComponent } from './forms/course-form/course-form.component';
+import { SectionFormComponent } from './forms/section-form/section-form.component';
+import { TeacherFormComponent } from './forms/teacher-form/teacher-form.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +34,12 @@ import { FormsComponent } from './forms/forms.component';
         SectionListComponent,
         CourseListComponent,
         ChapterListComponent,
-        FormsComponent
+        FormsComponent,
+        ChapterFormComponent,
+        SchoolFormComponent,
+        CourseFormComponent,
+        SectionFormComponent,
+        TeacherFormComponent
     ],
     imports     : [
         RouterModule.forChild(academyRoutes),
