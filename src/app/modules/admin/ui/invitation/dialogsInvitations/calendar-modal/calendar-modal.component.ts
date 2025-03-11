@@ -4,8 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-calendar-modal',
   templateUrl: './calendar-modal.component.html',
-    encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation  : ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarModalComponent implements OnInit {
 

@@ -8,52 +8,24 @@ export const invitationsRoutes: Route[] = [
     {
         path     : '',
         component: InvitationsComponent,
-        resolve  : {
-            invitations: InvitationsResolver
-        },
+        // resolve  : {
+        //     invitations: InvitationsResolver
+        // },
         children : [
             {
                 path     : '',
                 pathMatch: 'full',
                 component: InvitationsListComponent,
-                resolve  : {
-                    invitations: InvitationsResolver
-                }
+                // resolve  : {
+                //     invitations: InvitationsResolver
+                // }
             },
             {
                 path     : ':id',
                 component: InvitationDetailsComponent,
-                resolve  : {
-                    invitation: InvitationResolver
-                }
-            },
-            {
-                path     : 'proposed-dates',
-                component: InvitationsListComponent,
-                resolve  : {
-                    proposedDates: ProposedDatesResolver
-                }
-            },
-            {
-                path     : 'proposed-dates/:id',
-                component: InvitationDetailsComponent,
-                resolve  : {
-                    proposedDate: ProposedDateResolver
-                }
-            },
-            {
-                path     : 'invitation-notes',
-                component: InvitationsListComponent,
-                resolve  : {
-                    invitationNotes: InvitationNotesResolver
-                }
-            },
-            {
-                path     : 'invitation-notes/:id',
-                component: InvitationDetailsComponent,
-                resolve  : {
-                    invitationNote: InvitationNoteResolver
-                }
+                // resolve  : {
+                //     invitation: InvitationResolver
+                // }
             }
         ]
     }

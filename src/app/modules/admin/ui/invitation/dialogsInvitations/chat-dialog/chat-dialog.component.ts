@@ -5,8 +5,8 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 @Component({
   selector: 'app-chat-dialog',
   templateUrl: './chat-dialog.component.html',
-      encapsulation  : ViewEncapsulation.None,
-      changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation  : ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatDialogComponent {
 

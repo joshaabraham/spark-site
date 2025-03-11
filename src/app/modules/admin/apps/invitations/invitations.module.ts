@@ -21,12 +21,14 @@ import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/dem
 import { FuseCardModule } from '@fuse/components/card';
 import { FormsComponent } from './forms/forms.component';
 import { InvitationModule } from '../../ui/invitation/invitation.module';
+import { SportInvitationComponent } from '../../ui/invitation/invitation.component';
 
 @NgModule({
     declarations: [
         InvitationsComponent,
         InvitationDetailsComponent,
         InvitationsListComponent,
+       // SportInvitationComponent,
         FormsComponent,
     ],
     imports     : [
@@ -47,6 +49,13 @@ import { InvitationModule } from '../../ui/invitation/invitation.module';
         DemoSidebarModule,
         MatListModule,
         InvitationModule
+    ],
+    exports     : [
+        InvitationsComponent,
+        InvitationDetailsComponent,
+        InvitationsListComponent,
+       // SportInvitationComponent,
+        FormsComponent,
     ]
 })
 export class InvitationsModule

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { apiRoutes } from 'app/dataService/routes';
 import { Invitation, ProposedDate, InvitationNote } from './invitations.types';
 import { environment } from '../../../../../environments/environment';
+import { Invitation, ProposedDate, InvitationNote } from './invitations.types';
 
 @Injectable({
     providedIn: 'root'
@@ -13,25 +14,39 @@ export class InvitationsService {
 
     constructor(private _httpClient: HttpClient) {}
 
-    // Invitations CRUD operations
-    getInvitations(): Observable<Invitation[]> {
-        return this._httpClient.get<Invitation[]>(`${this.apiUrl}${apiRoutes.invitationApp.invitationCreateList}`);
+    // Proposed Dates
+    getProposedDates(): Observable<ProposedDate[]> {
+        return this._httpClient.get<ProposedDate[]>(`${this.apiUrl}${apiRoutes.invitationApp.proposedDatesListCreate}`);
     }
 
-    getInvitationById(id: number): Observable<Invitation> {
+    getProposedDate(id: number): Observable<ProposedDate> {
+        return this._httpClient.get<ProposedDate>(`${this.apiUrl}${apiRoutes.invitationApp.proposedDateDetail(id)}`);
+    }
+
+    createProposedDate(proposedDate: ProposedDate): Observable<ProposedDate> {
+        return this._httpClient.post<ProposedDate>(`${this.apiUrl}${apiRoutes.invitationApp.proposedDatesListCreate}`, proposedDate);
+    }
+
+    // Invitations
+    getInvitations(): Observable<Invitation[]> {
+        return this._httpClient.get<Invitation[]>(`${this.apiUrl}${apiRoutes.invitationApp.invitationListCreate}`);
+    }
+
+    getInvitation(id: number): Observable<Invitation> {
         return this._httpClient.get<Invitation>(`${this.apiUrl}${apiRoutes.invitationApp.invitationDetail(id)}`);
     }
 
     createInvitation(invitation: Invitation): Observable<Invitation> {
-        return this._httpClient.post<Invitation>(`${this.apiUrl}${apiRoutes.invitationApp.invitationCreateList}`, invitation);
+        return this._httpClient.post<Invitation>(`${this.apiUrl}${apiRoutes.invitationApp.invitationListCreate}`, invitation);
     }
 
-    updateInvitation(id: number, invitation: Invitation): Observable<Invitation> {
-        return this._httpClient.put<Invitation>(`${this.apiUrl}${apiRoutes.invitationApp.invitationDetail(id)}`, invitation);
+    // Invitation Notes
+    getInvitationNotes(): Observable<InvitationNote[]> {
+        return this._httpClient.get<InvitationNote[]>(`${this.apiUrl}${apiRoutes.invitationApp.invitationNotesListCreate}`);
     }
 
-    deleteInvitation(id: number): Observable<boolean> {
-        return this._httpClient.delete<boolean>(`${this.apiUrl}${apiRoutes.invitationApp.invitationDetail(id)}`);
+    getInvitationNote(id: number): Observable<InvitationNote> {
+        return this._httpClient.get<InvitationNote>(`${this.apiUrl}${apiRoutes.invitationApp.invitationNoteDetail(id)}`);
     }
 
     // Proposed Dates CRUD operations

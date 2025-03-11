@@ -1,12 +1,11 @@
 <div class="card-container mat-elevation-z2">
   <div class="card-content">
     <div class="card-side">
-
-              <button mat-button  (click)="openProfile('left')">
-                  <img src="assets/images/avatars/male-04.jpg" alt="User avatar" class="w-32 h-32 rounded-full ring-4 ring-bg-card clickable-image">
-              </button>
-              <br>
-      <p class="name">Rémi Duplan</p>
+      <button mat-button (click)="openProfile('left')">
+        <img src="assets/images/avatars/male-04.jpg" alt="User avatar" class="w-32 h-32 rounded-full ring-4 ring-bg-card clickable-image">
+      </button>
+      <br>
+      <p class="name">{{ invitation.playerA.id }}</p>
       <br>
       <button mat-stroked-button color="primary" (click)="openModify()">
         Modify
@@ -14,32 +13,32 @@
     </div>
 
     <div class="card-center">
-      <p class="sport-name">Sport's name</p>
+      <p class="sport-name">{{ invitation.sport.spTitreFr }}</p>
       <br>
       <div class="score-container">
-        <span class="score">4.5</span>
-        <span class="score">5.0</span>
+        <span class="score">{{ invitation.status }}</span>
+        <span class="score">{{ invitation.invitationDate | date }}</span>
       </div>
       <br>
       <div class="dot-container">
         <button mat-fab aria-label="Example icon button with a delete icon" (click)="openModal('map')">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-fab aria-label="Example icon button with a delete icon" (click)="openModal('map')">
+        <button mat-fab aria-label="Example icon button with a map icon" (click)="openModal('map')">
           <mat-icon>map</mat-icon>
         </button>
-        <button mat-fab aria-label="Example icon button with a delete icon" (click)="openModal('calendar')">
+        <button mat-fab aria-label="Example icon button with a calendar icon" (click)="openModal('calendar')">
           <mat-icon>calendar</mat-icon>
         </button>
       </div>
     </div>
 
     <div class="card-side">
-      <button mat-button  (click)="openProfile('right')">
+      <button mat-button (click)="openProfile('right')">
         <img src="assets/images/avatars/male-04.jpg" alt="User avatar" class="w-32 h-32 rounded-full ring-4 ring-bg-card clickable-image">
       </button>
       <br>
-      <p class="name">Rémi Duplan</p>
+      <p class="name">{{ invitation.playerB.id }}</p>
       <br>
       <button mat-stroked-button color="primary" (click)="openAccept()">
         Accept
