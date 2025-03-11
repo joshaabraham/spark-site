@@ -28,6 +28,7 @@ import { CampagneDetailsComponent } from './details/campagne/details.component';
 import { CampagneListComponent } from './listes/campagne/list.component';
 import { PubliciteFormComponent } from './forms/publicite/form.component';
 import { CampagneFormComponent } from './forms/campagne/form.component';
+import { PubliciteBoardModule } from './boards/publicite-board.module';
 
 @NgModule({
     declarations: [
@@ -63,7 +64,8 @@ import { CampagneFormComponent } from './forms/campagne/form.component';
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        FuseCardModule
+        FuseCardModule,
+        PubliciteBoardModule
     ],
     exports: [
 
