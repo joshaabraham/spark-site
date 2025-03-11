@@ -1,9 +1,15 @@
 export const apiRoutes = {
-    abonnementApp: {
-      subscriptionCreateList: '/Subscriptions/subscriptionCreateList/',
-      subscriptionDetail: (pk: number): string => `/Subscriptions/subscription/${pk}/`,
-      paymentCreateList: '/Subscriptions/paymentCreateList/',
-      paymentDetail: (pk: number): string => `/Subscriptions/payment/${pk}/`,
+  subscriptions: {
+      listCreate: '/subscriptions/',
+      detail: (id: number): string => `/subscriptions/${id}/`
+    },
+    payments: {
+      listCreate: '/payments/',
+      detail: (id: number): string => `/payments/${id}/`,
+      createPayment: '/create-payment/',
+      createPayout: '/create-payout/',
+      createTransfer: '/create-transfer/',
+      processAutomaticPayments: '/process-automatic-payments/',
     },
     academyApp: {
       schoolCreateList: 'Schools/schoolCreateList/',
