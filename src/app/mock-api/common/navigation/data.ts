@@ -958,6 +958,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
     //         }
     //     ]
     // },
+ /*  
     {
         id      : 'user-interface',
         title   : 'User Interface',
@@ -1258,6 +1259,10 @@ export const defaultNavigation: FuseNavigationItem[] = [
             }
         ]
     },
+
+
+
+    */
 //     {
 //         id  : 'divider-2',
 //         type: 'divider'
