@@ -1,8 +1,8 @@
 <div class="invitation-details">
     <h1>Invitation Details</h1>
-    <p><strong>From:</strong> {{ invitation.playerA.user.firstName }}</p>
-    <p><strong>To:</strong> {{ invitation.playerB.user.firstName }}</p>
-    <p><strong>Sport:</strong> {{ invitation.sport.name }}</p>
+    <p><strong>From:</strong> {{ invitation.playerA.user.name }}</p>
+    <p><strong>To:</strong> {{ invitation.playerB.user.name }}</p>
+    <p><strong>Sport:</strong> {{ invitation.sport.spTitreFr }}</p>
     <p><strong>Status:</strong> {{ invitation.status }}</p>
     <p><strong>Invitation Date:</strong> {{ invitation.invitationDate | date }}</p>
     <p><strong>Expiry Date:</strong> {{ invitation.expiryDate | date }}</p>

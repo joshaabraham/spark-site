@@ -1,0 +1,142 @@
+<div class="publicite-form">
+  <h2>{{ publicite ? 'Mettre à jour la Publicité' : 'Créer une Publicité' }}</h2>
+  <form [formGroup]="publiciteForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="campagneId">ID de la Campagne</label>
+      <input id="campagneId" formControlName="campagneId" type="number" />
+    </div>
+    <div>
+      <label for="titre">Titre</label>
+      <input id="titre" formControlName="titre" type="text" />
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+    <div>
+      <label for="format">Format</label>
+      <select id="format" formControlName="format">
+        <option value="image">Image</option>
+        <option value="video">Vidéo</option>
+        <option value="texte">Texte</option>
+        <option value="carrousel">Carrousel</option>
+      </select>
+    </div>
+    <div>
+      <label for="urlCible">URL Cible</label>
+      <input id="urlCible" formControlName="urlCible" type="text" />
+    </div>
+    <div>
+      <label for="image">Image</label>
+      <input id="image" formControlName="image" type="text" />
+    </div>
+    <div>
+      <label for="video">Vidéo</label>
+      <input id="video" formControlName="video" type="text" />
+    </div>
+    <div>
+      <label for="texteAffiche">Texte Affiché</label>
+      <input id="texteAffiche" formControlName="texteAffiche" type="text" />
+    </div>
+    <div>
+      <label for="ordreAffichage">Ordre d'Affichage</label>
+      <input id="ordreAffichage" formControlName="ordreAffichage" type="number" />
+    </div>
+    <div>
+      <label for="plateforme">Plateforme</label>
+      <select id="plateforme" formControlName="plateforme">
+        <option value="mobile">Mobile</option>
+        <option value="web">Web</option>
+        <option value="both">Les deux</option>
+      </select>
+    </div>
+    <div>
+      <label for="active">Active</label>
+      <input id="active" formControlName="active" type="checkbox" />
+    </div>
+    <div>
+      <label for="dureeAffichage">Durée d'Affichage</label>
+      <input id="dureeAffichage" formControlName="dureeAffichage" type="number" />
+    </div>
+    <div>
+      <label for="clics">Clics</label>
+      <input id="clics" formControlName="clics" type="number" />
+    </div>
+    <div>
+      <label for="impressions">Impressions</label>
+      <input id="impressions" formControlName="impressions" type="number" />
+    </div>
+    <div>
+      <label for="tauxConversion">Taux de Conversion</label>
+      <input id="tauxConversion" formControlName="tauxConversion" type="number" />
+    </div>
+    <div>
+      <label for="localisationCible">Localisation Cible</label>
+      <input id="localisationCible" formControlName="localisationCible" type="text" />
+    </div>
+    <div>
+      <label for="ageCibleMin">Âge Cible Minimum</label>
+      <input id="ageCibleMin" formControlName="ageCibleMin" type="number" />
+    </div>
+    <div>
+      <label for="ageCibleMax">Âge Cible Maximum</label>
+      <input id="ageCibleMax" formControlName="ageCibleMax" type="number" />
+    </div>
+    <div>
+      <label for="genreCible">Genre Cible</label>
+      <select id="genreCible" formControlName="genreCible">
+        <option value="homme">Homme</option>
+        <option value="femme">Femme</option>
+        <option value="tous">Tous</option>
+      </select>
+    </div>
+    <div>
+      <label for="langueCible">Langue Cible</label>
+      <input id="langueCible" formControlName="langueCible" type="text" />
+    </div>
+    <div>
+      <label for="budgetAlloue">Budget Alloué</label>
+      <input id="budgetAlloue" formControlName="budgetAlloue" type="number" />
+    </div>
+    <div>
+      <label for="frequenceAffichage">Fréquence d'Affichage</label>
+      <input id="frequenceAffichage" formControlName="frequenceAffichage" type="number" />
+    </div>
+    <div>
+      <label for="typeFacturation">Type de Facturation</label>
+      <select id="typeFacturation" formControlName="typeFacturation">
+        <option value="CPC">CPC</option>
+        <option value="CPM">CPM</option>
+      </select>
+    </div>
+    <div>
+      <label for="scorePertinence">Score de Pertinence</label>
+      <input id="scorePertinence" formControlName="scorePertinence" type="number" />
+    </div>
+    <div>
+      <label for="formatDimension">Dimensions du Format</label>
+      <input id="formatDimension" formControlName="formatDimension" type="text" />
+    </div>
+    <div>
+      <label for="animation">Animation</label>
+      <input id="animation" formControlName="animation" type="checkbox" />
+    </div>
+    <div>
+      <label for="callToAction">Call to Action</label>
+      <input id="callToAction" formControlName="callToAction" type="text" />
+    </div>
+    <div>
+      <label for="categorie">Catégorie</label>
+      <input id="categorie" formControlName="categorie" type="text" />
+    </div>
+    <div>
+      <label for="scoreQualite">Score de Qualité</label>
+      <input id="scoreQualite" formControlName="scoreQualite" type="number" />
+    </div>
+    <div>
+      <label for="engagementUtilisateur">Engagement Utilisateur</label>
+      <input id="engagementUtilisateur" formControlName="engagementUtilisateur" type="number" />
+    </div>
+    <button type="submit">{{ publicite ? 'Mettre à jour' : 'Créer' }}</button>
+  </form>
+</div>

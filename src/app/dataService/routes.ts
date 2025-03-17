@@ -1,9 +1,15 @@
 export const apiRoutes = {
-    abonnementApp: {
-      subscriptionCreateList: '/Subscriptions/subscriptionCreateList/',
-      subscriptionDetail: (pk: number): string => `/Subscriptions/subscription/${pk}/`,
-      paymentCreateList: '/Subscriptions/paymentCreateList/',
-      paymentDetail: (pk: number): string => `/Subscriptions/payment/${pk}/`,
+  subscriptions: {
+      listCreate: '/subscriptions/',
+      detail: (id: number): string => `/subscriptions/${id}/`
+    },
+    payments: {
+      listCreate: '/payments/',
+      detail: (id: number): string => `/payments/${id}/`,
+      createPayment: '/create-payment/',
+      createPayout: '/create-payout/',
+      createTransfer: '/create-transfer/',
+      processAutomaticPayments: '/process-automatic-payments/',
     },
     academyApp: {
       schoolCreateList: 'Schools/schoolCreateList/',
@@ -44,7 +50,7 @@ export const apiRoutes = {
     },
     contactApp: {
       contactCreateList: 'contact_app/contactCreateList/',
-      contactDetail: (pk: number): string => `contact_app/contact/${pk}/`,
+      contactDetail: (id: number): string => `contact_app/contact/${id}/`,
     },
     ecommerce: {
       categoriesCreateList: 'market/categoriesCreateList/',
@@ -62,10 +68,18 @@ export const apiRoutes = {
       jobOfferDetail: (pk: number): string => `employment_app/job_offer/${pk}/`,
       jobSearchesCreateList: 'employment_app/job_searchesCreateList/',
       jobSearchDetail: (pk: number): string => `employment_app/job_search/${pk}/`,
+      jobOpportunitiesListCreate: 'job-opportunities/',
+      jobOpportunitiesDetail: (id: number): string => `job-opportunities/${id}/`,
+      requiredSkillsListCreate: 'required-skills/',
+      requiredSkillsDetail: (id: number): string => `required-skills/${id}/`,
+      requiredLanguagesListCreate: 'required-languages/',
+      requiredLanguagesDetail: (id: number): string => `required-languages/${id}/`,
+      jobApplicationsListCreate: 'job-applications/',
+      jobApplicationsDetail: (id: number): string => `job-applications/${id}/`,
     },
     equipeApp: {
-        teamsCreateList: 'team_app/teamsCreateList/',
-        teamDetail: (id: string): string => `team_app/team/${id}/`,
+        teamsCreateList:  'team_app/teams/',
+        teamDetail: (id: string): string => `team_app/teams/${id}/`,
         teamsBySport: (sportId: string): string => `team_app/teamsBySport/${sportId}/`,
         teamsBySponsorship: (sponsorshipId: string): string => `team_app/teamsBySponsorship/${sponsorshipId}/`,
         teamsByFinancialRecord: (financialRecordId: string): string => `team_app/teamsByFinancialRecord/${financialRecordId}/`,
@@ -73,8 +87,12 @@ export const apiRoutes = {
         teamsByMatch: (matchId: string): string => `team_app/teamsByMatch/${matchId}/`
     },
     invitationApp: {
-        invitationCreateList: 'invitationCreate/',
-        invitationDetail: (pk: number): string => `invitation/${pk}/`,
+        proposedDatesCreateList: 'invitation_app/proposed-dates/',
+        proposedDateDetail: (pk: number): string => `invitation_app/proposed-dates/${pk}/`,
+        invitationCreateList: 'invitation_app/invitation/',
+        invitationDetail: (pk: number): string => `invitation_app/invitation/${pk}/`,
+        invitationNotesCreateList: 'invitation_app/invitation-notes/',
+        invitationNoteDetail: (pk: number): string => `invitation_app/invitation-notes/${pk}/`,
     },
     localisationApp: {
       addressesCreateList: 'localisation_app/addresses/',

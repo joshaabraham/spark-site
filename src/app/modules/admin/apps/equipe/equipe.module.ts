@@ -13,12 +13,14 @@ import { EquipeComponent } from './equipe.component';
 import { EquipeListComponent } from './list/list.component';
 import { EquipeDetailsComponent } from './details/details.component';
 import { equipeRoutes } from './equipe.routing';
+import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
     declarations: [
         EquipeComponent,
         EquipeListComponent,
-        EquipeDetailsComponent
+        EquipeDetailsComponent,
+        FormsComponent
     ],
     imports: [
         CommonModule,

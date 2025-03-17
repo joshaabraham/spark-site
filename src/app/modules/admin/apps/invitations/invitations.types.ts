@@ -1,5 +1,6 @@
 import { Address } from 'app/core/models/address.model';
-import { Player, Sport } from '../player/player.types';
+import { Player } from '../player/player.types';
+import { Sport } from '../sports/sports.types';
 
 export interface ProposedDate {
     id?: number;

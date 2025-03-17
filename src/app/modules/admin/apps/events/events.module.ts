@@ -28,7 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 @NgModule({
     declarations: [
         EventsListComponent, EventsDetailsComponent, EventsComponent,
-        EventCreateFormComponent
+        EventCreateFormComponent,
     ],
     imports: [
         CommonModule,
