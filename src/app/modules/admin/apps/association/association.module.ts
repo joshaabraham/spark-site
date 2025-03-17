@@ -16,12 +16,14 @@ import { AssociationComponent } from './association.component';
 import { AssociationDetailsComponent } from './details/details.component';
 import { AssociationListComponent } from './list/list.component';
 import { associationRoutes } from './association.routing';
+import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
     declarations: [
         AssociationComponent,
         AssociationDetailsComponent,
-        AssociationListComponent
+        AssociationListComponent,
+        FormsComponent
     ],
     imports     : [
         RouterModule.forChild(associationRoutes),

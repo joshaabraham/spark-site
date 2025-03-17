@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CouponBilletComponent } from './coupon-billet.component';
+import { CdkScrollableModule } from '@angular/cdk/scrolling';
 
 
 
 @NgModule({
   declarations: [CouponBilletComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    CdkScrollableModule,
   ],exports: [
     CouponBilletComponent
   ]

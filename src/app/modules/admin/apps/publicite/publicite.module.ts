@@ -26,12 +26,22 @@ import { PubliciteListComponent } from './listes/publicite/list.component';
 import { PubliciteDetailsComponent } from './details/publicite/details.component';
 import { CampagneDetailsComponent } from './details/campagne/details.component';
 import { CampagneListComponent } from './listes/campagne/list.component';
+import { PubliciteFormComponent } from './forms/publicite/form.component';
+import { CampagneFormComponent } from './forms/campagne/form.component';
+import { PubliciteBoardModule } from './boards/publicite-board.module';
 
 @NgModule({
     declarations: [
 
-        PubliciteComponent, PubliciteListComponent, PubliciteComponent , PubliciteDetailsComponent, PubliciteListComponent,
-        CampagneDetailsComponent, CampagneListComponent
+        PubliciteComponent,
+        PubliciteListComponent,
+        PubliciteComponent,
+        PubliciteFormComponent,
+        PubliciteDetailsComponent,
+        PubliciteListComponent,
+        CampagneDetailsComponent,
+        CampagneListComponent,
+        CampagneFormComponent
     ],
     imports: [
         CommonModule,
@@ -54,7 +64,21 @@ import { CampagneListComponent } from './listes/campagne/list.component';
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        FuseCardModule
-    ]
+        FuseCardModule,
+        PubliciteBoardModule
+    ],
+    exports: [
+
+        PubliciteComponent,
+        PubliciteListComponent,
+        PubliciteComponent,
+        PubliciteFormComponent,
+        PubliciteDetailsComponent,
+        PubliciteListComponent,
+        CampagneDetailsComponent,
+        CampagneListComponent,
+        CampagneFormComponent
+    ],
+
 })
 export class PubliciteModule { }

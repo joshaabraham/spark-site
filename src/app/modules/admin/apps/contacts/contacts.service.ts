@@ -5,12 +5,14 @@ import { map, switchMap, take, tap, filter } from 'rxjs/operators';
 import { Contact } from 'app/modules/admin/apps/contacts/contacts.types';
 import { apiRoutes } from 'app/dataService/routes';
 import { Country, Tag } from 'app/core/models/userprofile.model';
+import { environment } from 'environments/environment';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ContactsService {
+    private apiUrl = environment.apiURL;
     private _contacts: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>([]);
     private _contact: BehaviorSubject<Contact | null> = new BehaviorSubject<Contact | null>(null);
     private _countries: BehaviorSubject<Country[] | null> = new BehaviorSubject(null);
@@ -63,7 +65,7 @@ export class ContactsService {
      * Get contacts
      */
     getContacts(): Observable<Contact[]> {
-        return this._httpClient.get<Contact[]>(apiRoutes.contactApp.contactCreateList).pipe(
+        return this._httpClient.get<Contact[]>(`${this.apiUrl}${apiRoutes.contactApp.contactCreateList}`).pipe(
             tap((contacts) => {
                 this._contacts.next(contacts);
             })

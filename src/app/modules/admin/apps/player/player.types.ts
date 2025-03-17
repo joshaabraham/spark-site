@@ -1,3 +1,6 @@
+import { User } from "app/core/user/user.types";
+import { Sport } from "../sports/sports.types";
+
 export interface Player {
     id: string;
     user: User;
@@ -18,17 +21,17 @@ export interface Player {
     niveau: string;
 }
 
-export interface User {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-}
+// export interface User {
+//     id: string;
+//     firstName: string;
+//     lastName: string;
+//     email: string;
+// }
 
-export interface Sport {
-    id: string;
-    name: string;
-}
+// export interface Sport {
+//     id: string;
+//     name: string;
+// }
 
 export interface Team {
     id: string;

@@ -2,7 +2,7 @@
 import { FuseNavigationItem } from '@fuse/components/navigation';
 
 export const defaultNavigation: FuseNavigationItem[] = [
-    /*{
+    {
         id      : 'dashboards',
         title   : 'Dashboards',
         subtitle: 'Unique dashboard designs',
@@ -39,7 +39,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
             }
         ]
     },
-    */
+    
 
     
     {
@@ -118,11 +118,11 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     ]
             },
             {
-                id   : 'apps.publicite',
+                id   : 'apps.publicites',
                 title: 'Publicite',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',
-                link : 'ui/page-layouts/carded/right-sidebar-2/content-scroll'
+                link : '/apps/publicites'
             },
             {
                 id   : 'pages.sports',
@@ -161,7 +161,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
             },
             {
                 id   : 'pages.equipe',
-                title: 'Equipe',
+                title: 'Equipes',
                 type : 'basic',
                 icon : 'heroicons_outline:cube-transparent',
                 link : '/apps/equipes'
@@ -958,6 +958,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
     //         }
     //     ]
     // },
+ /*  
     {
         id      : 'user-interface',
         title   : 'User Interface',
@@ -1258,6 +1259,10 @@ export const defaultNavigation: FuseNavigationItem[] = [
             }
         ]
     },
+
+
+
+    */
 //     {
 //         id  : 'divider-2',
 //         type: 'divider'
