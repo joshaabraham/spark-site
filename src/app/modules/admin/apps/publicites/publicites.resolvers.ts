@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PubliciteService } from './publicite.service';
-import { CampagnePublicitaire, Publicite } from './publicite.types';
+import { PubliciteService } from './publicites.service';
+import { CampagnePublicitaire, Publicite } from './publicites.types';
 
 @Injectable({
     providedIn: 'root'

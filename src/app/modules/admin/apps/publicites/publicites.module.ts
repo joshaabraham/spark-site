@@ -15,37 +15,25 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
-import { PubliciteComponent } from './publicite.component';
-import { publiciteRoutes } from './publicite.routing';
+import { PublicitesComponent } from './publicites.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { PubliciteListComponent } from './listes/publicite/list.component';
-import { PubliciteDetailsComponent } from './details/publicite/details.component';
-import { CampagneDetailsComponent } from './details/campagne/details.component';
-import { CampagneListComponent } from './listes/campagne/list.component';
-import { PubliciteFormComponent } from './forms/publicite/form.component';
-import { CampagneFormComponent } from './forms/campagne/form.component';
-import { PubliciteBoardModule } from './boards/publicite-board.module';
+import { publicitesRoutes } from './publicites.routing';
+
+
+
+
 
 @NgModule({
     declarations: [
-
-        PubliciteComponent,
-        PubliciteListComponent,
-        PubliciteComponent,
-        PubliciteFormComponent,
-        PubliciteDetailsComponent,
-        PubliciteListComponent,
-        CampagneDetailsComponent,
-        CampagneListComponent,
-        CampagneFormComponent
+        PublicitesComponent,
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild(publiciteRoutes),
+        RouterModule.forChild(publicitesRoutes),
         ReactiveFormsModule,
         MatButtonModule,
         MatIconModule,
@@ -65,20 +53,10 @@ import { PubliciteBoardModule } from './boards/publicite-board.module';
         MatPaginatorModule,
         MatSortModule,
         FuseCardModule,
-        PubliciteBoardModule
     ],
     exports: [
-
-        PubliciteComponent,
-        PubliciteListComponent,
-        PubliciteComponent,
-        PubliciteFormComponent,
-        PubliciteDetailsComponent,
-        PubliciteListComponent,
-        CampagneDetailsComponent,
-        CampagneListComponent,
-        CampagneFormComponent
+        PublicitesComponent,
     ],
 
 })
-export class PubliciteModule { }
+export class PublicitesModule { }

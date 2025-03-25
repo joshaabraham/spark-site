@@ -118,8 +118,8 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     ]
             },
             {
-                id   : 'apps.publicites',
-                title: 'Publicite',
+                id   : 'apps.publicite',
+                title: 'Mes Publicites',
                 type : 'basic',
                 icon : 'heroicons_outline:menu-alt-2',
                 link : '/apps/publicites'
@@ -958,7 +958,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
     //         }
     //     ]
     // },
- /*  
+  
     {
         id      : 'user-interface',
         title   : 'User Interface',
@@ -1262,7 +1262,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
 
 
 
-    */
+    
 //     {
 //         id  : 'divider-2',
 //         type: 'divider'

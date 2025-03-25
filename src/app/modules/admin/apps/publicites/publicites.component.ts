@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-    selector       : 'publicite',
-    templateUrl    : './publicite.component.html',
+    selector       : 'publicites',
+    templateUrl    : './publicites.component.html',
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PubliciteComponent
+export class PublicitesComponent
 {
     /**
      * Constructor

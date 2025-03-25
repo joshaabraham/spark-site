@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { apiRoutes } from '../../../../dataService/routes';
-import { CampagnePublicitaire, Publicite } from './publicite.types';
+import { CampagnePublicitaire, Publicite } from './publicites.types';
 
 @Injectable({
     providedIn: 'root'

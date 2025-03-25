@@ -16,7 +16,8 @@ import { AuthInterceptor } from './core/auth/auth.interceptor';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
-    scrollPositionRestoration: 'enabled'
+    scrollPositionRestoration: 'enabled',
+    enableTracing            : true
 };
 
 @NgModule({
