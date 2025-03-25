@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { PubliciteService } from '../../publicite.service';
-import { CampagnePublicitaire } from '../../publicite.types';
+import { PubliciteService } from '../../publicites.service';
+import { CampagnePublicitaire } from '../../publicites.types';
 
 @Component({
     selector: 'app-campagne-list',
@@ -43,11 +43,11 @@ export class CampagneListComponent implements OnInit {
     }
 
     createCampagne(): void {
-        this.router.navigate(['/campagnes/create']);
+        this.router.navigate(['/campagne/create']);
     }
 
     editCampagne(campagne: CampagnePublicitaire): void {
-        this.router.navigate(['/campagnes', campagne.id]);
+        this.router.navigate(['/campagne', campagne.id]);
     }
 
     deleteCampagne(campagne: CampagnePublicitaire): void {

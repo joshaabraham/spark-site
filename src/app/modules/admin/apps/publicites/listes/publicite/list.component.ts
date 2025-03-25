@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { PubliciteService } from '../../publicite.service';
-import { Publicite } from '../../publicite.types';
+import { PubliciteService } from '../../publicites.service';
+import { Publicite } from '../../publicites.types';
 
 @Component({
     selector: 'app-publicite-list',

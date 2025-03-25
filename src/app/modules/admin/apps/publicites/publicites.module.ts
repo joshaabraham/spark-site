@@ -22,6 +22,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { publicitesRoutes } from './publicites.routing';
+import { PubliciteDetailsComponent } from './details/publicite/details.component';
+import { PubliciteFormComponent } from './forms/publicite/form.component';
+import { PubliciteListComponent } from './listes/publicite/list.component';
+import { CampagneDetailsComponent } from './details/campagne/details.component';
+import { CampagneFormComponent } from './forms/campagne/form.component';
+import { CampagneListComponent } from './listes/campagne/list.component';
 
 
 
@@ -30,6 +36,13 @@ import { publicitesRoutes } from './publicites.routing';
 @NgModule({
     declarations: [
         PublicitesComponent,
+
+        PubliciteDetailsComponent,
+        PubliciteFormComponent,
+        PubliciteListComponent,
+        CampagneDetailsComponent,
+        CampagneFormComponent,
+        CampagneListComponent,
     ],
     imports: [
         CommonModule,
@@ -56,6 +69,13 @@ import { publicitesRoutes } from './publicites.routing';
     ],
     exports: [
         PublicitesComponent,
+
+        PubliciteDetailsComponent,
+        PubliciteFormComponent,
+        PubliciteListComponent,
+        CampagneDetailsComponent,
+        CampagneFormComponent,
+        CampagneListComponent,
     ],
 
 })

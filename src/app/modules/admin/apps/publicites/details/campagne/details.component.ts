@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PubliciteService } from '../../publicite.service';
-import { CampagnePublicitaire } from '../../publicite.types';
+import { PubliciteService } from '../../publicites.service';
+import { CampagnePublicitaire } from '../../publicites.types';
 
 @Component({
     selector: 'app-campagne-details',

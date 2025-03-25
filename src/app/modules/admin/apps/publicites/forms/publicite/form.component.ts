@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PubliciteService } from '../../publicite.service';
-import { Publicite } from '../../publicite.types';
+import { PubliciteService } from '../../publicites.service';
+import { Publicite } from '../../publicites.types';
 
 @Component({
   selector: 'app-publicite-form',
