@@ -5,22 +5,23 @@ import { AcademyCourseResolver, AcademyCoursesResolver, AcademySectionsResolver,
 import { CourseDetailsComponent } from './details/couse/details.component';
 import { SectionDetailsComponent } from './details/section/details.component';
 import { ChapterDetailsComponent } from './details/chapter/details.component';
+import { CourseListComponent } from './list/course/list.component';
 
 export const academyRoutes: Route[] = [
     {
         path     : '',
-        component: AcademyListComponent,
-        resolve  : {
-            schools: AcademyCoursesResolver
-        },
+        component: CourseListComponent,
+        // resolve  : {
+        //     schools: AcademyCoursesResolver
+        // },
         children : [
             {
-                path     : '',
+                path     : 'courses',
                 pathMatch: 'full',
-                component: AcademyListComponent,
-                resolve  : {
-                    courses: AcademyCoursesResolver
-                }
+                component: CourseListComponent,
+                // resolve  : {
+                //     courses: AcademyCoursesResolver
+                // }
             },
             {
                 path     : 'courses/:courseId',
