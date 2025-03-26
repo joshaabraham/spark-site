@@ -1,14 +1,30 @@
-<div class="filters-container">
-    <mat-form-field appearance="fill" class="filter-full-width">
-        <mat-label>Filter Sports</mat-label>
-        <input type="text" matInput [formControl]="filterControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let sport of filteredSports$ | async" [value]="sport.spTitreFr">
-                {{ sport.spTitreFr }}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-</div>
+
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div class="flex flex-row items-center justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+            Liste des Sports
+        </h2>
+
+        <div class="filters-container">
+            <mat-form-field appearance="fill" class="filter-full-width">
+                <mat-label>Cherche un sport</mat-label>
+                <input type="text" matInput [formControl]="filterControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let sport of filteredSports$ | async" [value]="sport.spTitreFr">
+                        {{ sport.spTitreFr }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+
+    </div>
+
+            <!-- Main -->
+            <div class="flex-auto p-6 sm:p-10">
+
+                <div class="max-w-3xl">
 
 <!-- Sports List -->
 <div class="sports-list mt-8">
@@ -23,20 +39,31 @@
                     <p>Updated: {{ sport.dateMiseAJour | date }}</p>
                 </div>
             </div>
-            <a
-                class="px-6 mt-8"
-                mat-flat-button
-                [color]="'primary'"
-                (click)="addSportToSelection(sport)">
-                Add to Selection
-            </a>
-            <a
-                class="px-6 mt-8"
-                mat-flat-button
-                [color]="'warn'"
-                (click)="removeSportFromSelection(sport)">
-                Remove from Selection
-            </a>
+            <div class="sport-actions flex justify-end p-4">
+            <button
+            mat-flat-button
+            color="warn"
+            (click)="removeSportFromSelection(sport)">
+            <mat-icon>close</mat-icon>
+            <!-- Remove from Selection -->
+            </button>
+            <button
+            mat-flat-button
+            color="primary"
+            (click)="addSportToSelection(sport)">
+            <mat-icon>check</mat-icon>
+            <!-- Add to Selection -->
+            </button>
+           
+            </div>
         </fuse-card>
     </div>
 </div>
+
+                </div>
+            </div>
+    
+
+</div>
+
+

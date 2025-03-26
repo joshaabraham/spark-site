@@ -28,6 +28,7 @@ import { PubliciteListComponent } from './listes/publicite/list.component';
 import { CampagneDetailsComponent } from './details/campagne/details.component';
 import { CampagneFormComponent } from './forms/campagne/form.component';
 import { CampagneListComponent } from './listes/campagne/list.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 
@@ -66,6 +67,7 @@ import { CampagneListComponent } from './listes/campagne/list.component';
         MatPaginatorModule,
         MatSortModule,
         FuseCardModule,
+        MatStepperModule,
     ],
     exports: [
         PublicitesComponent,

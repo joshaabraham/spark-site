@@ -43,11 +43,11 @@ export const publicitesRoutes: Route[] = [
                 // }
             },
             {
-                path: 'campagne/Create',
+                path: 'createCampagne',
                 component: CampagneFormComponent
             },
             {
-                path: 'publicite/Create',
+                path: 'createPublicite',
                 component: PubliciteFormComponent
             }
         ]

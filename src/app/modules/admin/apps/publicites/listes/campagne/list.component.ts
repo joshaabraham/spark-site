@@ -43,7 +43,7 @@ export class CampagneListComponent implements OnInit {
     }
 
     createCampagne(): void {
-        this.router.navigate(['/campagne/create']);
+        this.router.navigate(['apps/publicites/createCampagne']);
     }
 
     editCampagne(campagne: CampagnePublicitaire): void {

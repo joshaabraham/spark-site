@@ -1,101 +1,172 @@
-<div class="campagne-form">
-  <h2>{{ campagne ? 'Mettre à jour la Campagne' : 'Créer une Campagne' }}</h2>
-  <form [formGroup]="campagneForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="nomCampagne">Nom de la Campagne</label>
-      <input id="nomCampagne" formControlName="nomCampagne" type="text" />
+<div class="flex flex-col flex-auto min-w-0">
+  <!-- Header -->
+  <div class="flex flex-row items-center justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+      <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+          Création d'une Campagne publicitaire
+      </h2>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-auto p-6 sm:p-10">
+    <div class="max-w-3xl">
+      <div class="campagne-form">
+        <mat-vertical-stepper [linear]="true" #stepper>
+          <!-- Étape 1 : Informations générales -->
+          <mat-step [stepControl]="campagneForm.get('nomCampagne')">
+            <form [formGroup]="campagneForm">
+              <ng-template matStepLabel>Informations générales</ng-template>
+              <div class="flex flex-col gap-4">
+                <mat-form-field class="w-full">
+                  <mat-label>Nom de la Campagne</mat-label>
+                  <input matInput id="nomCampagne" formControlName="nomCampagne" type="text" placeholder="Entrez le nom de la campagne">
+                  <mat-icon matSuffix>campaign</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Type d'Achat</mat-label>
+                  <input matInput id="typeAchat" formControlName="typeAchat" type="text" placeholder="Entrez le type d'achat">
+                  <mat-icon matSuffix>shopping_cart</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Objectif</mat-label>
+                  <input matInput id="objectif" formControlName="objectif" type="text" placeholder="Entrez l'objectif">
+                  <mat-icon matSuffix>flag</mat-icon>
+                </mat-form-field>
+              </div>
+              <button mat-button matStepperNext>Suivant</button>
+            </form>
+          </mat-step>
+
+          <!-- Étape 2 : Budget -->
+          <mat-step [stepControl]="campagneForm.get('budgetCampagne')">
+            <form [formGroup]="campagneForm.get('budgetCampagne')">
+              <ng-template matStepLabel>Budget</ng-template>
+              <div class="flex flex-col gap-4">
+                <mat-form-field class="w-full">
+                  <mat-label>Type de Budget</mat-label>
+                  <mat-select id="typeBudget" formControlName="typeBudget">
+                    <mat-option value="quotidien">Quotidien</mat-option>
+                    <mat-option value="global">Global</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Montant</mat-label>
+                  <input matInput id="montant" formControlName="montant" type="number" placeholder="Entrez le montant">
+                  <mat-icon matSuffix>euro</mat-icon>
+                </mat-form-field>
+              </div>
+              <button mat-button matStepperPrevious>Précédent</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </form>
+          </mat-step>
+
+          <!-- Étape 3 : Page Facebook -->
+          <mat-step [stepControl]="campagneForm.get('pageFacebook')">
+            <form [formGroup]="campagneForm.get('pageFacebook')">
+              <ng-template matStepLabel>Page Facebook</ng-template>
+              <div class="flex flex-col gap-4">
+                <mat-form-field class="w-full">
+                  <mat-label>Nom de la Page Facebook</mat-label>
+                  <input matInput id="nom" formControlName="nom" type="text" placeholder="Entrez le nom de la page">
+                  <mat-icon matSuffix>facebook</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Lien de la Page Facebook</mat-label>
+                  <input matInput id="lien" formControlName="lien" type="text" placeholder="Entrez le lien de la page">
+                  <mat-icon matSuffix>link</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Logo de la Page Facebook</mat-label>
+                  <input matInput id="logo" formControlName="logo" type="text" placeholder="Entrez le lien du logo">
+                  <mat-icon matSuffix>image</mat-icon>
+                </mat-form-field>
+              </div>
+              <button mat-button matStepperPrevious>Précédent</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </form>
+          </mat-step>
+
+          <!-- Étape 4 : Calendrier -->
+          <mat-step [stepControl]="campagneForm.get('calendrier')">
+            <form [formGroup]="campagneForm.get('calendrier')">
+              <ng-template matStepLabel>Calendrier</ng-template>
+              <div class="flex flex-col gap-4">
+                <mat-form-field class="w-full">
+                  <mat-label>Date de Début</mat-label>
+                  <input matInput id="dateDebut" formControlName="dateDebut" type="date">
+                  <mat-icon matSuffix>event</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Heure de Début</mat-label>
+                  <input matInput id="heureDebut" formControlName="heureDebut" type="time">
+                  <mat-icon matSuffix>schedule</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Date de Fin</mat-label>
+                  <input matInput id="dateFin" formControlName="dateFin" type="date">
+                  <mat-icon matSuffix>event</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Heure de Fin</mat-label>
+                  <input matInput id="heureFin" formControlName="heureFin" type="time">
+                  <mat-icon matSuffix>schedule</mat-icon>
+                </mat-form-field>
+              </div>
+              <button mat-button matStepperPrevious>Précédent</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </form>
+          </mat-step>
+
+          <!-- Étape 5 : Contrôle Audience -->
+          <mat-step [stepControl]="campagneForm.get('controleAudience')">
+            <form [formGroup]="campagneForm.get('controleAudience')">
+              <ng-template matStepLabel>Contrôle Audience</ng-template>
+              <div>
+                <label for="lieu">Lieu</label>
+                <input id="lieu" formControlName="lieu" type="text" />
+              </div>
+              <div>
+                <label for="ageMinimum">Âge Minimum</label>
+                <input id="ageMinimum" formControlName="ageMinimum" type="number" />
+              </div>
+              <div>
+                <label for="langues">Langues</label>
+                <input id="langues" formControlName="langues" type="text" />
+              </div>
+              <div>
+                <label for="centreInteret">Centre d'Intérêt</label>
+                <input id="centreInteret" formControlName="centreInteret" type="text" />
+              </div>
+              <div>
+                <label for="genre">Genre</label>
+                <select id="genre" formControlName="genre">
+                  <option value="homme">Homme</option>
+                  <option value="femme">Femme</option>
+                  <option value="tous">Tous</option>
+                </select>
+              </div>
+              <button mat-button matStepperPrevious>Précédent</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </form>
+          </mat-step>
+
+          <!-- Étape finale : Soumission -->
+          <mat-step>
+            <ng-template matStepLabel>Finaliser</ng-template>
+            <p>Vérifiez les informations avant de soumettre.</p>
+            <button mat-button matStepperPrevious>Précédent</button>
+            <button mat-button (click)="onSubmit()">Soumettre</button>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
     </div>
-    <div>
-      <label for="typeAchat">Type d'Achat</label>
-      <input id="typeAchat" formControlName="typeAchat" type="text" />
-    </div>
-    <div>
-      <label for="objectif">Objectif</label>
-      <input id="objectif" formControlName="objectif" type="text" />
-    </div>
-    <div>
-      <label for="categoriesSpecialesAEcarter">Catégories Spéciales à Écarter</label>
-      <input id="categoriesSpecialesAEcarter" formControlName="categoriesSpecialesAEcarter" type="text" />
-    </div>
-    <div>
-      <label for="limiteDepense">Limite de Dépense</label>
-      <input id="limiteDepense" formControlName="limiteDepense" type="number" />
-    </div>
-    <div formGroupName="budgetCampagne">
-      <label for="typeBudget">Type de Budget</label>
-      <select id="typeBudget" formControlName="typeBudget">
-        <option value="quotidien">Quotidien</option>
-        <option value="global">Global</option>
-      </select>
-      <label for="montant">Montant</label>
-      <input id="montant" formControlName="montant" type="number" />
-    </div>
-    <div formGroupName="pageFacebook">
-      <label for="nom">Nom de la Page Facebook</label>
-      <input id="nom" formControlName="nom" type="text" />
-      <label for="lien">Lien de la Page Facebook</label>
-      <input id="lien" formControlName="lien" type="text" />
-      <label for="logo">Logo de la Page Facebook</label>
-      <input id="logo" formControlName="logo" type="text" />
-    </div>
-    <div formGroupName="calendrier">
-      <label for="dateDebut">Date de Début</label>
-      <input id="dateDebut" formControlName="dateDebut" type="date" />
-      <label for="heureDebut">Heure de Début</label>
-      <input id="heureDebut" formControlName="heureDebut" type="time" />
-      <label for="dateFin">Date de Fin</label>
-      <input id="dateFin" formControlName="dateFin" type="date" />
-      <label for="heureFin">Heure de Fin</label>
-      <input id="heureFin" formControlName="heureFin" type="time" />
-    </div>
-    <div formGroupName="controleAudience">
-      <label for="lieu">Lieu</label>
-      <input id="lieu" formControlName="lieu" type="text" />
-      <label for="ageMinimum">Âge Minimum</label>
-      <input id="ageMinimum" formControlName="ageMinimum" type="number" />
-      <label for="langues">Langues</label>
-      <input id="langues" formControlName="langues" type="text" />
-      <label for="centreInteret">Centre d'Intérêt</label>
-      <input id="centreInteret" formControlName="centreInteret" type="text" />
-      <label for="genre">Genre</label>
-      <select id="genre" formControlName="genre">
-        <option value="homme">Homme</option>
-        <option value="femme">Femme</option>
-        <option value="tous">Tous</option>
-      </select>
-    </div>
-    <div>
-      <label for="placement">Placement</label>
-      <input id="placement" formControlName="placement" type="text" />
-    </div>
-    <div>
-      <label for="listePublicite">Liste des Publicités</label>
-      <input id="listePublicite" formControlName="listePublicite" type="text" />
-    </div>
-    <div>
-      <label for="statutCampagne">Statut de la Campagne</label>
-      <input id="statutCampagne" formControlName="statutCampagne" type="text" />
-    </div>
-    <div>
-      <label for="tauxClics">Taux de Clics</label>
-      <input id="tauxClics" formControlName="tauxClics" type="number" />
-    </div>
-    <div>
-      <label for="nombreImpressions">Nombre d'Impressions</label>
-      <input id="nombreImpressions" formControlName="nombreImpressions" type="number" />
-    </div>
-    <div>
-      <label for="dateCreation">Date de Création</label>
-      <input id="dateCreation" formControlName="dateCreation" type="date" />
-    </div>
-    <div>
-      <label for="utilisateurResponsable">Utilisateur Responsable</label>
-      <input id="utilisateurResponsable" formControlName="utilisateurResponsable" type="text" />
-    </div>
-    <div>
-      <label for="owner">Propriétaire</label>
-      <input id="owner" formControlName="owner" type="text" />
-    </div>
-    <button type="submit">{{ campagne ? 'Mettre à jour' : 'Créer' }}</button>
-  </form>
+  </div>
 </div>

@@ -82,4 +82,9 @@ export class CampagneFormComponent implements OnInit {
       }
     }
   }
+
+  backToCampagnes(): void {
+    this.router.navigate(['apps/publicites/']);
+}
+
 }

@@ -1,74 +1,89 @@
-<!-- <div class="mat-elevation-z8"> -->
-    <div class="header">
-        <h1>Liste des Campagnes</h1>
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div class="flex flex-row items-center justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+            Liste des Campagnes
+        </h2>
         <button mat-fab color="primary" (click)="createCampagne()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
-    <table mat-table [dataSource]="dataSource" class="mat-table" matSort>
 
-        <!-- Nom Campagne Column -->
-        <ng-container matColumnDef="nomCampagne">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom Campagne </th>
-            <td mat-cell *matCellDef="let campagne"> {{campagne.nomCampagne}} </td>
-        </ng-container>
 
-        <!-- View Publicites Column -->
-        <ng-container matColumnDef="viewPublicites">
-            <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let campagne">
-                <button mat-icon-button color="accent" (click)="viewPublicites(campagne)">
-                    <mat-icon>visibility</mat-icon>
-                </button>
-            </td>
-        </ng-container>
+        <!-- Main -->
+        <div class="flex-auto p-6 sm:p-10">
 
-        <!-- Type Achat Column -->
-        <ng-container matColumnDef="typeAchat">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'Achat </th>
-            <td mat-cell *matCellDef="let campagne"> {{campagne.typeAchat}} </td>
-        </ng-container>
+            <div class="max-w-3xl">
 
-        <!-- Objectif Column -->
-        <ng-container matColumnDef="objectif">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Objectif </th>
-            <td mat-cell *matCellDef="let campagne"> {{campagne.objectif}} </td>
-        </ng-container>
+            <table style=" width: 100%;" mat-table [dataSource]="dataSource" class="mat-table" matSort>
 
-        <!-- Budget Column -->
-        <ng-container matColumnDef="budget">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Budget </th>
-            <td mat-cell *matCellDef="let campagne"> {{campagne.budgetCampagne.montant | currency}} ({{campagne.budgetCampagne.typeBudget}}) </td>
-        </ng-container>
+                <!-- Nom Campagne Column -->
+                <ng-container matColumnDef="nomCampagne">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom Campagne </th>
+                    <td mat-cell *matCellDef="let campagne"> {{campagne.nomCampagne}} </td>
+                </ng-container>
 
-        <!-- Date Debut Column -->
-        <ng-container matColumnDef="dateDebut">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Début </th>
-            <td mat-cell *matCellDef="let campagne"> {{campagne.calendrier.dateDebut | date}} </td>
-        </ng-container>
+                <!-- View Publicites Column -->
+                <ng-container matColumnDef="viewPublicites">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let campagne">
+                        <button mat-icon-button color="accent" (click)="viewPublicites(campagne)">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
 
-        <!-- Date Fin Column -->
-        <ng-container matColumnDef="dateFin">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Fin </th>
-            <td mat-cell *matCellDef="let campagne"> {{campagne.calendrier.dateFin | date}} </td>
-        </ng-container>
+                <!-- Type Achat Column -->
+                <ng-container matColumnDef="typeAchat">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'Achat </th>
+                    <td mat-cell *matCellDef="let campagne"> {{campagne.typeAchat}} </td>
+                </ng-container>
 
-        <!-- Actions Column -->
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let campagne">
-                <button mat-icon-button color="primary" (click)="editCampagne(campagne)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button color="warn" (click)="deleteCampagne(campagne)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </ng-container>
+                <!-- Objectif Column -->
+                <ng-container matColumnDef="objectif">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Objectif </th>
+                    <td mat-cell *matCellDef="let campagne"> {{campagne.objectif}} </td>
+                </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+                <!-- Budget Column -->
+                <ng-container matColumnDef="budget">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Budget </th>
+                    <td mat-cell *matCellDef="let campagne"> {{campagne.budgetCampagne.montant | currency}} ({{campagne.budgetCampagne.typeBudget}}) </td>
+                </ng-container>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-<!-- </div> -->
+                <!-- Date Debut Column -->
+                <ng-container matColumnDef="dateDebut">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Début </th>
+                    <td mat-cell *matCellDef="let campagne"> {{campagne.calendrier.dateDebut | date}} </td>
+                </ng-container>
+
+                <!-- Date Fin Column -->
+                <ng-container matColumnDef="dateFin">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de Fin </th>
+                    <td mat-cell *matCellDef="let campagne"> {{campagne.calendrier.dateFin | date}} </td>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> Actions </th>
+                    <td mat-cell *matCellDef="let campagne">
+                        <button mat-icon-button color="primary" (click)="editCampagne(campagne)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteCampagne(campagne)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+            </div>
+
+        </div>  <!-- /Main -->
+
+    </div>
