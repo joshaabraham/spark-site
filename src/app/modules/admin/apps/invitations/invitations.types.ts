@@ -38,21 +38,28 @@ export enum InvitationStatus {
 
 export interface Invitation {
     id?: number;
+
+    sport: Sport;  // Sport pratiqué
     playerA: Player;  // Joueur A (envoyeur)
     playerB: Player;  // Joueur B (destinataire)
-    sport: Sport;  // Sport pratiqué
+
     invitationDate: string;  // Date d'envoi au format ISO
     expiryDate?: string;  // Date d'expiration au format ISO
-    responseDate?: string;  // Date de réponse au format ISO
-    status: InvitationStatus;  // Statut de l'invitation
-    message?: string;  // Message personnalisé
-    proposedLocation?: Address;  // Lieu proposé
-    alternativeLocations?: Address[];  // Lieux alternatifs
+
     proposedDates?: ProposedDate[];  // Dates proposées
     confirmedDate?: string;  // Date confirmée au format ISO
     confirmedLocation?: Address;  // Lieu confirmé
-    hasPlayersMetBefore: boolean;  // Indique si les joueurs se sont rencontrés
+
+    responseDate?: string;  // Date de réponse au format ISO
+
+    status: InvitationStatus;  // Statut de l'invitation
+    message?: string;  // Message personnalisé
+
+    proposedLocation?: Address;  // Lieu proposé
+    alternativeLocations?: Address[];  // Lieux alternatifs
+
     invitationNotes?: InvitationNote[];  // Notes associées à l'invitation
+    hasPlayersMetBefore: boolean;  // Indique si les joueurs se sont rencontrés
 }
 
 export interface InvitationNote {

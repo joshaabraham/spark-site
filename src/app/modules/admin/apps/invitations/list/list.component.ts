@@ -24,6 +24,6 @@ export class InvitationsListComponent implements OnInit {
 
 
     creerUneDisponibilite(): void {
-        this.router.navigate(['apps/publicites/campagne/create']);
+        this.router.navigate(['apps/invitations/createDisponiblite']);
     }
 }

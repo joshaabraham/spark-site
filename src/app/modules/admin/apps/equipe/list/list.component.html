@@ -1,83 +1,54 @@
-<div class="filters">
-    <mat-form-field appearance="fill">
-        <mat-label>Sport</mat-label>
-        <mat-select (selectionChange)="filterBySport($event)">
-            <mat-option *ngFor="let sport of sports$ | async" [value]="sport.id">{{ sport.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Header -->
+    <div class="flex flex-row items-center justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+            Equipes
+        </h2>
+        <div class="filters grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Sport</mat-label>
+                <mat-select (selectionChange)="filterBySport($event)">
+                    <mat-option *ngFor="let sport of sports$ | async" [value]="sport.id">{{ sport.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>City</mat-label>
-        <input matInput (input)="filterByCity($event.target.value)" placeholder="Enter city">
-    </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>City</mat-label>
+                <input matInput (input)="filterByCity($event.target.value)" placeholder="Enter city">
+            </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Championships Won</mat-label>
-        <input matInput type="number" (input)="filterByChampionshipsWon($event.target.value)" placeholder="Enter number of championships">
-    </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Championships Won</mat-label>
+                <input matInput type="number" (input)="filterByChampionshipsWon($event.target.value)" placeholder="Enter number of championships">
+            </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Sponsorship</mat-label>
-        <mat-select (selectionChange)="filterBySponsorship($event)">
-            <mat-option *ngFor="let sponsorship of sponsorships$ | async" [value]="sponsorship.id">{{ sponsorship.sponsorName }}</mat-option>
-        </mat-select>
-    </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Sponsorship</mat-label>
+                <mat-select (selectionChange)="filterBySponsorship($event)">
+                    <mat-option *ngFor="let sponsorship of sponsorships$ | async" [value]="sponsorship.id">{{ sponsorship.sponsorName }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-    <mat-slide-toggle (change)="toggleInactive($event)">Hide Inactive Teams</mat-slide-toggle>
-</div>
+            <mat-slide-toggle (change)="toggleInactive($event)">Hide Inactive Teams</mat-slide-toggle>
+        </div>
+    </div>
 
-<div class="team-list">
-    <div *ngFor="let team of teams$ | async; trackBy: trackByFn" class="team-item">
-        <fuse-card class="flex flex-col items-center max-w-80 w-full p-8 filter-info">
-            <mat-icon
-                class="icon-size-16 text-red-500"
-                [svgIcon]="'heroicons_solid:light-bulb'"></mat-icon>
-            <div class="text-2xl font-semibold leading-tight text-center mt-6">{{ team.name }}</div>
-            <div class="text-center text-secondary mt-1 mb-8">{{ team.city }}</div>
-            <div class="text-center text-secondary mt-1 mb-8">{{ team.sport.name }}</div>
-            <div class="text-center text-secondary mt-1 mb-8">Championships Won: {{ team.championshipsWon }}</div>
-            <div class="text-center text-secondary mt-1 mb-8">
-                <a [href]="team.website" target="_blank">{{ team.website }}</a>
-            </div>
-            <a
-                class="px-6 mt-8"
-                mat-flat-button
-                [color]="'primary'"
-                [routerLink]="['./']">
-                View Project
-            </a>
-        </fuse-card>
-
-                    <!-- Card #36 -->
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="max-w-3xl">
+            <div class="team-list">
+                <div *ngFor="let team of teams$ | async; trackBy: trackByFn" class="team-item">
                     <fuse-card class="flex flex-col items-center max-w-80 w-full p-8 filter-info">
                         <mat-icon
                             class="icon-size-16 text-red-500"
                             [svgIcon]="'heroicons_solid:light-bulb'"></mat-icon>
-                        <div class="text-2xl font-semibold leading-tight text-center mt-6">Branding & Product Design</div>
-                        <div class="text-center text-secondary mt-1 mb-8">Brand strategy, purpose, and product positioning</div>
-                        <div class="flex items-center">
-                            <img
-                                class="w-8 h-8 rounded-full text-card ring-2 ring-bg-card"
-                                src="assets/images/avatars/female-02.jpg"
-                                alt="Card cover image">
-                            <img
-                                class="w-8 h-8 rounded-full -ml-2 text-card ring-2 ring-bg-card"
-                                src="assets/images/avatars/female-04.jpg"
-                                alt="Card cover image">
-                            <img
-                                class="w-8 h-8 rounded-full -ml-2 text-card ring-2 ring-bg-card"
-                                src="assets/images/avatars/male-09.jpg"
-                                alt="Card cover image">
-                            <img
-                                class="w-8 h-8 rounded-full -ml-2 text-card ring-2 ring-bg-card"
-                                src="assets/images/avatars/male-07.jpg"
-                                alt="Card cover image">
-                            <img
-                                class="w-8 h-8 rounded-full -ml-2 text-card ring-2 ring-bg-card"
-                                src="assets/images/avatars/female-12.jpg"
-                                alt="Card cover image">
+                        <div class="text-2xl font-semibold leading-tight text-center mt-6">{{ team.name }}</div>
+                        <div class="text-center text-secondary mt-1 mb-8">{{ team.city }}</div>
+                        <div class="text-center text-secondary mt-1 mb-8">{{ team.sport.name }}</div>
+                        <div class="text-center text-secondary mt-1 mb-8">Championships Won: {{ team.championshipsWon }}</div>
+                        <div class="text-center text-secondary mt-1 mb-8">
+                            <a [href]="team.website" target="_blank">{{ team.website }}</a>
                         </div>
-                        <div class="text-sm font-medium text-secondary mt-2">+13 more</div>
                         <a
                             class="px-6 mt-8"
                             mat-flat-button
@@ -86,5 +57,51 @@
                             View Project
                         </a>
                     </fuse-card>
+
+
+      
+                    
+                               <!-- Card #36 
+                               <fuse-card class="flex flex-col items-center max-w-80 w-full p-8 filter-info">
+                                <mat-icon
+                                    class="icon-size-16 text-red-500"
+                                    [svgIcon]="'heroicons_solid:light-bulb'"></mat-icon>
+                                <div class="text-2xl font-semibold leading-tight text-center mt-6">Branding & Product Design</div>
+                                <div class="text-center text-secondary mt-1 mb-8">Brand strategy, purpose, and product positioning</div>
+                                <div class="flex items-center">
+                                    <img
+                                        class="w-8 h-8 rounded-full text-card ring-2 ring-bg-card"
+                                        src="assets/images/avatars/female-02.jpg"
+                                        alt="Card cover image">
+                                    <img
+                                        class="w-8 h-8 rounded-full -ml-2 text-card ring-2 ring-bg-card"
+                                        src="assets/images/avatars/female-04.jpg"
+                                        alt="Card cover image">
+                                    <img
+                                        class="w-8 h-8 rounded-full -ml-2 text-card ring-2 ring-bg-card"
+                                        src="assets/images/avatars/male-09.jpg"
+                                        alt="Card cover image">
+                                    <img
+                                        class="w-8 h-8 rounded-full -ml-2 text-card ring-2 ring-bg-card"
+                                        src="assets/images/avatars/male-07.jpg"
+                                        alt="Card cover image">
+                                    <img
+                                        class="w-8 h-8 rounded-full -ml-2 text-card ring-2 ring-bg-card"
+                                        src="assets/images/avatars/female-12.jpg"
+                                        alt="Card cover image">
+                                </div>
+                                <div class="text-sm font-medium text-secondary mt-2">+13 more</div>
+                                <a
+                                    class="px-6 mt-8"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    [routerLink]="['./']">
+                                    View Project
+                                </a>
+                            </fuse-card>
+                        -->
+                </div>
+            </div>
+        </div>
     </div>
 </div>

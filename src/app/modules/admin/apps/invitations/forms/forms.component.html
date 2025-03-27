@@ -1,1 +1,116 @@
-<p>forms works!</p>
+<div class="flex flex-col flex-auto min-w-0">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+    <div class="flex-1 min-w-0">
+      <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+        Création d'une Invitation
+      </h2>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-auto p-6 sm:p-10">
+    <div class="max-w-3xl">
+      <form
+        class="p-4 bg-card shadow rounded overflow-hidden"
+        [formGroup]="invitationForm">
+        <mat-horizontal-stepper [linear]="true" #stepper>
+          <!-- Étape 1 : Informations générales -->
+          <mat-step [stepControl]="invitationForm.get('generalInfo')">
+            <ng-template matStepLabel>Informations générales</ng-template>
+            <div class="flex flex-col gap-4">
+              <mat-form-field class="w-full">
+                <mat-label>Sport</mat-label>
+                <mat-select formControlName="sport">
+                  <mat-option *ngFor="let sport of sports" [value]="sport">
+                    {{ sport.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>sports</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field class="w-full">
+                <mat-label>Joueur A</mat-label>
+                <mat-select formControlName="playerA">
+                  <mat-option *ngFor="let player of players" [value]="player">
+                    {{ player.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field class="w-full">
+                <mat-label>Joueur B</mat-label>
+                <mat-select formControlName="playerB">
+                  <mat-option *ngFor="let player of players" [value]="player">
+                    {{ player.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="flex justify-end mt-4">
+              <button mat-flat-button color="primary" matStepperNext>Suivant</button>
+            </div>
+          </mat-step>
+
+          <!-- Étape 2 : Dates et lieux -->
+          <mat-step [stepControl]="invitationForm.get('datesAndLocations')">
+            <ng-template matStepLabel>Dates et lieux</ng-template>
+            <div class="flex flex-col gap-4">
+              <mat-form-field class="w-full">
+                <mat-label>Date d'invitation</mat-label>
+                <input matInput formControlName="invitationDate" [matDatepicker]="invitationDatePicker">
+                <mat-datepicker-toggle matSuffix [for]="invitationDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #invitationDatePicker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field class="w-full">
+                <mat-label>Date d'expiration</mat-label>
+                <input matInput formControlName="expiryDate" [matDatepicker]="expiryDatePicker">
+                <mat-datepicker-toggle matSuffix [for]="expiryDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #expiryDatePicker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field class="w-full">
+                <mat-label>Lieu proposé</mat-label>
+                <input matInput formControlName="proposedLocation" placeholder="Entrez le lieu proposé">
+                <mat-icon matSuffix>place</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="flex justify-end mt-4">
+              <button mat-flat-button color="accent" matStepperPrevious>Retour</button>
+              <button mat-flat-button color="primary" matStepperNext>Suivant</button>
+            </div>
+          </mat-step>
+
+          <!-- Étape 3 : Statut et message -->
+          <mat-step [stepControl]="invitationForm.get('statusAndMessage')">
+            <ng-template matStepLabel>Statut et message</ng-template>
+            <div class="flex flex-col gap-4">
+              <mat-form-field class="w-full">
+                <mat-label>Statut</mat-label>
+                <mat-select formControlName="status">
+                  <mat-option *ngFor="let status of invitationStatuses" [value]="status">
+                    {{ status }}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>info</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field class="w-full">
+                <mat-label>Message</mat-label>
+                <textarea matInput formControlName="message" rows="3" placeholder="Entrez un message"></textarea>
+                <mat-icon matSuffix>message</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="flex justify-end mt-4">
+              <button mat-flat-button color="accent" matStepperPrevious>Retour</button>
+              <button mat-flat-button color="primary" type="submit">Créer</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </form>
+    </div>
+  </div>
+</div>

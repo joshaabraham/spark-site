@@ -19,9 +19,11 @@ import { InvitationsListComponent } from 'app/modules/admin/apps/invitations/lis
 import { MatTabsModule } from '@angular/material/tabs';
 import { DemoSidebarModule } from '../../ui/page-layouts/common/demo-sidebar/demo-sidebar.module';
 import { FuseCardModule } from '@fuse/components/card';
-import { FormsComponent } from './forms/forms.component';
+import { FormsDisponbiliteComponent } from './forms/forms.component';
 import { InvitationModule } from '../../ui/invitation/invitation.module';
 import { SportInvitationComponent } from '../../ui/invitation/invitation.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,7 @@ import { SportInvitationComponent } from '../../ui/invitation/invitation.compone
         InvitationDetailsComponent,
         InvitationsListComponent,
        // SportInvitationComponent,
-        FormsComponent,
+       FormsDisponbiliteComponent,
     ],
     imports     : [
         RouterModule.forChild(invitationsRoutes),
@@ -48,14 +50,16 @@ import { SportInvitationComponent } from '../../ui/invitation/invitation.compone
         MatTabsModule,
         DemoSidebarModule,
         MatListModule,
-        InvitationModule
+        InvitationModule,
+        MatStepperModule,
+        MatDatepickerModule,
     ],
     exports     : [
         InvitationsComponent,
         InvitationDetailsComponent,
         InvitationsListComponent,
        // SportInvitationComponent,
-        FormsComponent,
+       FormsDisponbiliteComponent,
     ]
 })
 export class InvitationsModule

@@ -34,7 +34,7 @@ export class SportsListComponent implements OnInit, OnDestroy
     };
 
     sports$: Observable<Sport[]>;
-    filteredSports$: Observable<Sport[]>;
+    filteredSports$: Observable<Sport[]> = this._sportsStateManager.selectedSports$; // Liste des sports filtrés
     filterControl: FormControl = new FormControl();
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -146,6 +146,14 @@ export class SportsListComponent implements OnInit, OnDestroy
         this._sportsStateManager.removeSport(sport);
     }
 
+    /**
+     * Check if sport is selected
+     *
+     * @param sport
+     */
+    isSportSelected(sport: Sport): boolean {
+        return this._sportsStateManager.selectedSports.some(selectedSport => selectedSport.id === sport.id);
+    }
 
     /**
      * Filter sports
