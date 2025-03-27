@@ -5,6 +5,7 @@ export interface UserProfile {
     emails: Emails[];
     avatar?: string;
     background?: string;
+    bio?: string;
     name: string;
     title?: string;
     job?: string;

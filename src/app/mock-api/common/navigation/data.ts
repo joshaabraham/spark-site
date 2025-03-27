@@ -249,11 +249,11 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 }
             },
             {
-                id   : 'pages.profile',
+                id   : 'apps.profile',
                 title: 'Profile',
                 type : 'basic',
                 icon : 'heroicons_outline:user-circle',
-                link : '/pages/profile'
+                link : '/apps/profile'
             },
             {
                 id   : 'pages.settings',

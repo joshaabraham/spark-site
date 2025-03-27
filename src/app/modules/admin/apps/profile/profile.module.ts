@@ -10,11 +10,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FuseCardModule } from '@fuse/components/card';
 import { SharedModule } from 'app/shared/shared.module';
-import { ProfileComponent } from './detail/detail.component';
+import { ProfileDetailComponent } from './detail/detail.component';
 
 @NgModule({
     declarations: [
-        ProfileComponent
+        ProfileDetailComponent
     ],
     imports     : [
         RouterModule.forChild(profileRoutes),
@@ -27,6 +27,9 @@ import { ProfileComponent } from './detail/detail.component';
         MatTooltipModule,
         FuseCardModule,
         SharedModule
+    ],
+    exports     : [
+        ProfileDetailComponent
     ]
 })
 export class ProfileModule

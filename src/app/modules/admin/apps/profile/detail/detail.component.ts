@@ -1,23 +1,27 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UserProfileService } from 'app/mock-api/apps/profileUser/api.service.ts';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector       : 'detail',
-    templateUrl    : './detail.component.html',
-    encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-profile-detail',
+  templateUrl: './detail.component.html',
 })
-export class ProfileComponent implements OnInit
-{
+export class ProfileDetailComponent implements OnInit {
+  isCurrentUser: boolean = false; // Indique si le profil affiché est celui de l'utilisateur connecté
+  isInContacts: boolean = false; // Indique si le profil est déjà dans la liste des contacts
 
-    /**
-     * Constructor
-     */
-    constructor(private _profileService: UserProfileService)
-    {
-    }
-    ngOnInit(): void {
+  constructor() {}
 
-      this._profileService.getUserProfiles().subscribe((users: any) => console.log(users));
-    }
+  ngOnInit(): void {
+    // Exemple de logique pour déterminer si le profil est celui de l'utilisateur connecté
+    // et s'il est déjà dans la liste des contacts
+    const currentUserId: number = 1; // ID de l'utilisateur connecté (exemple)
+    const profileId: number = 2; // ID du profil affiché (exemple)
+
+    this.isCurrentUser = currentUserId === profileId;
+    this.isInContacts = false; // Remplacez par une vérification réelle
+  }
+
+  addToContacts(): void {
+    // Logique pour ajouter le profil à la liste des contacts
+    console.log('Profil ajouté aux contacts');
+  }
 }

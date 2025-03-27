@@ -101,6 +101,7 @@ export const appRoutes: Route[] = [
                 {path: 'equipes', loadChildren: () => import('app/modules/admin/apps/equipe/equipe.module').then(m => m.EquipeModule)},
                 {path: 'players', loadChildren: () => import('app/modules/admin/apps/player/player.module').then(m => m.PlayerModule)},
                 {path: 'publicites', loadChildren: () => import('app/modules/admin/apps/publicites/publicites.module').then(m => m.PublicitesModule)},
+                {path: 'profile', loadChildren: () => import('app/modules/admin/apps/profile/profile.module').then(m => m.ProfileModule)},
                 // il faut que la route et le nom du fichier module soient identitique sinon ca ne marche pas
             ]},
 

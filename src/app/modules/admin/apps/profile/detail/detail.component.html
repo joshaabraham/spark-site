@@ -65,6 +65,15 @@
                     [routerLink]="['./']">
                     Gallery
                 </a>
+                    <!-- Bouton Ajouter -->
+                    <button
+                    *ngIf="!isCurrentUser && !isInContacts"
+                    mat-flat-button
+                    color="primary"
+                    (click)="addToContacts()">
+                    Ajouter
+                    </button>
+                
             </div>
 
         </div>
