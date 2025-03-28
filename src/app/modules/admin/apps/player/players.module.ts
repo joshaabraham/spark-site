@@ -17,9 +17,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FuseCardModule } from '@fuse/components/card';
 import { PlayersListComponent } from './list/list.component';
 
-import { playersRoutes } from './player.routing';
+import { playersRoutes } from './players.routing';
 import { PlayerDetailsComponent } from './detail/details.component';
-import { PlayersComponent } from './player.component';
+import { PlayersComponent } from './players.component';
 import { PlayerFormComponent } from './forms/playerform.component';
 
 @NgModule({

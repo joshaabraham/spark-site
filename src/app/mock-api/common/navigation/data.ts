@@ -71,6 +71,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 link : '/apps/contacts'
             }, 
             {
+                id   : 'apps.players',
+                title: 'Players',
+                type : 'basic',
+                icon : 'heroicons_outline:user-group',
+                link : '/apps/players'
+            }, 
+            {
                 id      : 'apps.ecommerce',
                 title   : 'ECommerce',
                 type    : 'collapsable',

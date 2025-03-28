@@ -40,9 +40,17 @@ export const apiRoutes = {
       sportsAssociationConfigurationDetail: (pk: number): string => `scc/sports_association_configuration/${pk}/`,
     },
     chatApp: {
-      chatsCreateList: 'chats/chatsCreateList/',
-      chatDetail: (pk: number): string => `chats/chat/${pk}/`,
-      messagesCreateList: 'chats/messagesCreateList/',
+        // Chats
+        chatsCreateList: 'chats/', // Liste et création de chats
+        chatDetail: (pk: number): string => `chats/${pk}/`, // Détail, mise à jour et suppression d'un chat
+        // Messages
+        messagesCreateList: (chatId: number): string => `chats/${chatId}/messages/`, // Liste et création de messages pour un chat spécifique
+        messageDetail: (pk: number): string => `messages/${pk}/`, // Détail, mise à jour et suppression d'un message
+        // Group Invitations
+        groupInvitationsCreateList: 'group-invitations/', // Liste et création d'invitations de groupe
+        groupInvitationDetail: (pk: number): string => `group-invitations/${pk}/`, // Détail, mise à jour et suppression d'une invitation de groupe
+        // Mark message as read
+        markMessageAsRead: (pk: number): string => `messages/${pk}/mark-as-read/`, // Marquer un message comme lu
     },
     comportementApp: {
       userActionCreate: 'useractions/useractionCreate/',
@@ -62,6 +70,12 @@ export const apiRoutes = {
       ordersCreateList: 'market/ordersCreateList/',
       orderDetail: (pk: number): string => `market/order/${pk}/`,
       orderItemsCreateList: 'market/orderitemsCreateList/',
+    },
+    playerApp: {
+      // Liste et création de joueurs
+      playersCreateList: '/players/players/',
+      // Détail, mise à jour et suppression d'un joueur
+      playerDetail: (pk: number): string => `/players/players/${pk}/`,
     },
     emploiApp: {
       jobOffersCreateList: 'employment_app/job_offersCreateList/',

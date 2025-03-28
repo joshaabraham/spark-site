@@ -120,6 +120,9 @@ export class AuthService
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
+                //un fois que le suer est quthentifié je veux qu'on charge tout ce qui concerne le user
+
+
                 // Store the user on the user service
                 this._userService.user = response.user;
 

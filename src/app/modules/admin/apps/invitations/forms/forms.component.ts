@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InvitationStatus, Invitation } from '../invitations.types';
 import { Sport } from '../../sports/sports.types';
-import { Player } from '../../player/player.types';
+import { Player } from '../../player/players.types';
 import { SportsStateManager } from 'app/dataService/stateManager/sports.state.manager'; // Import du SportsStateManager
 
 @Component({

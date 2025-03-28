@@ -1,30 +1,27 @@
 import { Route } from '@angular/router';
-import { PlayersComponent } from './player.component';
+import { PlayersComponent } from './players.component';
 import { PlayersListComponent } from './list/list.component';
-import { PlayerResolver, PlayersResolver } from './player.resolvers';
+import { PlayerResolver, PlayersResolver } from './players.resolvers';
 import { PlayerDetailsComponent } from './detail/details.component';
 
 export const playersRoutes: Route[] = [
     {
-        path     : '',
+        path: '',
         component: PlayersComponent,
-        resolve  : {
-            categories: PlayersResolver
-        },
-        children : [
+        children: [
             {
-                path     : '',
+                path: '',
                 pathMatch: 'full',
                 component: PlayersListComponent,
-                resolve  : {
-                    courses: PlayersResolver
+                resolve: {
+                    players: PlayersResolver // Précharge la liste des joueurs
                 }
             },
             {
-                path     : ':id',
+                path: ':id',
                 component: PlayerDetailsComponent,
-                resolve  : {
-                    course: PlayerResolver
+                resolve: {
+                    player: PlayerResolver // Précharge les détails d'un joueur
                 }
             }
         ]
